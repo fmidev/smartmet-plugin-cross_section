@@ -1,0 +1,45 @@
+[
+        {
+            "value": 4,
+	    "attributes":
+	    {
+		"class": "Salinity_4"
+	    }
+        },
+        {
+            "value": 5,
+	    "attributes":
+	    {
+		"class": "Salinity_5"
+	    }
+        },
+        {
+            "value": 6,
+	    "attributes":
+	    {
+		"class": "Salinity_6"
+	    }
+        },
+        {
+            "value": 7,
+	    "attributes":
+	    {
+		"class": "Salinity_7"
+	    }
+        },
+        {
+            "value": 8,
+	    "attributes":
+	    {
+		"class": "Salinity_8"
+	    }
+        },
+        {
+            "value": 9,
+	    "attributes":
+	    {
+		"class": "Salinity_9"
+	    }
+        }
+]
+

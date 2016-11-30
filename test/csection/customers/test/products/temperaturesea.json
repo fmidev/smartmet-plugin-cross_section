@@ -1,0 +1,16 @@
+{
+    "layers": [
+	{
+	    "layer_type": "isoband",
+	    "parameter": "TemperatureSea",
+	    "interpolation": "linear",
+	    "isobands": "json:isobands/temperaturesea.json"
+	},
+	{
+	    "layer_type": "isoline",
+	    "parameter": "TemperatureSea",
+	    "interpolation": "linear",
+	    "isolines": "json:isolines/temperaturesea.json"
+	}
+    ]
+}

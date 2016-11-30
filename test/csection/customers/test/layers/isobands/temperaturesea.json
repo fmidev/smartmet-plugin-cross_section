@@ -1,0 +1,153 @@
+[
+        {
+            "hilimit": -1,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_inf_1"
+	    }
+        },
+        {
+            "lolimit": -1,
+            "hilimit": 0,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_1_0"
+	    }
+        },
+        {
+            "lolimit": 0,
+            "hilimit": 1,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_0_1"
+	    }
+        },
+        {
+            "lolimit": 1,
+            "hilimit": 2,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_1_2"
+	    }
+        },
+        {
+            "lolimit": 2,
+            "hilimit": 4,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_2_4"
+	    }
+        },
+        {
+            "lolimit": 4,
+            "hilimit": 6,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_4_6"
+	    }
+        },
+        {
+            "lolimit": 6,
+            "hilimit": 8,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_6_8"
+	    }
+        },
+        {
+            "lolimit": 8,
+            "hilimit": 10,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_8_10"
+	    }
+        },
+        {
+            "lolimit": 10,
+            "hilimit": 12,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_10_12"
+	    }
+        },
+        {
+            "lolimit": 12,
+            "hilimit": 14,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_12_14"
+	    }
+        },
+        {
+            "lolimit": 14,
+            "hilimit": 16,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_14_16"
+	    }
+        },
+        {
+            "lolimit": 16,
+            "hilimit": 18,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_16_18"
+	    }
+        },
+        {
+            "lolimit": 18,
+            "hilimit": 20,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_18_20"
+	    }
+        },
+        {
+            "lolimit": 20,
+            "hilimit": 22,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_20_22"
+	    }
+        },
+        {
+            "lolimit": 22,
+            "hilimit": 24,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_22_24"
+	    }
+        },
+        {
+            "lolimit": 24,
+            "hilimit": 26,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_24_26"
+	    }
+        },
+        {
+            "lolimit": 26,
+            "hilimit": 28,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_26_28"
+	    }
+        },
+        {
+            "lolimit": 28,
+            "hilimit": 30,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_28_30"
+	    }
+        },
+        {
+            "lolimit": 30,
+	    "attributes":
+	    {
+		"class": "SeaTemperature_30_inf"
+	    }
+        }
+]
+

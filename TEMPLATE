@@ -1,0 +1,31 @@
+{
+    "bbox":
+    {
+	"xmin": 0,
+	"ymin": -80,
+	"xmax": 212.7,
+	"ymax": 0
+    },
+    "layers":
+    {
+	"201407251200":
+	{
+	    "isobands":
+	    {
+		"SeaTemperature":
+		[
+		    { "lolimit": 1, "hilimit": 2, "path": path, "attributes": },
+		    { "lolimit": 2, "path": path }
+		],
+	    },
+	    "isolines":
+	    {
+		"SeaTemperature":
+		[
+		    { "value": 0, "path": path },
+		    { "value": 1, "path": path }
+		]
+	    }
+	}
+    }
+}

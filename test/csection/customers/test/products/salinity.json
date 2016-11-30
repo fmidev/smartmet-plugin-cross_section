@@ -1,0 +1,14 @@
+{
+    "layers": [
+	{
+	    "layer_type": "isoband",
+	    "parameter": "Salinity",
+	    "isobands": "json:isobands/salinity.json"
+	},
+	{
+	    "layer_type": "isoline",
+	    "parameter": "Salinity",
+	    "isolines": "json:isolines/salinity.json"
+	}
+    ]
+}

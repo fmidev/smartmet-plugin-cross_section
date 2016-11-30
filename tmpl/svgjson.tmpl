@@ -1,0 +1,49 @@
+{
+ "distance": <TMPL_var distance>,
+ <-TMPL_if defined(bbox)>
+ "bbox":
+ {
+   "xmin": <TMPL_var bbox.xmin>,
+   "ymin": <TMPL_var bbox.ymin>,
+   "xmax": <TMPL_var bbox.xmax>,
+   "ymax": <TMPL_var bbox.ymax>
+ },
+<-/TMPL_if>
+"layers":
+ {	
+   <TMPL_foreach layers as timedlayer>
+   <-TMPL_if (!timedlayer.__first__)>,</TMPL_if>
+   "<-TMPL_var timedlayer.__key__>":
+   {
+     <TMPL_foreach timedlayer.__value__ as layertype>
+     <-TMPL_if (!layertype.__first__)>,</TMPL_if>
+     "<-TMPL_var layertype.__key__>":
+     {
+       <TMPL_foreach layertype.__value__ as paramlayer>
+       <-TMPL_if (!paramlayer.__first__)>,</TMPL_if>
+       "<-TMPL_var paramlayer.__key__>":
+       [
+         <-TMPL_foreach paramlayer.__value__ as layer>
+         <-TMPL_if (!layer.__first__)>,</TMPL_if>
+         {
+           <-TMPL_if defined(layer.attributes)> "attributes": { 
+            <-TMPL_foreach layer.attributes as attribute>
+           <-TMPL_if (!attribute.__first__)>, </TMPL_if>"<TMPL_var attribute.__key__>": "<TMPL_var attribute.__value__>"
+            <-/TMPL_foreach> }
+           <-TMPL_else>
+            "attributes": { }
+           </TMPL_if>
+           <-TMPL_if defined(layer.lolimit)>, "lolimit": <TMPL_var layer.lolimit></TMPL_if>
+           <-TMPL_if defined(layer.hilimit)>, "hilimit": <TMPL_var layer.hilimit></TMPL_if>
+           <-TMPL_if defined(layer.value)>, "value": <TMPL_var layer.value></TMPL_if>
+           <-TMPL_if defined(layer.path)>, "path": "<TMPL_var layer.path>"</TMPL_if>
+         }
+         <-/TMPL_foreach>
+       ]
+       <-/TMPL_foreach>
+     }
+     <-/TMPL_foreach>
+   }
+   <-/TMPL_foreach>
+ }
+}

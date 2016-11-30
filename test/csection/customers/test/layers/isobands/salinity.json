@@ -1,0 +1,57 @@
+[
+        {
+            "hilimit": 4,
+	    "attributes":
+	    {
+		"class": "Salinity_inf_4"
+	    }
+        },
+        {
+            "lolimit": 4,
+            "hilimit": 5,
+	    "attributes":
+	    {
+		"class": "Salinity_4_5"
+	    }
+        },
+        {
+            "lolimit": 5,
+            "hilimit": 6,
+	    "attributes":
+	    {
+		"class": "Salinity_5_6"
+	    }
+        },
+        {
+            "lolimit": 6,
+            "hilimit": 7,
+	    "attributes":
+	    {
+		"class": "Salinity_6_7"
+	    }
+        },
+        {
+            "lolimit": 7,
+            "hilimit": 8,
+	    "attributes":
+	    {
+		"class": "Salinity_7_8"
+	    }
+        },
+        {
+            "lolimit": 8,
+            "hilimit": 9,
+	    "attributes":
+	    {
+		"class": "Salinity_8_9"
+	    }
+        },
+        {
+            "lolimit": 9,
+	    "attributes":
+	    {
+		"class": "Salinity_9_inf"
+	    }
+        }
+]
+
