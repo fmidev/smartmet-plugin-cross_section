@@ -88,7 +88,7 @@ endif
 
 LIBS = -L$(libdir) \
 	-lsmartmet-spine \
-	-lsmartmet_gis \
+	-lsmartmet-gis \
 	`pkg-config --libs jsoncpp` \
 	-lctpp2 \
 	-lboost_date_time \
