@@ -29,20 +29,24 @@ Config::Config(const string& configfile)
       itsDefaultCustomer("fmi"),
       itsDefaultTimeZone("UTC"),
       itsTemplateDirectory("/etc/brainstorm/plugins/csection/templates"),
-      itsRootDirectory("/smartmet/share/brainstorm/csection")
+      itsRootDirectory()
 {
   try
   {
     if (!configfile.empty())
     {
       itsConfig.readFile(configfile.c_str());
-      itsConfig.lookupValue("url", itsDefaultUrl);
 
+      // required parameters
+      std::string root = itsConfig.lookup("root");
+      itsRootDirectory = root;
+
+      // optional parameters
+      itsConfig.lookupValue("url", itsDefaultUrl);
       itsConfig.lookupValue("template", itsDefaultTemplate);
       itsConfig.lookupValue("templatedir", itsTemplateDirectory);
       itsConfig.lookupValue("customer", itsDefaultCustomer);
       itsConfig.lookupValue("timezone", itsDefaultTimeZone);
-      itsConfig.lookupValue("root", itsRootDirectory);
     }
   }
   catch (...)
