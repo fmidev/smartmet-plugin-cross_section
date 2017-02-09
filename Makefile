@@ -113,16 +113,16 @@ BYTECODES = $(TEMPLATES:%.tmpl=%.c2t)
 
 # Compilation directories
 
-vpath %.cpp source
-vpath %.h include
+vpath %.cpp $(SUBNAME)
+vpath %.h $(SUBNAME)
 
 # The files to be compiled
 
-SRCS = $(wildcard source/*.cpp)
-HDRS = $(wildcard include/*.h)
+SRCS = $(wildcard $(SUBNAME)/*.cpp)
+HDRS = $(wildcard $(SUBNAME)/*.h)
 OBJS = $(patsubst %.cpp, obj/%.o, $(notdir $(SRCS)))
 
-INCLUDES := -Iinclude $(INCLUDES)
+INCLUDES := -I$(SUBNAME) $(INCLUDES)
 
 .PHONY: test rpm
 
@@ -144,7 +144,7 @@ clean:
 	rm -rf $(objdir)
 
 format:
-	clang-format -i -style=file include/*.h source/*.cpp test/*.cpp
+	clang-format -i -style=file $(SUBNAME)/*.h $(SUBNAME)/*.cpp test/*.cpp
 
 install:
 	@mkdir -p $(plugindir)
@@ -163,7 +163,7 @@ objdir:
 rpm: clean
 	@if [ -e $(SPEC).spec ]; \
 	then \
-	  tar -czvf $(SPEC).tar.gz --transform "s,^,plugins/$(SPEC)/," * ; \
+	  tar -czvf $(SPEC).tar.gz --transform "s,^,$(SPEC)/," * ; \
 	  rpmbuild -ta $(SPEC).tar.gz ; \
 	  rm -f $(SPEC).tar.gz ; \
 	else \
@@ -178,6 +178,4 @@ obj/%.o: %.cpp
 %.c2t:  %.tmpl
 	ctpp2c $< $@
 
-ifneq ($(wildcard obj/*.d),)
 -include $(wildcard obj/*.d)
-endif

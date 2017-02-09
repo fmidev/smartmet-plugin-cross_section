@@ -14,7 +14,7 @@ CC = g++
 CFLAGS = -DUNIX -O0 -g $(MAINFLAGS)
 
 INCLUDES = \
-	-I ../include \
+	-I ../cross_section \
 	-I /usr/include/smartmet \
 	`pkg-config --cflags libconfig++` \
 	`pkg-config --cflags jsoncpp`
