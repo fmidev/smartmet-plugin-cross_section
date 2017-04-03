@@ -10,10 +10,10 @@
 #include "Query.h"
 #include "State.h"
 
-#include <spine/Exception.h>
 #include <spine/Convenience.h>
-#include <spine/SmartMet.h>
+#include <spine/Exception.h>
 #include <spine/OptionParsers.h>
+#include <spine/SmartMet.h>
 #include <spine/TimeSeriesGeneratorOptions.h>
 
 #include <engines/geonames/Engine.h>
@@ -309,6 +309,8 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 {
   try
   {
+    theResponse.setHeader("Access-Control-Allow-Origin", "*");
+
     using boost::posix_time::ptime;
 
     const bool isdebug = SmartMet::Spine::optional_bool(theRequest.getParameter("debug"), false);

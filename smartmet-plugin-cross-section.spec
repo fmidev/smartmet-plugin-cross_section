@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 17.3.15
+Version: 17.4.3
 
 Release: 1%{?dist}.fmi
 License: FMI
@@ -12,8 +12,8 @@ Source0: %{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: boost-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 17.3.14
-BuildRequires: smartmet-library-spine-devel >= 17.3.15
+BuildRequires: smartmet-library-macgyver-devel >= 17.3.16
+BuildRequires: smartmet-library-spine-devel >= 17.3.16
 BuildRequires: smartmet-engine-querydata-devel >= 17.3.15
 BuildRequires: smartmet-engine-geonames-devel >= 17.3.15
 BuildRequires: smartmet-engine-contour-devel >= 17.3.15
@@ -22,12 +22,12 @@ BuildRequires: jsoncpp-devel >= 0.10.5
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.2
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 17.3.14
+Requires: smartmet-library-macgyver >= 17.3.16
 Requires: smartmet-engine-querydata >= 17.3.15
 Requires: smartmet-engine-geonames >= 17.3.15
 Requires: smartmet-engine-contour >= 17.3.15
 Requires: smartmet-server >= 17.3.15
-Requires: smartmet-library-spine >= 17.3.15
+Requires: smartmet-library-spine >= 17.3.16
 Requires: boost-date-time
 Requires: boost-iostreams
 Requires: boost-system
@@ -62,6 +62,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Mon Apr  3 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.4.3-1.fmi
+- Added CORS headers
+
 * Wed Mar 15 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.3.15-1.fmi
 - Recompiled since Spine::Exception changed
 
