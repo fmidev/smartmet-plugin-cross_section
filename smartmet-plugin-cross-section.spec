@@ -21,6 +21,7 @@ BuildRequires: smartmet-engine-geonames-devel >= 17.8.28
 BuildRequires: smartmet-engine-contour-devel >= 17.8.28
 BuildRequires: ctpp2 >= 2.8.2
 BuildRequires: jsoncpp-devel >= 0.10.5
+BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.2
 Requires: libconfig
