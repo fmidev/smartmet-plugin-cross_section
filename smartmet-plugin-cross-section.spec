@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 17.8.28
+Version: 18.2.9
 
 Release: 1%{?dist}.fmi
 License: FMI
@@ -14,23 +14,23 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 17.8.28
-BuildRequires: smartmet-library-spine-devel >= 17.8.28
-BuildRequires: smartmet-engine-querydata-devel >= 17.8.28
-BuildRequires: smartmet-engine-geonames-devel >= 17.8.28
-BuildRequires: smartmet-engine-contour-devel >= 17.8.28
-BuildRequires: ctpp2 >= 2.8.2
+BuildRequires: smartmet-library-macgyver-devel >= 18.2.9
+BuildRequires: smartmet-library-spine-devel >= 18.2.9
+BuildRequires: smartmet-engine-querydata-devel >= 18.2.9
+BuildRequires: smartmet-engine-geonames-devel >= 18.2.9
+BuildRequires: smartmet-engine-contour-devel >= 18.2.9
+BuildRequires: ctpp2 >= 2.8.5
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
-Requires: ctpp2 >= 2.8.2
+Requires: ctpp2 >= 2.8.5
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 17.8.28
-Requires: smartmet-engine-querydata >= 17.8.28
-Requires: smartmet-engine-geonames >= 17.8.28
-Requires: smartmet-engine-contour >= 17.8.28
-Requires: smartmet-server >= 17.8.28
-Requires: smartmet-library-spine >= 17.8.28
+Requires: smartmet-library-macgyver >= 18.2.9
+Requires: smartmet-engine-querydata >= 18.2.9
+Requires: smartmet-engine-geonames >= 18.2.9
+Requires: smartmet-engine-contour >= 18.2.9
+Requires: smartmet-server >= 17.11.10
+Requires: smartmet-library-spine >= 18.2.9
 Requires: boost-date-time
 Requires: boost-iostreams
 Requires: boost-system
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Fri Feb  9 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.2.9-1.fmi
+- Repackaged due to TimeZones API change
+
 * Mon Aug 28 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.8.28-1.fmi
 - Upgrade to boost 1.65
 
