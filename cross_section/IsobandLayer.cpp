@@ -5,14 +5,14 @@
 #include "Isoband.h"
 #include "Layer.h"
 #include "State.h"
-#include <spine/ParameterFactory.h>
+#include <boost/foreach.hpp>
+#include <ctpp2/CDT.hpp>
 #include <engines/contour/Engine.h>
 #include <engines/contour/Interpolation.h>
 #include <gis/Box.h>
 #include <gis/OGR.h>
 #include <macgyver/TimeFormatter.h>
-#include <ctpp2/CDT.hpp>
-#include <boost/foreach.hpp>
+#include <spine/ParameterFactory.h>
 
 // TODO:
 #include <boost/timer/timer.hpp>
@@ -29,18 +29,14 @@ namespace CrossSection
  */
 // ----------------------------------------------------------------------
 
-IsobandLayer::IsobandLayer() : interpolation("linear")
-{
-}
+IsobandLayer::IsobandLayer() : interpolation("linear") {}
 // ----------------------------------------------------------------------
 /*!
  * \brief We need a vtable for the class
  */
 // ----------------------------------------------------------------------
 
-IsobandLayer::~IsobandLayer()
-{
-}
+IsobandLayer::~IsobandLayer() {}
 // ----------------------------------------------------------------------
 /*!
  * \brief Initialize from JSON

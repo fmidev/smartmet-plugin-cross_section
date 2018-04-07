@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include <libconfig.h++>
 #include <boost/utility.hpp>
+#include <libconfig.h++>
 #include <set>
 #include <string>
 

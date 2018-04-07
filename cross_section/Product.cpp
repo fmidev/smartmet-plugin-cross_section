@@ -3,12 +3,12 @@
 #include "Product.h"
 #include "Config.h"
 #include "State.h"
-#include <spine/Exception.h>
-#include <spine/HTTP.h>
-#include <ctpp2/CDT.hpp>
-#include <macgyver/TimeParser.h>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
+#include <ctpp2/CDT.hpp>
+#include <macgyver/TimeParser.h>
+#include <spine/Exception.h>
+#include <spine/HTTP.h>
 
 namespace
 {
@@ -65,7 +65,7 @@ double geodistance(double theLon1, double theLat1, double theLon2, double theLat
 
   return 6371.220 * c;
 }
-}
+}  // namespace
 
 namespace SmartMet
 {

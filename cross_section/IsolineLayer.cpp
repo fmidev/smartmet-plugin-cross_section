@@ -5,12 +5,12 @@
 #include "Isoline.h"
 #include "Layer.h"
 #include "State.h"
+#include <boost/foreach.hpp>
+#include <ctpp2/CDT.hpp>
+#include <engines/contour/Engine.h>
 #include <gis/Box.h>
 #include <gis/OGR.h>
-#include <ctpp2/CDT.hpp>
 #include <spine/ParameterFactory.h>
-#include <engines/contour/Engine.h>
-#include <boost/foreach.hpp>
 
 // TODO:
 #include <boost/timer/timer.hpp>
@@ -27,18 +27,14 @@ namespace CrossSection
  */
 // ----------------------------------------------------------------------
 
-IsolineLayer::IsolineLayer() : interpolation("linear")
-{
-}
+IsolineLayer::IsolineLayer() : interpolation("linear") {}
 // ----------------------------------------------------------------------
 /*!
  * \brief We need a vtable for the class
  */
 // ----------------------------------------------------------------------
 
-IsolineLayer::~IsolineLayer()
-{
-}
+IsolineLayer::~IsolineLayer() {}
 // ----------------------------------------------------------------------
 /*!
  * \brief Initialize from JSON

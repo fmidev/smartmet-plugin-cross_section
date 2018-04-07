@@ -13,8 +13,8 @@
 
 #pragma once
 
-#include <spine/Thread.h>
 #include <boost/filesystem/path.hpp>
+#include <spine/Thread.h>
 #include <map>
 #include <string>
 

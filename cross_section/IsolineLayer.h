@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Layer.h"
 #include "Isoline.h"
+#include "Layer.h"
 #include <vector>
 
 namespace SmartMet

@@ -2,10 +2,10 @@
 
 #include "State.h"
 #include "Plugin.h"
-#include <ctpp2/CDT.hpp>
 #include <boost/foreach.hpp>
-#include <stdexcept>
+#include <ctpp2/CDT.hpp>
 #include <spine/Exception.h>
+#include <stdexcept>
 
 namespace SmartMet
 {

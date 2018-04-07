@@ -26,7 +26,7 @@ void expand(Json::Value& theJson,
 
 // expand references in the Json ("path:name1.name2[0].parameter")
 void dereference(Json::Value& theJson);
-}
+}  // namespace JSON
 
 }  // namespace CrossSection
 }  // namespace Plugin

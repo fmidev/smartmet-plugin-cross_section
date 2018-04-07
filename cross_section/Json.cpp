@@ -1,8 +1,8 @@
 #include "Json.h"
 #include "FileCache.h"
-#include <spine/Exception.h>
-#include <boost/foreach.hpp>
 #include <boost/algorithm/string/predicate.hpp>
+#include <boost/foreach.hpp>
+#include <spine/Exception.h>
 
 namespace SmartMet
 {

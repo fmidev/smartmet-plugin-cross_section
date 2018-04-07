@@ -2,8 +2,8 @@
 #include "Layer.h"
 #include "LayerFactory.h"
 #include "State.h"
-#include <ctpp2/CDT.hpp>
 #include <boost/foreach.hpp>
+#include <ctpp2/CDT.hpp>
 #include <spine/Exception.h>
 
 namespace SmartMet

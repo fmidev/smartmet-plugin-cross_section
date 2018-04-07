@@ -58,7 +58,7 @@ const std::string &check_attack(const std::string &theName)
     throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
   }
 }
-}
+}  // namespace
 
 namespace SmartMet
 {
@@ -480,9 +480,7 @@ void Plugin::shutdown()
  */
 // ----------------------------------------------------------------------
 
-Plugin::~Plugin()
-{
-}
+Plugin::~Plugin() {}
 // ----------------------------------------------------------------------
 /*!
  * \brief Return the plugin name

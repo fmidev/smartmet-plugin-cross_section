@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "Layer.h"
 #include "Isoband.h"
+#include "Layer.h"
 #include <vector>
 
 namespace SmartMet

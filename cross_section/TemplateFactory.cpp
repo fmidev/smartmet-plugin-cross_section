@@ -1,9 +1,9 @@
 // ======================================================================
 
 #include "TemplateFactory.h"
-#include <spine/Exception.h>
 #include <boost/filesystem/operations.hpp>
 #include <boost/make_shared.hpp>
+#include <spine/Exception.h>
 
 namespace SmartMet
 {

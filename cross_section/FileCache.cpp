@@ -1,8 +1,8 @@
 // ======================================================================
 
 #include "FileCache.h"
-#include <spine/Exception.h>
 #include <boost/filesystem/operations.hpp>
+#include <spine/Exception.h>
 #include <fstream>
 #include <stdexcept>
 

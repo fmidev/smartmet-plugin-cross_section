@@ -1,7 +1,7 @@
 #include "Isoline.h"
 #include "Config.h"
-#include <spine/Exception.h>
 #include <boost/foreach.hpp>
+#include <spine/Exception.h>
 #include <stdexcept>
 
 namespace SmartMet

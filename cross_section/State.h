@@ -20,8 +20,8 @@
 #include "Attributes.h"
 #include "Plugin.h"
 #include "Query.h"
-#include <engines/querydata/Q.h>
 #include <engines/contour/Engine.h>
+#include <engines/querydata/Q.h>
 #include <map>
 
 namespace CTPP

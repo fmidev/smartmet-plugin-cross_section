@@ -1,8 +1,8 @@
 // ======================================================================
 
 #include "LayerFactory.h"
-#include "IsolineLayer.h"
 #include "IsobandLayer.h"
+#include "IsolineLayer.h"
 #include <spine/Exception.h>
 #include <fstream>
 #include <stdexcept>

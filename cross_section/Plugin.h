@@ -7,11 +7,11 @@
 #pragma once
 
 #include <engines/contour/Engine.h>
-#include <engines/querydata/Engine.h>
 #include <engines/geonames/Engine.h>
-#include <spine/SmartMetPlugin.h>
+#include <engines/querydata/Engine.h>
 #include <spine/HTTP.h>
 #include <spine/Reactor.h>
+#include <spine/SmartMetPlugin.h>
 #include <spine/Thread.h>
 
 #include "Config.h"
