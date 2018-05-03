@@ -169,7 +169,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
         mytimer.reset(new boost::timer::auto_cpu_timer(2, report));
       tmpl->process(hash, output, log);
     }
-    catch (CTPP::CTPPException &e)
+    catch (const CTPP::CTPPException &e)
     {
       SmartMet::Spine::Exception exception(BCP, "Template processing failed!", NULL);
       exception.addParameter("Product", product_name);
