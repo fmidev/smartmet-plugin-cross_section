@@ -39,7 +39,7 @@ bool Layer::init(const std::string& theName, const Json::Value& theJson, const C
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

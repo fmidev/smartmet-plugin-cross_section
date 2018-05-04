@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 18.4.7
+Version: 18.5.4
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Fri May  4 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.5.4-1.fmi
+- Prefer nullptr over NULL
+
 * Sat Apr  7 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.4.7-1.fmi
 - Upgrade to boost 1.66
 

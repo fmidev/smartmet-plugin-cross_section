@@ -53,7 +53,7 @@ std::string FileCache::get(const boost::filesystem::path& thePath) const
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

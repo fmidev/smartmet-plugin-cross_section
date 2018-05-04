@@ -86,7 +86,7 @@ void Attributes::init(const Json::Value& theJson, const Config& theConfig)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -114,7 +114,7 @@ void Attributes::generate(CTPP::CDT& theLocals, State& theState) const
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

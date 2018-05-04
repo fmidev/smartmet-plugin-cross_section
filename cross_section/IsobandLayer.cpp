@@ -89,7 +89,7 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -193,7 +193,7 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
