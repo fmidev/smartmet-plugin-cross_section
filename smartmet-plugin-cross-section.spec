@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 18.5.4
+Version: 18.8.2
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,23 +14,23 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 18.4.7
-BuildRequires: smartmet-library-spine-devel >= 18.4.7
-BuildRequires: smartmet-engine-querydata-devel >= 18.4.7
-BuildRequires: smartmet-engine-geonames-devel >= 18.4.7
-BuildRequires: smartmet-engine-contour-devel >= 18.4.7
+BuildRequires: smartmet-library-macgyver-devel >= 18.8.1
+BuildRequires: smartmet-library-spine-devel >= 18.8.2
+BuildRequires: smartmet-engine-querydata-devel >= 18.8.2
+BuildRequires: smartmet-engine-geonames-devel >= 18.7.25
+BuildRequires: smartmet-engine-contour-devel >= 18.7.25
 BuildRequires: ctpp2 >= 2.8.5
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.5
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 18.4.7
-Requires: smartmet-engine-querydata >= 18.4.7
-Requires: smartmet-engine-geonames >= 18.4.7
-Requires: smartmet-engine-contour >= 18.4.7
-Requires: smartmet-server >= 18.4.7
-Requires: smartmet-library-spine >= 18.4.7
+Requires: smartmet-library-macgyver >= 18.8.1
+Requires: smartmet-engine-querydata >= 18.8.2
+Requires: smartmet-engine-geonames >= 18.7.25
+Requires: smartmet-engine-contour >= 18.7.25
+Requires: smartmet-server >= 18.8.1
+Requires: smartmet-library-spine >= 18.8.2
 Requires: boost-date-time
 Requires: boost-iostreams
 Requires: boost-system
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Thu Aug  2 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.8.2-1.fmi
+- Repackaged since exportToSvg API changed
+
 * Fri May  4 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.5.4-1.fmi
 - Prefer nullptr over NULL
 
