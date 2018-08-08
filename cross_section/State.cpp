@@ -113,7 +113,7 @@ void State::updateEnvelope(const OGRGeometryPtr& theGeom)
 {
   try
   {
-    if (theGeom == nullptr || theGeom->IsEmpty() == 0)
+    if (theGeom == nullptr || theGeom->IsEmpty() != 0)
       return;
 
     OGREnvelope env;

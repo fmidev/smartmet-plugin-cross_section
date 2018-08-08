@@ -5,8 +5,8 @@
 #include "State.h"
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/foreach.hpp>
-#include <boost/lexical_cast.hpp>
 #include <ctpp2/CDT.hpp>
+#include <macgyver/StringConversion.h>
 #include <spine/Exception.h>
 #include <spine/HTTP.h>
 
@@ -54,17 +54,17 @@ void Attributes::init(const Json::Value& theJson, const Config& /* theConfig */)
           break;
         case Json::intValue:
         {
-          attributes[name] = boost::lexical_cast<std::string>(json.asInt());
+          attributes[name] = Fmi::to_string(json.asInt());
           break;
         }
         case Json::uintValue:
         {
-          attributes[name] = boost::lexical_cast<std::string>(json.asUInt64());
+          attributes[name] = Fmi::to_string(static_cast<unsigned long>(json.asUInt64()));
           break;
         }
         case Json::realValue:
         {
-          attributes[name] = boost::lexical_cast<std::string>(json.asDouble());
+          attributes[name] = Fmi::to_string(json.asDouble());
           break;
         }
         case Json::stringValue:
