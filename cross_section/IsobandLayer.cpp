@@ -124,7 +124,7 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
     const auto& contourer = theState.getContourEngine();
     std::vector<SmartMet::Engine::Contour::Range> limits;
     for (const auto& isoband : isobands)
-      limits.push_back(SmartMet::Engine::Contour::Range(isoband.lolimit, isoband.hilimit));
+      limits.emplace_back(SmartMet::Engine::Contour::Range(isoband.lolimit, isoband.hilimit));
     SmartMet::Engine::Contour::Options options(param, theState.time().utc_time(), limits);
 
     if (multiplier || offset)
