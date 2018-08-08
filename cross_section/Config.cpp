@@ -23,13 +23,11 @@ namespace CrossSection
 // ----------------------------------------------------------------------
 
 Config::Config(const string& configfile)
-    : itsConfig(),
-      itsDefaultUrl("/csection"),
+    : itsDefaultUrl("/csection"),
       itsDefaultTemplate("svgjson"),
       itsDefaultCustomer("fmi"),
       itsDefaultTimeZone("UTC"),
       itsTemplateDirectory("/etc/brainstorm/plugins/csection/templates"),
-      itsRootDirectory()
 {
   try
   {
