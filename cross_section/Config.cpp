@@ -8,7 +8,7 @@
 #include <spine/Exception.h>
 #include <stdexcept>
 
-using namespace std;
+using std::string;
 
 namespace SmartMet
 {

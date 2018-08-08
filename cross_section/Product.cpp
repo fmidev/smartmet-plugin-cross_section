@@ -46,8 +46,6 @@ double torad(double theValue)
 }
 double geodistance(double theLon1, double theLat1, double theLon2, double theLat2)
 {
-  using namespace std;
-
   double lo1 = torad(theLon1);
   double la1 = torad(theLat1);
 
