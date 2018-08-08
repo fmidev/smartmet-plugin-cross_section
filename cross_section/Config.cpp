@@ -27,7 +27,7 @@ Config::Config(const string& configfile)
       itsDefaultTemplate("svgjson"),
       itsDefaultCustomer("fmi"),
       itsDefaultTimeZone("UTC"),
-      itsTemplateDirectory("/etc/brainstorm/plugins/csection/templates"),
+      itsTemplateDirectory("/etc/brainstorm/plugins/csection/templates")
 {
   try
   {
