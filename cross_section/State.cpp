@@ -66,7 +66,7 @@ void State::addAttributes(CTPP::CDT& theGlobals, const Attributes& theAttributes
  */
 // ----------------------------------------------------------------------
 
-void State::addAttributes(CTPP::CDT& theGlobals,
+void State::addAttributes(CTPP::CDT& /* theGlobals */,
                           CTPP::CDT& theLocals,
                           const Attributes& theAttributes)
 {
