@@ -3,7 +3,7 @@
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
 Version: 18.8.8
-Release: 1%{?dist}.fmi
+Release: 2%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
@@ -14,9 +14,9 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 18.8.1
-BuildRequires: smartmet-library-spine-devel >= 18.8.2
-BuildRequires: smartmet-engine-querydata-devel >= 18.8.2
+BuildRequires: smartmet-library-macgyver-devel >= 18.8.4
+BuildRequires: smartmet-library-spine-devel >= 18.8.7
+BuildRequires: smartmet-engine-querydata-devel >= 18.8.6
 BuildRequires: smartmet-engine-geonames-devel >= 18.7.25
 BuildRequires: smartmet-engine-contour-devel >= 18.7.25
 BuildRequires: ctpp2 >= 2.8.5
@@ -25,12 +25,12 @@ BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.5
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 18.8.1
-Requires: smartmet-engine-querydata >= 18.8.2
+Requires: smartmet-library-macgyver >= 18.8.4
+Requires: smartmet-engine-querydata >= 18.8.6
 Requires: smartmet-engine-geonames >= 18.7.25
 Requires: smartmet-engine-contour >= 18.7.25
-Requires: smartmet-server >= 18.8.1
-Requires: smartmet-library-spine >= 18.8.2
+Requires: smartmet-server >= 18.8.8
+Requires: smartmet-library-spine >= 18.8.7
 Requires: boost-date-time
 Requires: boost-iostreams
 Requires: boost-system
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Wed Aug  8 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.8.8-2.fmi
+- Fixed TemplateFactory cache to work
+
 * Wed Aug  8 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.8.8-1.fmi
 - Silenced several CodeChecker warnings
 
