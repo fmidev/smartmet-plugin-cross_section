@@ -72,9 +72,8 @@ void IsolineLayer::init(const Json::Value& theJson, const Config& theConfig)
         if (!json.isArray())
           throw SmartMet::Spine::Exception(BCP, "isolines setting must be an array");
 
-        for (unsigned int i = 0; i < json.size(); i++)
+        for (const auto& isoline_json : json)
         {
-          const Json::Value& isoline_json = json[i];
           Isoline isoline;
           isoline.init(isoline_json, theConfig);
           isolines.push_back(isoline);

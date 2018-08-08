@@ -25,9 +25,8 @@ void Layers::init(const Json::Value& theJson, const Config& theConfig)
     if (!theJson.isArray())
       throw SmartMet::Spine::Exception(BCP, "Layers JSON is not a JSON array");
 
-    for (unsigned int i = 0; i < theJson.size(); i++)
+    for (const auto& json : theJson)
     {
-      const Json::Value& json = theJson[i];
       boost::shared_ptr<Layer> layer(LayerFactory::create(json));
       layer->init(json, theConfig);
       layers.push_back(layer);

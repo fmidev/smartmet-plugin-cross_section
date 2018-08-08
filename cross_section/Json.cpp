@@ -61,14 +61,14 @@ void JSON::expand(Json::Value& theJson,
     // Seek deeper in arrays
     else if (theJson.isArray())
     {
-      for (unsigned int i = 0; i < theJson.size(); i++)
-        expand(theJson[i], theRootPath, thePath, theFileCache);
+      for (auto& json : theJson)
+        expand(json, theRootPath, thePath, theFileCache);
     }
     // Seek deeper in objects
     else if (theJson.isObject())
     {
       const auto members = theJson.getMemberNames();
-      BOOST_FOREACH (auto& name, members)
+      for (auto& name : members)
       {
         expand(theJson[name], theRootPath, thePath, theFileCache);
       }

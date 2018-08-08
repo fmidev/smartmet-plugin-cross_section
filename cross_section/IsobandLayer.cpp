@@ -74,9 +74,8 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
         if (!json.isArray())
           throw SmartMet::Spine::Exception(
               BCP, "isobands setting must be an array got instead:\n" + json.toStyledString());
-        for (unsigned int i = 0; i < json.size(); i++)
+        for (const auto& isoband_json : json)
         {
-          const Json::Value& isoband_json = json[i];
           Isoband isoband;
           isoband.init(isoband_json, theConfig);
           isobands.push_back(isoband);
