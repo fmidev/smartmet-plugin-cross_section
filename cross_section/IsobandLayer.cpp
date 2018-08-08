@@ -106,7 +106,7 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
 
     // Establish the parameter
 
-    if (!parameter)
+    if (parameter == boost::none)
       throw SmartMet::Spine::Exception(BCP, "Parameter not set for isoband-layer");
     auto param = SmartMet::Spine::ParameterFactory::instance().parse(*parameter);
 

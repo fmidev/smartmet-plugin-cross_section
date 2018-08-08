@@ -104,7 +104,7 @@ void IsolineLayer::generate(CTPP::CDT& theGlobals, State& theState)
 
     // Establish the desired direction parameter
 
-    if (!parameter)
+    if (parameter == boost::none)
       throw SmartMet::Spine::Exception(BCP, "Parameter not set for isoband-layer");
 
     auto param = SmartMet::Spine::ParameterFactory::instance().parse(*parameter);
