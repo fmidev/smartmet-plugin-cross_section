@@ -109,7 +109,7 @@ SmartMet::Engine::Querydata::Q State::producer()
  */
 // ----------------------------------------------------------------------
 
-void State::updateEnvelope(OGRGeometryPtr theGeom)
+void State::updateEnvelope(const OGRGeometryPtr& theGeom)
 {
   try
   {

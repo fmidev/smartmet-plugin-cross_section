@@ -69,7 +69,7 @@ class State
   void time(const boost::local_time::local_date_time& theTime) { itsLocalTime = theTime; }
   const boost::local_time::local_date_time& time() const { return itsLocalTime; }
   const OGREnvelope& envelope() const { return itsEnvelope; }
-  void updateEnvelope(OGRGeometryPtr theGeom);
+  void updateEnvelope(const OGRGeometryPtr& theGeom);
 
  private:
   const Plugin& itsPlugin;
