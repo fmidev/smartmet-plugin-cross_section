@@ -32,10 +32,10 @@ Layer* create(const Json::Value& theJson)
 
     if (name == "isoband")
       return new IsobandLayer;
-    else if (name == "isoline")
+    if (name == "isoline")
       return new IsolineLayer;
-    else
-      throw SmartMet::Spine::Exception(BCP, "Unknown layer type '" + name + "'");
+
+    throw SmartMet::Spine::Exception(BCP, "Unknown layer type '" + name + "'");
   }
   catch (...)
   {
