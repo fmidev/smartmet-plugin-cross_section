@@ -24,7 +24,7 @@ class IsobandLayer : public Layer
 {
  public:
   IsobandLayer();
-  ~IsobandLayer();
+  ~IsobandLayer() = default;
 
   virtual void init(const Json::Value& theJson, const Config& theConfig);
 

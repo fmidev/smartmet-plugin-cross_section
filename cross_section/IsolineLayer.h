@@ -18,7 +18,7 @@ class IsolineLayer : public Layer
 {
  public:
   IsolineLayer();
-  ~IsolineLayer();
+  ~IsolineLayer() = default;
 
   virtual void init(const Json::Value& theJson, const Config& theConfig);
 
