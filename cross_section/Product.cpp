@@ -134,7 +134,7 @@ void Product::generate(CTPP::CDT& theGlobals,
     // Generate bounding box
 
     const auto& env = theState.envelope();
-    if (env.IsInit())
+    if (env.IsInit() != 0)
     {
       theGlobals["bbox"] = CTPP::CDT(CTPP::CDT::HASH_VAL);
       theGlobals["bbox"]["xmin"] = env.MinX;

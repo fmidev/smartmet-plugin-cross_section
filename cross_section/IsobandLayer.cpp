@@ -182,7 +182,7 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
         hash["lolimit"] = *isoband.lolimit;
       if (isoband.hilimit)
         hash["hilimit"] = *isoband.hilimit;
-      if (geom && !geom->IsEmpty())
+      if (geom != nullptr && geom->IsEmpty() == 0)
         hash["path"] = Fmi::OGR::exportToSvg(*geom, Fmi::Box::identity(), 1);
       else
         hash["path"] = "";

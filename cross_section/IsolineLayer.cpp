@@ -180,9 +180,9 @@ void IsolineLayer::generate(CTPP::CDT& theGlobals, State& theState)
       const Isoline& isoline = isolines[i];
 
       CTPP::CDT hash(CTPP::CDT::HASH_VAL);
-      if (isoline.value)
+      if (isoline.value != 0)
         hash["value"] = isoline.value;
-      if (geom && !geom->IsEmpty())
+      if (geom != nullptr && geom->IsEmpty() == 0)
         hash["path"] = Fmi::OGR::exportToSvg(*geom, Fmi::Box::identity(), 1);
       else
         hash["path"] = "";
