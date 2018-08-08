@@ -129,7 +129,7 @@ void IsolineLayer::generate(CTPP::CDT& theGlobals, State& theState)
 
     const auto& contourer = theState.getContourEngine();
     std::vector<double> isoline_options;
-    for (auto isoline : isolines)
+    for (const auto& isoline : isolines)
       isoline_options.push_back(isoline.value);
 
     SmartMet::Engine::Contour::Options options(param, theState.time().utc_time(), isoline_options);
