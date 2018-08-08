@@ -28,7 +28,7 @@ class Product
   void init(const Json::Value& theJson, const Config& theConfig);
   void generate(CTPP::CDT& theGlobals,
                 State& theState,
-                const SmartMet::Spine::TimeSeriesGenerator::LocalTimeList& theTimeList);
+                const SmartMet::Spine::TimeSeriesGenerator::LocalTimeList& theTimes);
 
   Layers layers;
 
