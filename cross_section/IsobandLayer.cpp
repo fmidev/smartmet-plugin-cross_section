@@ -1,11 +1,10 @@
-//======================================================================
-
 #include "IsobandLayer.h"
 #include "Config.h"
 #include "Isoband.h"
 #include "Layer.h"
 #include "State.h"
-#include <boost/foreach.hpp>
+#include <boost/move/unique_ptr.hpp>
+#include <boost/timer/timer.hpp>
 #include <ctpp2/CDT.hpp>
 #include <engines/contour/Engine.h>
 #include <engines/contour/Interpolation.h>
@@ -13,9 +12,6 @@
 #include <gis/OGR.h>
 #include <macgyver/TimeFormatter.h>
 #include <spine/ParameterFactory.h>
-
-// TODO:
-#include <boost/timer/timer.hpp>
 
 namespace SmartMet
 {
@@ -47,7 +43,7 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
     // Iterate through all the members
 
     const auto members = theJson.getMemberNames();
-    BOOST_FOREACH (const auto& name, members)
+    for (const auto& name : members)
     {
       const Json::Value& json = theJson[name];
 
@@ -97,9 +93,9 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
   try
   {
     std::string report = "IsobandLayer::generate finished in %t sec CPU, %w sec real\n";
-    std::unique_ptr<boost::timer::auto_cpu_timer> timer;
+    boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> timer;
     if (theState.query().timer)
-      timer.reset(new boost::timer::auto_cpu_timer(2, report));
+      timer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
 
     // Establish the data
     auto q = theState.producer();

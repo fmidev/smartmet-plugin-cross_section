@@ -1,7 +1,6 @@
 #include "Json.h"
 #include "FileCache.h"
 #include <boost/algorithm/string/predicate.hpp>
-#include <boost/foreach.hpp>
 #include <spine/Exception.h>
 
 namespace SmartMet
@@ -53,7 +52,7 @@ void JSON::expand(Json::Value& theJson,
         if (!json_ok)
           throw SmartMet::Spine::Exception(
               BCP, "Failed to parse '" + json_file + "': " + reader.getFormattedErrorMessages());
-        // TODO: should we prevent infinite recursion?
+        // TODO(mheiskan): should we prevent infinite recursion?
         expand(theJson, theRootPath, thePath, theFileCache);
       }
     }
@@ -118,14 +117,14 @@ void deref(Json::Value& theJson, Json::Value& theRoot)
     // Seek deeper in arrays
     else if (theJson.isArray())
     {
-      for (unsigned int i = 0; i < theJson.size(); i++)
-        deref(theJson[i], theRoot);
+      for (auto& json : theJson)
+        deref(json, theRoot);
     }
     // Seek deeper in objects
     else if (theJson.isObject())
     {
       const auto members = theJson.getMemberNames();
-      BOOST_FOREACH (auto& name, members)
+      for (auto& name : members)
       {
         deref(theJson[name], theRoot);
       }

@@ -1,8 +1,5 @@
-// ======================================================================
-
 #include "State.h"
 #include "Plugin.h"
-#include <boost/foreach.hpp>
 #include <ctpp2/CDT.hpp>
 #include <spine/Exception.h>
 #include <stdexcept>

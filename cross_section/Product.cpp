@@ -1,9 +1,6 @@
-// ======================================================================
-
 #include "Product.h"
 #include "Config.h"
 #include "State.h"
-#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <ctpp2/CDT.hpp>
 #include <macgyver/TimeParser.h>
@@ -87,7 +84,7 @@ void Product::init(const Json::Value& theJson, const Config& theConfig)
     // Iterate through all the members
 
     const auto members = theJson.getMemberNames();
-    BOOST_FOREACH (const auto& name, members)
+    for (const auto& name : members)
     {
       const Json::Value& json = theJson[name];
 
@@ -123,7 +120,7 @@ void Product::generate(CTPP::CDT& theGlobals,
 
     // Process all times
 
-    BOOST_FOREACH (const auto& time, theTimes)
+    for (const auto& time : theTimes)
     {
       theState.time(time);
       layers.generate(theGlobals, theState);

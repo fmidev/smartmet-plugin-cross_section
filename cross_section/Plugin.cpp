@@ -9,25 +9,19 @@
 #include "Product.h"
 #include "Query.h"
 #include "State.h"
-
+#include <boost/lexical_cast.hpp>
+#include <boost/move/unique_ptr.hpp>
+#include <boost/timer/timer.hpp>
+#include <ctpp2/CDT.hpp>
+#include <engines/geonames/Engine.h>
+#include <json/json.h>
+#include <json/reader.h>
+#include <macgyver/AnsiEscapeCodes.h>
 #include <spine/Convenience.h>
 #include <spine/Exception.h>
 #include <spine/OptionParsers.h>
 #include <spine/SmartMet.h>
 #include <spine/TimeSeriesGeneratorOptions.h>
-
-#include <engines/geonames/Engine.h>
-
-#include <macgyver/AnsiEscapeCodes.h>
-
-#include <json/json.h>
-#include <json/reader.h>
-
-#include <ctpp2/CDT.hpp>
-
-#include <boost/lexical_cast.hpp>
-#include <boost/timer/timer.hpp>
-
 #include <stdexcept>
 
 namespace
@@ -148,9 +142,9 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
     CTPP::CDT hash(CTPP::CDT::HASH_VAL);
     {
       std::string report = "Product::generate finished in %t sec CPU, %w sec real\n";
-      std::unique_ptr<boost::timer::auto_cpu_timer> mytimer;
+      boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> mytimer;
       if (query.timer)
-        mytimer.reset(new boost::timer::auto_cpu_timer(2, report));
+        mytimer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
       product.generate(hash, state, times);
     }
 

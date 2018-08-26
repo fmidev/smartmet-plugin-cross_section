@@ -1,11 +1,8 @@
-// ======================================================================
-
 #include "Layer.h"
 #include "Config.h"
 #include "Layer.h"
 #include "LayerFactory.h"
 #include "State.h"
-#include <boost/foreach.hpp>
 #include <ctpp2/CDT.hpp>
 #include <spine/Exception.h>
 #include <spine/HTTP.h>

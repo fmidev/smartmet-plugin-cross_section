@@ -24,9 +24,11 @@ SharedFormatter TemplateFactory::get(const boost::filesystem::path& theFilename)
     if (theFilename.empty())
       throw SmartMet::Spine::Exception(BCP, "TemplateFactory: Cannot use empty templates");
 
-    // Make sure thread specific map is initialized
+    // Make sure thread specific map is initialized. No make_thread_specific_ptr available
+    // to avoid new in here, hence NOLINT
+
     if (itsTemplates.get() == nullptr)
-      itsTemplates.reset(new TemplateMap);
+      itsTemplates.reset(new TemplateMap);  // NOLINT(cppcoreguidelines-owning-memory)
 
     // Find out if there is a formatter which is up to date
 

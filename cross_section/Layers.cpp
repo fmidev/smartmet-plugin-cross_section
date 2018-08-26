@@ -2,7 +2,6 @@
 #include "Layer.h"
 #include "LayerFactory.h"
 #include "State.h"
-#include <boost/foreach.hpp>
 #include <ctpp2/CDT.hpp>
 #include <spine/Exception.h>
 
@@ -48,7 +47,7 @@ void Layers::generate(CTPP::CDT& theGlobals, State& theState)
 {
   try
   {
-    BOOST_FOREACH (auto& layer, layers)
+    for (auto& layer : layers)
     {
       layer->generate(theGlobals, theState);
     }
