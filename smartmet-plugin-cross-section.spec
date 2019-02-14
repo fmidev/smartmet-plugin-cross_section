@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 18.8.26
+Version: 19.2.14
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,23 +14,23 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 18.8.4
-BuildRequires: smartmet-library-spine-devel >= 18.8.7
-BuildRequires: smartmet-engine-querydata-devel >= 18.8.6
-BuildRequires: smartmet-engine-geonames-devel >= 18.7.25
-BuildRequires: smartmet-engine-contour-devel >= 18.7.25
-BuildRequires: ctpp2 >= 2.8.5
+BuildRequires: smartmet-library-macgyver-devel >= 18.11.24
+BuildRequires: smartmet-library-spine-devel >= 18.12.13
+BuildRequires: smartmet-engine-querydata-devel >= 19.2.8
+BuildRequires: smartmet-engine-geonames-devel >= 19.1.28
+BuildRequires: smartmet-engine-contour-devel >= 19.2.12
+BuildRequires: ctpp2 >= 2.8.7
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
-Requires: ctpp2 >= 2.8.5
+Requires: ctpp2 >= 2.8.7
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 18.8.4
-Requires: smartmet-engine-querydata >= 18.8.6
-Requires: smartmet-engine-geonames >= 18.7.25
-Requires: smartmet-engine-contour >= 18.7.25
-Requires: smartmet-server >= 18.8.8
-Requires: smartmet-library-spine >= 18.8.7
+Requires: smartmet-library-macgyver >= 18.11.24
+Requires: smartmet-engine-querydata >= 19.2.8
+Requires: smartmet-engine-geonames >= 19.1.28
+Requires: smartmet-engine-contour >= 19.2.12
+Requires: smartmet-server >= 18.12.14
+Requires: smartmet-library-spine >= 18.12.13
 Requires: boost-date-time
 Requires: boost-iostreams
 Requires: boost-system
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Thu Feb 14 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.2.14-1.fmi
+- Added client IP to exception reports
+
 * Sun Aug 26 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.8.26-1.fmi
 - Silenced CodeChecker warnings
 
