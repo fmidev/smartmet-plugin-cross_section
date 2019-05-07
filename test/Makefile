@@ -30,6 +30,7 @@ LIBS = 	-lsmartmet-spine  \
 	-lboost_regex \
 	-lboost_iostreams \
 	-lboost_system \
+	-lgdal \
 	-lbz2 -lz -lpthread -ldl
 
 all: $(PROG)
