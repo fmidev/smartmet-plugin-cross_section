@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 19.2.21
+Version: 19.9.26
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,23 +14,23 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 18.11.24
-BuildRequires: smartmet-library-spine-devel >= 18.12.13
-BuildRequires: smartmet-engine-querydata-devel >= 19.2.8
-BuildRequires: smartmet-engine-geonames-devel >= 19.1.28
-BuildRequires: smartmet-engine-contour-devel >= 19.2.21
-BuildRequires: ctpp2 >= 2.8.7
+BuildRequires: smartmet-library-macgyver-devel >= 19.9.26
+BuildRequires: smartmet-library-spine-devel >= 19.9.26
+BuildRequires: smartmet-engine-querydata-devel >= 19.9.26
+BuildRequires: smartmet-engine-geonames-devel >= 19.9.26
+BuildRequires: smartmet-engine-contour-devel >= 19.9.26
+BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
-Requires: ctpp2 >= 2.8.7
+Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 18.11.24
-Requires: smartmet-engine-querydata >= 19.2.8
-Requires: smartmet-engine-geonames >= 19.1.28
-Requires: smartmet-engine-contour >= 19.2.21
-Requires: smartmet-server >= 18.12.14
-Requires: smartmet-library-spine >= 18.12.13
+Requires: smartmet-library-macgyver >= 19.9.26
+Requires: smartmet-engine-querydata >= 19.9.26
+Requires: smartmet-engine-geonames >= 19.9.26
+Requires: smartmet-engine-contour >= 19.9.26
+Requires: smartmet-server >= 19.9.26
+Requires: smartmet-library-spine >= 19.9.26
 Requires: boost-date-time
 Requires: boost-iostreams
 Requires: boost-system
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Thu Sep 26 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.9.26-1.fmi
+- Added support for ASAN & TSAN builds
+
 * Thu Feb 21 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.2.21-1.fmi
 - Repackaged since Contour::Options size changed
 
