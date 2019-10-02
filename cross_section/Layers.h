@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include <boost/shared_ptr.hpp>
 #include <json/json.h>
 #include <list>
+#include <memory>
 
 namespace CTPP
 {
@@ -35,7 +35,7 @@ class Layers
   bool empty() const { return layers.empty(); }
 
  private:
-  std::list<boost::shared_ptr<Layer> > layers;
+  std::list<std::shared_ptr<Layer> > layers;
 };
 
 }  // namespace CrossSection

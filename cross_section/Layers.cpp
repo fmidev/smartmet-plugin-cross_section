@@ -26,7 +26,7 @@ void Layers::init(const Json::Value& theJson, const Config& theConfig)
 
     for (const auto& json : theJson)
     {
-      boost::shared_ptr<Layer> layer(LayerFactory::create(json));
+      std::shared_ptr<Layer> layer(LayerFactory::create(json));
       layer->init(json, theConfig);
       layers.push_back(layer);
     }

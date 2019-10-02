@@ -327,7 +327,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 
       // The headers themselves
 
-      boost::shared_ptr<Fmi::TimeFormatter> tformat(Fmi::TimeFormatter::create("http"));
+      std::shared_ptr<Fmi::TimeFormatter> tformat(Fmi::TimeFormatter::create("http"));
 
       std::string cachecontrol =
           "public, max-age=" + boost::lexical_cast<std::string>(expires_seconds);
