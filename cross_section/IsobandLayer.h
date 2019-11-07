@@ -39,6 +39,8 @@ class IsobandLayer : public Layer
   boost::optional<double> offset;
 
  private:
+  void generate_qEngine(CTPP::CDT& theGlobals, State& theState);
+  void generate_gridEngine(CTPP::CDT& theGlobals, State& theState);
 };  // class IsobandLayer
 
 }  // namespace CrossSection
