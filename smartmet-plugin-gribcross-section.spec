@@ -1,5 +1,5 @@
-%define DIRNAME cross_section
-%define SPECNAME smartmet-plugin-cross-section
+%define DIRNAME gribcross-section
+%define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
 Version: 19.9.26
@@ -60,9 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(0775,root,root,0775)
-%{_datadir}/smartmet/plugins/%{DIRNAME}.so
+%{_datadir}/smartmet/plugins/cross_section.so
 %defattr(0664,root,root,0775)
-%{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
+%{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
 * Thu Sep 26 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.9.26-1.fmi

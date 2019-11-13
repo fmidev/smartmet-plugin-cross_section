@@ -1,5 +1,5 @@
 SUBNAME = cross_section
-SPEC = smartmet-plugin-cross-section
+SPEC = smartmet-plugin-gribcross-section
 INCDIR = smartmet/plugins/$(SUBNAME)
 
 # Installation directories
