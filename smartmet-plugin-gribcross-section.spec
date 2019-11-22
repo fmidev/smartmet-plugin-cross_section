@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 19.11.20
+Version: 19.11.22
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Fri Nov 22 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.22-1.fmi
+- Repackaged due to API changes in grid-content library
+
 * Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
 - Repackaged due to newbase/spine ABI changes
 
