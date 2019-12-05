@@ -126,10 +126,19 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
     const auto& gridEngine = theState.getGridEngine();
 
-    std::string key = theState.query().producer + ";" + *parameter;
+    std::string pName = *parameter;
+    bool raw = false;
+    auto pos = pName.find(".raw");
+    if (pos != std::string::npos)
+    {
+      raw = true;
+      pName.erase(pos,4);
+    }
+
+    std::string key = theState.query().producer + ";" + pName;
 
     Engine::Grid::ParameterDetails_vec parameterDetails;
-    gridEngine.getParameterDetails(theState.query().producer,*parameter,parameterDetails);
+    gridEngine.getParameterDetails(theState.query().producer,pName,parameterDetails);
     //gridEngine.mapParameterDetails(parameterDetails);
 
 
@@ -253,8 +262,8 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     std::string valueProducerName = parameterDetails[0].mOriginalProducer;
     std::string valueParameter = parameterDetails[0].mOriginalParameter;
     int geometryId = -1;
-    short areaInterpolationMethod = 1;
-    short timeInterpolationMethod = 1;
+    short areaInterpolationMethod = T::AreaInterpolationMethod::Linear;
+    short timeInterpolationMethod = T::TimeInterpolationMethod::Linear;
     std::string heightProducerName = zParameterDetails[0].mOriginalProducer;
     std::string heightParameter = zParameterDetails[0].mOriginalParameter;
 
@@ -263,7 +272,12 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       valueProducerName = parameterDetails[0].mMappings[0].mMapping.mProducerName;
       valueParameter = parameterDetails[0].mMappings[0].mMapping.mParameterName;
       geometryId = parameterDetails[0].mMappings[0].mMapping.mGeometryId;
-      areaInterpolationMethod = parameterDetails[0].mMappings[0].mMapping.mAreaInterpolationMethod;
+
+      if (raw)
+        areaInterpolationMethod = T::AreaInterpolationMethod::Linear;
+      else
+        areaInterpolationMethod = parameterDetails[0].mMappings[0].mMapping.mAreaInterpolationMethod;
+
       timeInterpolationMethod = parameterDetails[0].mMappings[0].mMapping.mTimeInterpolationMethod;
     }
 
