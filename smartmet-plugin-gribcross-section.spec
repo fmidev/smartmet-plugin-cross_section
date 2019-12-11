@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 19.12.4
+Version: 19.12.11
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Wed Dec 11 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.11-1.fmi
+- Fixed Isoband- and Isoline layer bugs
+
 * Wed Dec  4 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.4-1.fmi
 - Repackaged due to base library changes
 
