@@ -49,6 +49,7 @@ ifeq ($(CXX), clang++)
 	-Wno-missing-prototypes
 
  INCLUDES = \
+	-isystem $(PREFIX)/gdal30/include \
 	-isystem $(includedir) \
 	-isystem $(includedir)/smartmet \
 	-isystem $(includedir)/smartmet/newbase \
@@ -73,6 +74,7 @@ else
  FLAGS_RELEASE = -Wuninitialized
 
  INCLUDES = \
+	-I$(PREFIX)/gdal30/include \
 	-I$(includedir) \
 	-I$(includedir)/smartmet \
 	`pkg-config --cflags jsoncpp`

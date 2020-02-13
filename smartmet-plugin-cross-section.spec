@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 19.11.20
+Version: 20.2.13
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,23 +14,25 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 19.9.26
-BuildRequires: smartmet-library-spine-devel >= 19.11.20
-BuildRequires: smartmet-engine-querydata-devel >= 19.11.20
-BuildRequires: smartmet-engine-geonames-devel >= 19.11.14
-BuildRequires: smartmet-engine-contour-devel >= 19.11.20
+BuildRequires: smartmet-library-macgyver-devel >= 20.2.5
+BuildRequires: smartmet-library-spine-devel >= 20.2.7
+BuildRequires: smartmet-engine-querydata-devel >= 20.2.13
+BuildRequires: smartmet-engine-geonames-devel >= 20.2.7
+BuildRequires: smartmet-engine-contour-devel >= 20.2.12
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
+BuildRequires: gdal30-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 19.9.26
-Requires: smartmet-engine-querydata >= 19.11.20
-Requires: smartmet-engine-geonames >= 19.11.14
-Requires: smartmet-engine-contour >= 19.11.20
-Requires: smartmet-server >= 19.10.1
-Requires: smartmet-library-spine >= 19.11.20
+Requires_ gdal30-libs
+Requires: smartmet-library-macgyver >= 20.2.5
+Requires: smartmet-engine-querydata >= 20.2.13
+Requires: smartmet-engine-geonames >= 20.2.7
+Requires: smartmet-engine-contour >= 20.2.12
+Requires: smartmet-server >= 20.2.13
+Requires: smartmet-library-spine >= 20.2.7
 Requires: boost-date-time
 Requires: boost-iostreams
 Requires: boost-system
@@ -65,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Thu Feb 13 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.13-1.fmi
+- Upgrade to GDAL 3.0
+
 * Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
 - Rebuilt since Spine::Parameter size changed
 
