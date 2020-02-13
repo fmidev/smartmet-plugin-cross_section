@@ -26,7 +26,6 @@ BuildRequires: gdal30-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires_ gdal30-libs
 Requires: smartmet-library-macgyver >= 20.2.5
 Requires: smartmet-engine-querydata >= 20.2.13
 Requires: smartmet-engine-geonames >= 20.2.7
