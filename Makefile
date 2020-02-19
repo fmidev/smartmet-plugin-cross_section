@@ -139,7 +139,7 @@ INCLUDES := -I$(SUBNAME) $(INCLUDES)
 
 # The rules
 
-all: configtest objdir $(LIBFILE) $(BYTECODES)
+all: objdir $(LIBFILE) $(BYTECODES)
 debug: all
 release: all
 profile: all
