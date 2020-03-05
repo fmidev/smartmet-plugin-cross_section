@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.2.25
+Version: 20.3.5
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,8 +14,8 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 20.2.5
-BuildRequires: smartmet-library-spine-devel >= 20.2.13
+BuildRequires: smartmet-library-macgyver-devel >= 20.3.5
+BuildRequires: smartmet-library-spine-devel >= 20.3.5
 BuildRequires: smartmet-engine-querydata-devel >= 20.1.30
 BuildRequires: smartmet-engine-geonames-devel >= 19.12.5
 BuildRequires: smartmet-engine-contour-devel >= 19.11.20
@@ -25,12 +25,12 @@ BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.2.5
+Requires: smartmet-library-macgyver >= 20.3.5
 Requires: smartmet-engine-querydata >= 20.1.30
 Requires: smartmet-engine-geonames >= 19.12.5
 Requires: smartmet-engine-contour >= 19.11.20
 Requires: smartmet-server >= 20.2.13
-Requires: smartmet-library-spine >= 20.2.13
+Requires: smartmet-library-spine >= 20.3.5
 Requires: boost-date-time
 Requires: boost-iostreams
 Requires: boost-system
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Thu Mar  5 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.3.5-1.fmi
+- Repackaged due to base library API changes
+
 * Tue Feb 25 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.25-1.fmi
 - Repackaged due to base library API changes
 
