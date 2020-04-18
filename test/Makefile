@@ -20,13 +20,20 @@ endif
 CC = g++
 CFLAGS = -DUNIX -O0 -g $(FLAGS)
 
-INCLUDES = \
-	-I ../cross_section \
-	-I /usr/include/smartmet \
+# Boost 1.69
+
+ifneq "$(wildcard /usr/include/boost169)" ""
+  INCLUDES += -I/usr/include/boost169
+  LIBS += -L/usr/lib64/boost169
+endif
+
+INCLUDES += \
+	-I../cross_section \
+	-I/usr/include/smartmet \
 	`pkg-config --cflags libconfig++` \
 	`pkg-config --cflags jsoncpp`
 
-LIBS = 	-lsmartmet-spine  \
+LIBS += -lsmartmet-spine  \
 	-lsmartmet-newbase \
 	`pkg-config --libs libconfig++` \
 	`pkg-config --libs jsoncpp` \
