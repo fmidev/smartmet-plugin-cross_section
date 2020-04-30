@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.4.18
+Version: 20.4.30
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -16,7 +16,7 @@ BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.4.9
 BuildRequires: smartmet-library-macgyver-devel >= 20.4.18
 BuildRequires: smartmet-library-spine-devel >= 20.4.18
-BuildRequires: smartmet-engine-querydata-devel >= 20.4.18
+BuildRequires: smartmet-engine-querydata-devel >= 20.4.20
 BuildRequires: smartmet-engine-geonames-devel >= 20.4.18
 BuildRequires: smartmet-engine-contour-devel >= 20.4.18
 BuildRequires: ctpp2 >= 2.8.8
@@ -26,7 +26,7 @@ Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
 Requires: smartmet-library-macgyver >= 20.4.18
-Requires: smartmet-engine-querydata >= 20.4.18
+Requires: smartmet-engine-querydata >= 20.4.20
 Requires: smartmet-engine-geonames >= 20.4.18
 Requires: smartmet-engine-contour >= 20.4.18
 Requires: smartmet-server >= 20.4.18
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Thu Apr 30 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.30-1.fmi
+- Repackaged due to base library API changes
+
 * Sat Apr 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.18-1.fmi
 - Upgraded to Boost 1.69
 
