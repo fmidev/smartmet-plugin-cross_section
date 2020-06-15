@@ -53,7 +53,7 @@ make %{_smp_mflags}
 %install
 %makeinstall
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins/cross_section
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins/gribcross_section
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -62,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(0775,root,root,0775)
 %{_datadir}/smartmet/plugins/gribcross_section.so
 %defattr(0664,root,root,0775)
-%{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
+%{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
 
 %changelog
 * Mon Jun 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.6.15-1.fmi

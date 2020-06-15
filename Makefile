@@ -28,7 +28,7 @@ bindir = $(PREFIX)/bin
 includedir = $(PREFIX)/include
 datadir = $(PREFIX)/share
 plugindir = $(datadir)/smartmet/plugins
-tmpldir = $(sysconfdir)/smartmet/plugins/$(SUBNAME)
+tmpldir = $(sysconfdir)/smartmet/plugins/grib$(SUBNAME)
 objdir = obj
 
 # Compiler options
