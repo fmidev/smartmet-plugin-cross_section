@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.8.31
+Version: 20.9.7
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,11 +14,11 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 20.8.26
-BuildRequires: smartmet-library-spine-devel >= 20.8.26
-BuildRequires: smartmet-engine-querydata-devel >= 20.8.21
+BuildRequires: smartmet-library-macgyver-devel >= 20.9.3
+BuildRequires: smartmet-library-spine-devel >= 20.9.4
+BuildRequires: smartmet-engine-querydata-devel >= 20.9.4
 BuildRequires: smartmet-engine-geonames-devel >= 20.8.21
-BuildRequires: smartmet-engine-grid-devel >= 20.8.31
+BuildRequires: smartmet-engine-grid-devel >= 20.9.7
 BuildRequires: smartmet-engine-contour-devel >= 20.8.21
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
@@ -26,13 +26,13 @@ BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.8.26
-Requires: smartmet-engine-querydata >= 20.8.21
+Requires: smartmet-library-macgyver >= 20.9.3
+Requires: smartmet-engine-querydata >= 20.9.4
 Requires: smartmet-engine-geonames >= 20.8.21
-Requires: smartmet-engine-grid >= 20.8.31
+Requires: smartmet-engine-grid >= 20.9.7
 Requires: smartmet-engine-contour >= 20.8.21
 Requires: smartmet-server >= 20.8.25
-Requires: smartmet-library-spine >= 20.8.26
+Requires: smartmet-library-spine >= 20.9.4
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
