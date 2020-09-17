@@ -41,32 +41,13 @@ GCC_DIAG_COLOR ?= always
 # Boost 1.69
 
 ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -I/usr/include/boost169
+  INCLUDES += -isystem /usr/include/boost169
   LIBS += -L/usr/lib64/boost169
 endif
 
-ifeq ($(CXX), clang++)
+FLAGS = -std=c++11 -fPIC -MD -Wall -W -Wno-unused-parameter -fno-omit-frame-pointer -Wno-unknown-pragmas -fdiagnostics-color=$(GCC_DIAG_COLOR)
 
- FLAGS = \
-	-std=c++11 -fPIC -MD \
-	-Weverything \
-	-Wno-c++98-compat \
-	-Wno-float-equal \
-	-Wno-padded \
-	-Wno-missing-prototypes
-
- INCLUDES += \
-	-isystem $(includedir) \
-	-isystem $(includedir)/smartmet \
-	-isystem $(includedir)/smartmet/newbase \
-	-isystem $(includedir)/mysql \
-	-isystem $(includedir)/jsoncpp
-
-else
-
- FLAGS = -std=c++11 -fPIC -MD -Wall -W -Wno-unused-parameter -fno-omit-frame-pointer -Wno-unknown-pragmas -fdiagnostics-color=$(GCC_DIAG_COLOR)
-
- FLAGS_DEBUG = \
+FLAGS_DEBUG = \
 	-Wcast-align \
 	-Wcast-qual \
 	-Winline \
@@ -75,14 +56,11 @@ else
 	-Wpointer-arith \
 	-Wwrite-strings
 
- FLAGS_RELEASE = -Wuninitialized
+FLAGS_RELEASE = -Wuninitialized
 
- INCLUDES += \
-	-I$(includedir) \
+INCLUDES += \
 	-I$(includedir)/smartmet \
 	`pkg-config --cflags jsoncpp`
-
-endif
 
 ifeq ($(TSAN), yes)
   FLAGS += -fsanitize=thread
