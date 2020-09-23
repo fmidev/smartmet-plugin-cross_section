@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.6.15
+Version: 20.9.18
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,23 +14,25 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 20.4.18
-BuildRequires: smartmet-library-spine-devel >= 20.5.27
-BuildRequires: smartmet-engine-querydata-devel >= 20.5.13
-BuildRequires: smartmet-engine-geonames-devel >= 20.4.18
-BuildRequires: smartmet-engine-contour-devel >= 20.5.13
+BuildRequires: smartmet-library-macgyver-devel >= 20.9.15
+BuildRequires: smartmet-library-spine-devel >= 20.9.14
+BuildRequires: smartmet-engine-querydata-devel >= 20.9.15
+BuildRequires: smartmet-engine-geonames-devel >= 20.8.21
+BuildRequires: smartmet-engine-grid-devel >= 20.9.18
+BuildRequires: smartmet-engine-contour-devel >= 20.8.21
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.4.18
-Requires: smartmet-engine-querydata >= 20.5.13
-Requires: smartmet-engine-geonames >= 20.4.18
-Requires: smartmet-engine-contour >= 20.5.13
-Requires: smartmet-server >= 20.4.18
-Requires: smartmet-library-spine >= 20.5.27
+Requires: smartmet-library-macgyver >= 20.9.15
+Requires: smartmet-engine-querydata >= 20.9.15
+Requires: smartmet-engine-geonames >= 20.8.21
+Requires: smartmet-engine-grid >= 20.9.18
+Requires: smartmet-engine-contour >= 20.8.21
+Requires: smartmet-server >= 20.9.14
+Requires: smartmet-library-spine >= 20.9.14
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -65,6 +67,27 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
 
 %changelog
+* Fri Sep 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.18-1.fmi
+- Repackaged due to library ABI changes
+
+* Tue Sep 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.15-1.fmi
+- Repackaged due to library ABI changes
+
+* Mon Sep 14 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.14-1.fmi
+- Repackaged due to library ABI changes
+
+* Mon Aug 31 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.31-1.fmi
+- Repackaged due to library ABI changes
+
+* Fri Aug 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.21-1.fmi
+- Upgrade to fmt 6.2
+
+* Tue Aug 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.18-1.fmi
+- Repackaged due to grid library ABI changes
+
+* Fri Aug 14 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.14-1.fmi
+- Repackaged due to grid library ABI changes
+
 * Mon Jun 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.6.15-1.fmi
 - Renamed the .so to enable simultaneous installations of cross-section and grib-cross-section
 
