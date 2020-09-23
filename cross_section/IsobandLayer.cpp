@@ -41,7 +41,7 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
   try
   {
     if (!theJson.isObject())
-      throw SmartMet::Spine::Exception(BCP, "Isoband-layer JSON is not a JSON object");
+      throw Fmi::Exception(BCP, "Isoband-layer JSON is not a JSON object");
 
     // Iterate through all the members
 
@@ -65,7 +65,7 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
       else if (name == "isobands")
       {
         if (!json.isArray())
-          throw SmartMet::Spine::Exception(
+          throw Fmi::Exception(
               BCP, "isobands setting must be an array got instead:\n" + json.toStyledString());
         for (const auto& isoband_json : json)
         {
@@ -75,13 +75,13 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
         }
       }
       else
-        throw SmartMet::Spine::Exception(
+        throw Fmi::Exception(
             BCP, "Isoband-layer does not have a setting named '" + name + "'");
     }
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -102,7 +102,7 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -118,10 +118,10 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       timer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
 
     if (parameter == boost::none)
-      throw SmartMet::Spine::Exception(BCP, "Parameter not set for isoband-layer");
+      throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
 
     if (zparameter == boost::none)
-      throw SmartMet::Spine::Exception(BCP, "Z-Parameter not set for isoband-layer");
+      throw Fmi::Exception(BCP, "Z-Parameter not set for isoband-layer");
 
 
     const auto& gridEngine = theState.getGridEngine();
@@ -187,7 +187,7 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
       if (parameterDetails.size() == 0 || parameterDetails[0].mMappings.size() == 0)
       {
-        SmartMet::Spine::Exception exception(BCP, "Parameter mappings not found");
+        Fmi::Exception exception(BCP, "Parameter mappings not found");
         exception.addParameter("Parameter",*parameter);
         exception.addParameter("Producer",theState.query().producer);
         throw exception;
@@ -246,7 +246,7 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
       if (zParameterDetails.size() == 0 || zParameterDetails[0].mMappings.size() == 0)
       {
-        SmartMet::Spine::Exception exception(BCP, "Z-Parameter mappings not found");
+        Fmi::Exception exception(BCP, "Z-Parameter mappings not found");
         exception.addParameter("Z-Parameter",*zparameter);
         exception.addParameter("Producer",*theState.query().zproducer);
         throw exception;
@@ -422,7 +422,7 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -443,7 +443,7 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
     // Establish the parameter
 
     if (parameter == boost::none)
-      throw SmartMet::Spine::Exception(BCP, "Parameter not set for isoband-layer");
+      throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
     auto param = SmartMet::Spine::ParameterFactory::instance().parse(*parameter);
 
     // Establish z-parameter
@@ -522,7 +522,7 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

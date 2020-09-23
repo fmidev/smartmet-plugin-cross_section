@@ -3,7 +3,7 @@
 #include "LayerFactory.h"
 #include "State.h"
 #include <ctpp2/CDT.hpp>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 
 namespace SmartMet
 {
@@ -22,7 +22,7 @@ void Layers::init(const Json::Value& theJson, const Config& theConfig)
   try
   {
     if (!theJson.isArray())
-      throw SmartMet::Spine::Exception(BCP, "Layers JSON is not a JSON array");
+      throw Fmi::Exception(BCP, "Layers JSON is not a JSON array");
 
     for (const auto& json : theJson)
     {
@@ -33,7 +33,7 @@ void Layers::init(const Json::Value& theJson, const Config& theConfig)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -54,7 +54,7 @@ void Layers::generate(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

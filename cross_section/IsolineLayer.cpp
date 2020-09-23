@@ -40,7 +40,7 @@ void IsolineLayer::init(const Json::Value& theJson, const Config& theConfig)
   try
   {
     if (!theJson.isObject())
-      throw SmartMet::Spine::Exception(BCP, "Isoline-layer JSON is not a JSON object");
+      throw Fmi::Exception(BCP, "Isoline-layer JSON is not a JSON object");
 
     // Iterate through all the members
 
@@ -64,7 +64,7 @@ void IsolineLayer::init(const Json::Value& theJson, const Config& theConfig)
       else if (name == "isolines")
       {
         if (!json.isArray())
-          throw SmartMet::Spine::Exception(BCP, "isolines setting must be an array");
+          throw Fmi::Exception(BCP, "isolines setting must be an array");
 
         for (const auto& isoline_json : json)
         {
@@ -74,13 +74,13 @@ void IsolineLayer::init(const Json::Value& theJson, const Config& theConfig)
         }
       }
       else
-        throw SmartMet::Spine::Exception(
+        throw Fmi::Exception(
             BCP, "Isoline-layer does not have a setting named '" + name + "'");
     }
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -101,7 +101,7 @@ void IsolineLayer::generate(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -118,10 +118,10 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       timer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
 
     if (parameter == boost::none)
-      throw SmartMet::Spine::Exception(BCP, "Parameter not set for isoband-layer");
+      throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
 
     if (zparameter == boost::none)
-      throw SmartMet::Spine::Exception(BCP, "Z-Parameter not set for isoband-layer");
+      throw Fmi::Exception(BCP, "Z-Parameter not set for isoband-layer");
 
 
     const auto& gridEngine = theState.getGridEngine();
@@ -187,7 +187,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
       if (parameterDetails.size() == 0 || parameterDetails[0].mMappings.size() == 0)
       {
-        SmartMet::Spine::Exception exception(BCP, "Parameter mappings not found");
+        Fmi::Exception exception(BCP, "Parameter mappings not found");
         exception.addParameter("Parameter",*parameter);
         exception.addParameter("Producer",theState.query().producer);
         throw exception;
@@ -246,7 +246,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
       if (zParameterDetails.size() == 0 || zParameterDetails[0].mMappings.size() == 0)
       {
-        SmartMet::Spine::Exception exception(BCP, "Z-Parameter mappings not found");
+        Fmi::Exception exception(BCP, "Z-Parameter mappings not found");
         exception.addParameter("Z-Parameter",*zparameter);
         exception.addParameter("Producer",*theState.query().zproducer);
         throw exception;
@@ -399,7 +399,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -421,7 +421,7 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
     // Establish the desired direction parameter
 
     if (parameter == boost::none)
-      throw SmartMet::Spine::Exception(BCP, "Parameter not set for isoband-layer");
+      throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
 
     auto param = SmartMet::Spine::ParameterFactory::instance().parse(*parameter);
 
@@ -455,7 +455,7 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
     else if (interpolation == "loglinear")
       options.interpolation = SmartMet::Engine::Contour::LogLinear;
     else
-      throw SmartMet::Spine::Exception(
+      throw Fmi::Exception(
           BCP, "Unknown isoline interpolation method '" + interpolation + "'");
 
     boost::shared_ptr<NFmiFastQueryInfo> qInfo = q->info();
@@ -502,7 +502,7 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

@@ -6,7 +6,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <ctpp2/CDT.hpp>
 #include <macgyver/StringConversion.h>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <spine/HTTP.h>
 
 namespace SmartMet
@@ -37,7 +37,7 @@ void Attributes::init(const Json::Value& theJson, const Config& /* theConfig */)
       return;
 
     if (!theJson.isObject())
-      throw SmartMet::Spine::Exception(BCP,
+      throw Fmi::Exception(BCP,
                                        "Attributes JSON is not a JSON object (name-value pairs)");
 
     // Iterate trhough all the members
@@ -74,18 +74,18 @@ void Attributes::init(const Json::Value& theJson, const Config& /* theConfig */)
         }
         case Json::arrayValue:
         {
-          throw SmartMet::Spine::Exception(BCP, "Arrays are not allowed as an Attribute value");
+          throw Fmi::Exception(BCP, "Arrays are not allowed as an Attribute value");
         }
         case Json::objectValue:
         {
-          throw SmartMet::Spine::Exception(BCP, "Maps are not allowed as an Attribute value");
+          throw Fmi::Exception(BCP, "Maps are not allowed as an Attribute value");
         }
       }
     }
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -113,7 +113,7 @@ void Attributes::generate(CTPP::CDT& theLocals, State& /* theState */) const
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

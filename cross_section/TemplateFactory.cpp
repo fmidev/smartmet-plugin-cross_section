@@ -3,7 +3,7 @@
 #include "TemplateFactory.h"
 #include <boost/filesystem/operations.hpp>
 #include <boost/make_shared.hpp>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 
 namespace SmartMet
 {
@@ -22,7 +22,7 @@ SharedFormatter TemplateFactory::get(const boost::filesystem::path& theFilename)
   try
   {
     if (theFilename.empty())
-      throw SmartMet::Spine::Exception(BCP, "TemplateFactory: Cannot use empty templates");
+      throw Fmi::Exception(BCP, "TemplateFactory: Cannot use empty templates");
 
     // Make sure thread specific map is initialized. No make_thread_specific_ptr available
     // to avoid new in here, hence NOLINT
@@ -57,7 +57,7 @@ SharedFormatter TemplateFactory::get(const boost::filesystem::path& theFilename)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

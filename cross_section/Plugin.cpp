@@ -18,7 +18,7 @@
 #include <json/reader.h>
 #include <macgyver/AnsiEscapeCodes.h>
 #include <spine/Convenience.h>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <spine/OptionParsers.h>
 #include <spine/SmartMet.h>
 #include <spine/TimeSeriesGeneratorOptions.h>
@@ -44,12 +44,12 @@ const std::string &check_attack(const std::string &theName)
     if (theName.find("./") == std::string::npos)
       return theName;
 
-    throw SmartMet::Spine::Exception(
+    throw Fmi::Exception(
         BCP, "Attack IRI detected, relative paths upwards are not safe: '" + theName + "'");
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 }  // namespace
@@ -105,7 +105,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
     SmartMet::Engine::Geonames::LocationOptions loptions = itsGeoEngine->parseLocations(theRequest);
 
     if (loptions.size() != 2)
-      throw SmartMet::Spine::Exception(BCP,
+      throw Fmi::Exception(BCP,
                                        "Exactly two locations are required for a cross-section");
 
     const auto &locs = loptions.locations();
@@ -170,13 +170,13 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
     }
     catch (const CTPP::CTPPException &e)
     {
-      throw SmartMet::Spine::Exception(BCP, "Template processing failed!")
+      throw Fmi::Exception(BCP, "Template processing failed!")
           .addParameter("Product", product_name)
           .addParameter("Format name", format_name);
     }
     catch (...)
     {
-      throw SmartMet::Spine::Exception(BCP, "Template processing failed!")
+      throw Fmi::Exception(BCP, "Template processing failed!")
           .addParameter("Product", product_name)
           .addParameter("Format name", format_name);
     }
@@ -185,7 +185,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -227,7 +227,7 @@ Product Plugin::getProduct(const std::string &theCustomer,
     bool json_ok = reader.parse(json_text, json);
 
     if (!json_ok)
-      throw SmartMet::Spine::Exception(
+      throw Fmi::Exception(
           BCP, "Failed to parse '" + product_path + "': " + reader.getFormattedErrorMessages());
 
     // Expand the JSON
@@ -260,7 +260,7 @@ Product Plugin::getProduct(const std::string &theCustomer,
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -280,7 +280,7 @@ SharedFormatter Plugin::getTemplate(const std::string &theName) const
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -360,7 +360,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 
     catch (...)
     {
-      SmartMet::Spine::Exception exception(BCP, "Request processing exception!",nullptr);
+      Fmi::Exception exception(BCP, "Request processing exception!",nullptr);
       exception.addParameter("URI", theRequest.getURI());
       exception.addParameter("ClientIP", theRequest.getClientIP());
       exception.printError();
@@ -384,7 +384,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -416,7 +416,7 @@ Plugin::Plugin(SmartMet::Spine::Reactor *theReactor, const char *theConfig)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -434,25 +434,25 @@ void Plugin::init()
 
     auto engine = itsReactor->getSingleton("Querydata", nullptr);
     if (!engine)
-      throw SmartMet::Spine::Exception(BCP, "Querydata engine unavailable");
+      throw Fmi::Exception(BCP, "Querydata engine unavailable");
     itsQEngine = reinterpret_cast<SmartMet::Engine::Querydata::Engine *>(engine);
 
     /* GridEngine */
     engine = itsReactor->getSingleton("grid", nullptr);
     if (!engine)
-      throw SmartMet::Spine::Exception(BCP, "Grid engine unavailable");
+      throw Fmi::Exception(BCP, "Grid engine unavailable");
     itsGridEngine = reinterpret_cast<SmartMet::Engine::Grid::Engine *>(engine);
 
     /* Contour */
     engine = itsReactor->getSingleton("Contour", nullptr);
     if (!engine)
-      throw SmartMet::Spine::Exception(BCP, "Contour engine unavailable");
+      throw Fmi::Exception(BCP, "Contour engine unavailable");
     itsContourEngine = reinterpret_cast<SmartMet::Engine::Contour::Engine *>(engine);
 
     /* GeoEngine */
     engine = itsReactor->getSingleton("Geonames", nullptr);
     if (!engine)
-      throw SmartMet::Spine::Exception(BCP, "Geonames engine unavailable");
+      throw Fmi::Exception(BCP, "Geonames engine unavailable");
     itsGeoEngine = reinterpret_cast<SmartMet::Engine::Geonames::Engine *>(engine);
 
     /* Register handler */
@@ -460,11 +460,11 @@ void Plugin::init()
     if (!itsReactor->addContentHandler(this,
                                        itsConfig.defaultUrl(),
                                        boost::bind(&Plugin::callRequestHandler, this, _1, _2, _3)))
-      throw SmartMet::Spine::Exception(BCP, "Failed to register CSection content handler");
+      throw Fmi::Exception(BCP, "Failed to register CSection content handler");
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

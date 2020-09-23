@@ -1,7 +1,7 @@
 #include "Json.h"
 #include "FileCache.h"
 #include <boost/algorithm/string/predicate.hpp>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 
 namespace SmartMet
 {
@@ -50,7 +50,7 @@ void JSON::expand(Json::Value& theJson,
         // parse directly over old contents
         bool json_ok = reader.parse(json_text, theJson);
         if (!json_ok)
-          throw SmartMet::Spine::Exception(
+          throw Fmi::Exception(
               BCP, "Failed to parse '" + json_file + "': " + reader.getFormattedErrorMessages());
         // TODO(mheiskan): should we prevent infinite recursion?
         expand(theJson, theRootPath, thePath, theFileCache);
@@ -75,7 +75,7 @@ void JSON::expand(Json::Value& theJson,
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -108,7 +108,7 @@ void deref(Json::Value& theJson, Json::Value& theRoot)
         Json::Path json_path(path);
         const Json::Value& value = json_path.resolve(theRoot);
         if (value.isNull())
-          throw SmartMet::Spine::Exception(BCP, "Failed to dereference '" + tmp + "'");
+          throw Fmi::Exception(BCP, "Failed to dereference '" + tmp + "'");
         // We will not dereference the dereferenced value!
         theJson = value;
       }
@@ -132,7 +132,7 @@ void deref(Json::Value& theJson, Json::Value& theRoot)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -144,7 +144,7 @@ void JSON::dereference(Json::Value& theJson)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
