@@ -3,7 +3,7 @@
 #include "LayerFactory.h"
 #include "IsobandLayer.h"
 #include "IsolineLayer.h"
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <fstream>
 #include <stdexcept>
 
@@ -26,7 +26,7 @@ Layer* create(const Json::Value& theJson)
   try
   {
     if (!theJson.isObject())
-      throw SmartMet::Spine::Exception(BCP, "Layer JSON must be an object");
+      throw Fmi::Exception(BCP, "Layer JSON must be an object");
 
     auto name = theJson.get("layer_type", "isoband").asString();
 
@@ -35,11 +35,11 @@ Layer* create(const Json::Value& theJson)
     if (name == "isoline")
       return new IsolineLayer;
 
-    throw SmartMet::Spine::Exception(BCP, "Unknown layer type '" + name + "'");
+    throw Fmi::Exception(BCP, "Unknown layer type '" + name + "'");
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

@@ -5,7 +5,7 @@
 // ======================================================================
 
 #include "Config.h"
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <stdexcept>
 
 using std::string;
@@ -49,7 +49,7 @@ Config::Config(const string& configfile)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

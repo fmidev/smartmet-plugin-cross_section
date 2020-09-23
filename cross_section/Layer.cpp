@@ -4,7 +4,7 @@
 #include "LayerFactory.h"
 #include "State.h"
 #include <ctpp2/CDT.hpp>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <spine/HTTP.h>
 #include <spine/ParameterFactory.h>
 #include <stdexcept>
@@ -36,7 +36,7 @@ bool Layer::init(const std::string& theName, const Json::Value& theJson, const C
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

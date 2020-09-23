@@ -2,7 +2,7 @@
 
 #include "FileCache.h"
 #include <boost/filesystem/operations.hpp>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <fstream>
 #include <stdexcept>
 
@@ -40,7 +40,7 @@ std::string FileCache::get(const boost::filesystem::path& thePath) const
     std::string content;
     std::ifstream in(thePath.c_str());
     if (!in)
-      throw SmartMet::Spine::Exception(
+      throw Fmi::Exception(
           BCP, "Failed to open '" + std::string(thePath.c_str()) + "' for reading!");
     content.assign(std::istreambuf_iterator<char>(in), std::istreambuf_iterator<char>());
 
@@ -53,7 +53,7 @@ std::string FileCache::get(const boost::filesystem::path& thePath) const
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

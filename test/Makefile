@@ -34,6 +34,7 @@ INCLUDES += \
 
 LIBS += -lsmartmet-spine  \
 	-lsmartmet-newbase \
+	-lsmartmet-macgyver \
 	`pkg-config --libs libconfig++` \
 	`pkg-config --libs jsoncpp` \
 	-lctpp2 \

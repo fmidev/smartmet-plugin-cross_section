@@ -36,7 +36,7 @@ void IsolineLayer::init(const Json::Value& theJson, const Config& theConfig)
   try
   {
     if (!theJson.isObject())
-      throw SmartMet::Spine::Exception(BCP, "Isoline-layer JSON is not a JSON object");
+      throw Fmi::Exception(BCP, "Isoline-layer JSON is not a JSON object");
 
     // Iterate through all the members
 
@@ -60,7 +60,7 @@ void IsolineLayer::init(const Json::Value& theJson, const Config& theConfig)
       else if (name == "isolines")
       {
         if (!json.isArray())
-          throw SmartMet::Spine::Exception(BCP, "isolines setting must be an array");
+          throw Fmi::Exception(BCP, "isolines setting must be an array");
 
         for (const auto& isoline_json : json)
         {
@@ -70,13 +70,13 @@ void IsolineLayer::init(const Json::Value& theJson, const Config& theConfig)
         }
       }
       else
-        throw SmartMet::Spine::Exception(
+        throw Fmi::Exception(
             BCP, "Isoline-layer does not have a setting named '" + name + "'");
     }
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -101,7 +101,7 @@ void IsolineLayer::generate(CTPP::CDT& theGlobals, State& theState)
     // Establish the desired direction parameter
 
     if (parameter == boost::none)
-      throw SmartMet::Spine::Exception(BCP, "Parameter not set for isoband-layer");
+      throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
 
     auto param = SmartMet::Spine::ParameterFactory::instance().parse(*parameter);
 
@@ -135,7 +135,7 @@ void IsolineLayer::generate(CTPP::CDT& theGlobals, State& theState)
     else if (interpolation == "loglinear")
       options.interpolation = SmartMet::Engine::Contour::LogLinear;
     else
-      throw SmartMet::Spine::Exception(
+      throw Fmi::Exception(
           BCP, "Unknown isoline interpolation method '" + interpolation + "'");
 
     boost::shared_ptr<NFmiFastQueryInfo> qInfo = q->info();
@@ -182,7 +182,7 @@ void IsolineLayer::generate(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
