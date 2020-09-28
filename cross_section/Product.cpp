@@ -4,7 +4,7 @@
 #include <boost/lexical_cast.hpp>
 #include <ctpp2/CDT.hpp>
 #include <macgyver/TimeParser.h>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <spine/HTTP.h>
 
 namespace
@@ -79,7 +79,7 @@ void Product::init(const Json::Value& theJson, const Config& theConfig)
   try
   {
     if (!theJson.isObject())
-      throw SmartMet::Spine::Exception(BCP, "Product JSON is not a JSON object (name-value pairs)");
+      throw Fmi::Exception(BCP, "Product JSON is not a JSON object (name-value pairs)");
 
     // Iterate through all the members
 
@@ -91,13 +91,13 @@ void Product::init(const Json::Value& theJson, const Config& theConfig)
       if (name == "layers")
         layers.init(json, theConfig);
       else
-        throw SmartMet::Spine::Exception(BCP,
+        throw Fmi::Exception(BCP,
                                          "Product does not have a setting named '" + name + "'");
     }
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -147,7 +147,7 @@ void Product::generate(CTPP::CDT& theGlobals,
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

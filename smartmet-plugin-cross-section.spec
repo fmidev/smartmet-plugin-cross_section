@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.8.21
+Version: 20.9.23
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,11 +14,11 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 20.8.21
-BuildRequires: smartmet-library-spine-devel >= 20.8.21
-BuildRequires: smartmet-engine-querydata-devel >= 20.8.21
-BuildRequires: smartmet-engine-geonames-devel >= 20.8.21
-BuildRequires: smartmet-engine-contour-devel >= 20.8.21
+BuildRequires: smartmet-library-macgyver-devel >= 20.9.18
+BuildRequires: smartmet-library-spine-devel >= 20.9.23
+BuildRequires: smartmet-engine-querydata-devel >= 20.9.23
+BuildRequires: smartmet-engine-geonames-devel >= 20.9.23
+BuildRequires: smartmet-engine-contour-devel >= 20.8.23
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
@@ -26,12 +26,12 @@ BuildRequires: gdal30-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.8.21
-Requires: smartmet-engine-querydata >= 20.8.21
-Requires: smartmet-engine-geonames >= 20.8.21
-Requires: smartmet-engine-contour >= 20.8.21
-Requires: smartmet-server >= 20.8.21
-Requires: smartmet-library-spine >= 20.8.21
+Requires: smartmet-library-macgyver >= 20.9.18
+Requires: smartmet-engine-querydata >= 20.9.23
+Requires: smartmet-engine-geonames >= 20.9.23
+Requires: smartmet-engine-contour >= 20.8.23
+Requires: smartmet-server >= 20.9.23
+Requires: smartmet-library-spine >= 20.9.23
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Wed Sep 23 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.23-1.fmi
+- Use Fmi::Exception instead of Spine::Exception
+
 * Fri Aug 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.21-1.fmi
 - Upgrade to fmt 6.2
 

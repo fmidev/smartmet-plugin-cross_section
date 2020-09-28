@@ -41,7 +41,7 @@ GCC_DIAG_COLOR ?= always
 # Boost 1.69
 
 ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -I/usr/include/boost169
+  INCLUDES += -isystem /usr/include/boost169
   LIBS += -L/usr/lib64/boost169
 endif
 
@@ -49,7 +49,6 @@ ifeq ($(CXX), clang++)
 
  FLAGS = \
 	-std=c++11 -fPIC -MD \
-	-Weverything \
 	-Wno-c++98-compat \
 	-Wno-float-equal \
 	-Wno-padded \
@@ -57,7 +56,6 @@ ifeq ($(CXX), clang++)
 
  INCLUDES += \
 	-isystem $(PREFIX)/gdal30/include \
-	-isystem $(includedir) \
 	-isystem $(includedir)/smartmet \
 	-isystem $(includedir)/smartmet/newbase \
 	-isystem $(includedir)/mysql \
@@ -79,8 +77,7 @@ else
  FLAGS_RELEASE = -Wuninitialized
 
  INCLUDES += \
-	-I$(PREFIX)/gdal30/include \
-	-I$(includedir) \
+	-isystem $(PREFIX)/gdal30/include \
 	-I$(includedir)/smartmet \
 	`pkg-config --cflags jsoncpp`
 
@@ -155,7 +152,7 @@ configtest:
 	@if [ -x "$$(command -v cfgvalidate)" ]; then cfgvalidate -v test/cnf/cross_section.conf; fi
 
 $(LIBFILE): $(OBJS)
-	$(CXX) $(CFLAGS) -shared -rdynamic -o $(LIBFILE) $(OBJS) $(LIBS)
+	$(CC) $(LDFLAGS) -shared -rdynamic -o $(LIBFILE) $(OBJS) $(LIBS)
 
 clean:
 	rm -f $(LIBFILE) *~ */*~  */*/*~ */*/*/*~ */*/*/*/*/*~

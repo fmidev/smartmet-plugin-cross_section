@@ -1,7 +1,7 @@
 #include "State.h"
 #include "Plugin.h"
 #include <ctpp2/CDT.hpp>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <stdexcept>
 
 namespace SmartMet
@@ -35,7 +35,7 @@ const Config& State::getConfig() const
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -53,7 +53,7 @@ void State::addAttributes(CTPP::CDT& theGlobals, const Attributes& theAttributes
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -74,7 +74,7 @@ void State::addAttributes(CTPP::CDT& /* theGlobals */,
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -89,14 +89,14 @@ SmartMet::Engine::Querydata::Q State::producer()
   try
   {
     if (itsQuery.producer.empty())
-      throw SmartMet::Spine::Exception(BCP, "The producer has not been set");
+      throw Fmi::Exception(BCP, "The producer has not been set");
 
     itsQ = itsPlugin.getQEngine().get(itsQuery.producer);
     return itsQ;
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -119,7 +119,7 @@ void State::updateEnvelope(const OGRGeometryPtr& theGeom)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 

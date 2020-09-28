@@ -38,7 +38,7 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
   try
   {
     if (!theJson.isObject())
-      throw SmartMet::Spine::Exception(BCP, "Isoband-layer JSON is not a JSON object");
+      throw Fmi::Exception(BCP, "Isoband-layer JSON is not a JSON object");
 
     // Iterate through all the members
 
@@ -62,7 +62,7 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
       else if (name == "isobands")
       {
         if (!json.isArray())
-          throw SmartMet::Spine::Exception(
+          throw Fmi::Exception(
               BCP, "isobands setting must be an array got instead:\n" + json.toStyledString());
         for (const auto& isoband_json : json)
         {
@@ -72,13 +72,13 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
         }
       }
       else
-        throw SmartMet::Spine::Exception(
+        throw Fmi::Exception(
             BCP, "Isoband-layer does not have a setting named '" + name + "'");
     }
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -103,7 +103,7 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
     // Establish the parameter
 
     if (parameter == boost::none)
-      throw SmartMet::Spine::Exception(BCP, "Parameter not set for isoband-layer");
+      throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
     auto param = SmartMet::Spine::ParameterFactory::instance().parse(*parameter);
 
     // Establish z-parameter
@@ -182,7 +182,7 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
