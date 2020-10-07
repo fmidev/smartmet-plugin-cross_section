@@ -47,7 +47,25 @@ endif
 
 ifneq "$(wildcard /usr/gdal30/include)" ""
   INCLUDES += -isystem /usr/gdal30/include
-  LIBS += -L$(PREFIX)/gdal30/lib
+  LIBS += -L/usr/gdal30/lib
+else
+  INCLUDES += -isystem /usr/include/gdal
+endif
+
+ifeq ($(CXX), clang++)
+
+ FLAGS = \
+	-std=c++11 -fPIC -MD \
+	-Wno-c++98-compat \
+	-Wno-float-equal \
+	-Wno-padded \
+	-Wno-missing-prototypes
+
+ INCLUDES += \
+	-I$(includedir)/smartmet \
+	-isystem $(includedir)/mysql \
+	-isystem $(includedir)/jsoncpp
+
 else
   INCLUDES += -isystem /usr/include/gdal
 endif
@@ -65,7 +83,7 @@ FLAGS_DEBUG = \
 
 FLAGS_RELEASE = -Wuninitialized
 
-INCLUDES += \
+ INCLUDES += \
 	-I$(includedir)/smartmet \
 	`pkg-config --cflags jsoncpp`
 

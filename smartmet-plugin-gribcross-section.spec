@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.10.1
+Version: 20.10.6
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,25 +14,25 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 20.9.29
-BuildRequires: smartmet-library-spine-devel >= 20.9.23
-BuildRequires: smartmet-engine-querydata-devel >= 20.9.23
-BuildRequires: smartmet-engine-geonames-devel >= 20.9.23
-BuildRequires: smartmet-engine-grid-devel >= 20.10.1
-BuildRequires: smartmet-engine-contour-devel >= 20.8.23
+BuildRequires: smartmet-library-macgyver-devel >= 20.10.7
+BuildRequires: smartmet-library-spine-devel >= 20.10.7
+BuildRequires: smartmet-engine-querydata-devel >= 20.10.6
+BuildRequires: smartmet-engine-geonames-devel >= 20.10.6
+BuildRequires: smartmet-engine-grid-devel >= 20.10.7
+BuildRequires: smartmet-engine-contour-devel >= 20.10.6
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.9.29
-Requires: smartmet-engine-querydata >= 20.9.23
-Requires: smartmet-engine-geonames >= 20.9.23
-Requires: smartmet-engine-grid >= 20.10.1
-Requires: smartmet-engine-contour >= 20.8.23
+Requires: smartmet-library-macgyver >= 20.10.7
+Requires: smartmet-engine-querydata >= 20.10.6
+Requires: smartmet-engine-geonames >= 20.10.6
+Requires: smartmet-engine-grid >= 20.10.7
+Requires: smartmet-engine-contour >= 20.10.6
 Requires: smartmet-server >= 20.9.23
-Requires: smartmet-library-spine >= 20.9.23
+Requires: smartmet-library-spine >= 20.10.7
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
 
 %changelog
+* Tue Oct  6 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.6-1.fmi
+- Enable sensible relative libconfig include paths
+
 * Thu Oct  1 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.1-1.fmi
 - Repackaged due to library ABI changes
 
@@ -100,6 +103,11 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Jun  8 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.6.8-1.fmi
 - Repackaged due to base library changes
 
+=======
+* Fri Aug 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.21-1.fmi
+- Upgrade to fmt 6.2
+
+>>>>>>> master:smartmet-plugin-cross-section.spec
 * Mon May 25 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.5.25-1.fmi
 - Repackaged since Spine::Parameter changed
 

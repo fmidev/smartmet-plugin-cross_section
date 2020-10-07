@@ -17,14 +17,20 @@ ifeq ($(ASAN), yes)
   FLAGS += -fsanitize=address -fsanitize=pointer-compare -fsanitize=pointer-subtract -fsanitize=undefined -fsanitize-address-use-after-scope
 endif
 
-CC = g++
 CFLAGS = -DUNIX -O0 -g $(FLAGS)
 
 # Boost 1.69
 
 ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -I/usr/include/boost169
+  INCLUDES += -isystem /usr/include/boost169
   LIBS += -L/usr/lib64/boost169
+endif
+
+ifneq "$(wildcard /usr/gdal30/include)" ""
+  INCLUDES += -isystem /usr/gdal30/include
+  LIBS += -L/usr/gdal30/lib
+else
+  INCLUDES += -isystem /usr/include/gdal
 endif
 
 INCLUDES += \
@@ -35,6 +41,7 @@ INCLUDES += \
 
 LIBS += -lsmartmet-spine  \
 	-lsmartmet-newbase \
+	-lsmartmet-macgyver \
 	`pkg-config --libs libconfig++` \
 	`pkg-config --libs jsoncpp` \
 	-lctpp2 \
@@ -58,4 +65,4 @@ test: $(PROG)
 	@rm -f cross-section-access-log
 
 $(PROG) : % : %.cpp Makefile ../cross_section.so
-	$(CC) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
+	$(CXX) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
