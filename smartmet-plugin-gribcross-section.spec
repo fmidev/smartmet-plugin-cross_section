@@ -103,11 +103,6 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Jun  8 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.6.8-1.fmi
 - Repackaged due to base library changes
 
-=======
-* Fri Aug 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.21-1.fmi
-- Upgrade to fmt 6.2
-
->>>>>>> master:smartmet-plugin-cross-section.spec
 * Mon May 25 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.5.25-1.fmi
 - Repackaged since Spine::Parameter changed
 
