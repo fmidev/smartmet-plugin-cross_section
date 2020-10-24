@@ -13,24 +13,24 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
-BuildRequires: libconfig >= 1.4.9
-BuildRequires: smartmet-library-macgyver-devel >= 20.10.5
-BuildRequires: smartmet-library-spine-devel >= 20.9.23
-BuildRequires: smartmet-engine-querydata-devel >= 20.9.23
-BuildRequires: smartmet-engine-geonames-devel >= 20.9.23
-BuildRequires: smartmet-engine-contour-devel >= 20.8.23
+BuildRequires: libconfig >= 1.7.2
+BuildRequires: smartmet-library-macgyver-devel >= 20.10.23
+BuildRequires: smartmet-library-spine-devel >= 20.10.20
+BuildRequires: smartmet-engine-querydata-devel >= 20.10.6
+BuildRequires: smartmet-engine-geonames-devel >= 20.10.6
+BuildRequires: smartmet-engine-contour-devel >= 20.10.6
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.10.5
-Requires: smartmet-engine-querydata >= 20.9.23
-Requires: smartmet-engine-geonames >= 20.9.23
-Requires: smartmet-engine-contour >= 20.8.23
-Requires: smartmet-server >= 20.9.23
-Requires: smartmet-library-spine >= 20.9.23
+Requires: smartmet-library-macgyver >= 20.10.23
+Requires: smartmet-engine-querydata >= 20.10.6
+Requires: smartmet-engine-geonames >= 20.10.6
+Requires: smartmet-engine-contour >= 20.10.6
+Requires: smartmet-server >= 20.10.21
+Requires: smartmet-library-spine >= 20.10.20
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
