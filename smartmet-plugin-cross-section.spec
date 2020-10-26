@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.10.6
+Version: 20.10.15
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -25,12 +25,12 @@ BuildRequires: bzip2-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.10.23
+Requires: smartmet-library-macgyver >= 20.10.9
 Requires: smartmet-engine-querydata >= 20.10.6
 Requires: smartmet-engine-geonames >= 20.10.6
 Requires: smartmet-engine-contour >= 20.10.6
-Requires: smartmet-server >= 20.10.21
-Requires: smartmet-library-spine >= 20.10.20
+Requires: smartmet-server >= 20.10.12
+Requires: smartmet-library-spine >= 20.10.14
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Thu Oct 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.15-1.fmi
+- Repackaged due to library ABI changes
+
 * Tue Oct  6 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.6-1.fmi
 - Enable sensible relative libconfig include paths
 
