@@ -35,6 +35,8 @@ Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
 Requires: boost169-thread
+Requires: zlib
+Requires: bzip2-libs
 Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
