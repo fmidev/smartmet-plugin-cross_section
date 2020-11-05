@@ -41,6 +41,10 @@ Requires: bzip2-devel
 Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
+#TestRequires: gcc-c++
+#TestRequires: libconfig-devel
+#TestRequires: jsoncpp-devel >= 0.10.5
+#TestRequires: smartmet-engine-contour-devel >= 20.10.6
 
 %description
 SmartMet Cross-Section plugin
