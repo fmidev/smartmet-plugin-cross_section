@@ -60,7 +60,7 @@ ifdef CI
 test: fminames $(PROG)
 else
 test: $(PROG)
-fi
+endif
 	@mkdir -p failures
 	@echo Running tests:
 	@for prog in $(PROG); do ./$$prog; done
