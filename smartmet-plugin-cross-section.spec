@@ -43,13 +43,17 @@ Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: boost169-devel
 #TestRequires: gcc-c++
+#TestRequires: gdal-devel
 #TestRequires: jsoncpp-devel >= 0.10.5
 #TestRequires: libconfig-devel
-#TestRequires: smartmet-test-db
+#TestRequires: smartmet-engine-contour >= 20.10.6
 #TestRequires: smartmet-engine-contour-devel >= 20.10.6
+#TestRequires: smartmet-engine-geonames >= 20.10.6
 #TestRequires: smartmet-engine-geonames-devel >= 20.10.6
+#TestRequires: smartmet-engine-querydata >= 20.10.6
+#TestRequires: smartmet-engine-querydata-devel >= 20.10.6
 #TestRequires: smartmet-library-spine-devel >= 20.10.20
-#TestRequires: gdal-devel
+#TestRequires: smartmet-test-db
 
 %description
 SmartMet Cross-Section plugin
