@@ -53,6 +53,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-engine-querydata >= 20.10.6
 #TestRequires: smartmet-engine-querydata-devel >= 20.10.6
 #TestRequires: smartmet-library-spine-devel >= 20.10.20
+#TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
 %description
