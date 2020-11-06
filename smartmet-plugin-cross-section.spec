@@ -47,6 +47,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: libconfig-devel
 #TestRequires: smartmet-engine-contour-devel >= 20.10.6
 #TestRequires: smartmet-library-spine-devel >= 20.10.20
+#TestRequires: gdal-devel
 
 %description
 SmartMet Cross-Section plugin
