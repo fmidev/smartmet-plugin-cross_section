@@ -58,7 +58,7 @@ clean:
 
 ifdef CI
 test: fminames $(PROG)
-	@sed -i -e 's|"../tmpl"|"/etc/smartmet/plugins/cross_section/tmpl"|g' cnf/cross_section.conf
+	@sed -i -e 's|"../tmpl"|"/etc/smartmet/plugins/cross_section"|g' cnf/cross_section.conf
 else
 test: $(PROG)
 endif
