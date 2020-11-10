@@ -58,6 +58,7 @@ clean:
 
 ifdef CI
 test: fminames $(PROG)
+	@sed -i -e 's|"../tmpl"|"/etc/smartmet/plugins/cross_section/tmpl"|g' cnf/cross_section.conf
 else
 test: $(PROG)
 endif
@@ -67,7 +68,7 @@ endif
 	@rm -f cross-section-access-log
 
 fminames:
-	sed -i -e 's/"smartmet-test"/"localhost"/g' cnf/*.conf
+	@sed -i -e 's/"smartmet-test"/"localhost"/g' cnf/*.conf
 	@/usr/share/smartmet/test/db/init-and-start.sh && /usr/share/smartmet/test/db/install-test-db.sh > /dev/null
 
 $(PROG) : % : %.cpp Makefile ../cross_section.so
