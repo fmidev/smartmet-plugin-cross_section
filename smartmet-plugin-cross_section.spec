@@ -1,5 +1,5 @@
 %define DIRNAME cross_section
-%define SPECNAME smartmet-plugin-cross-section
+%define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
 Version: 20.10.15
