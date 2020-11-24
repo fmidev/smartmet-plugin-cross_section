@@ -14,7 +14,7 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
-BuildRequires: smartmet-library-macgyver-devel >= 20.10.9
+BuildRequires: smartmet-library-macgyver-devel >= 20.10.23
 BuildRequires: smartmet-library-spine-devel >= 20.10.20
 BuildRequires: smartmet-engine-querydata-devel >= 20.10.6
 BuildRequires: smartmet-engine-geonames-devel >= 20.10.6
@@ -23,6 +23,7 @@ BuildRequires: smartmet-engine-contour-devel >= 20.10.6
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
+BuildRequires: zlib-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
@@ -37,9 +38,25 @@ Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
 Requires: boost169-thread
+Requires: zlib-devel
+Requires: bzip2-devel
 Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
+#TestRequires: boost169-devel
+#TestRequires: gcc-c++
+#TestRequires: gdal-devel
+#TestRequires: jsoncpp-devel >= 0.10.5
+#TestRequires: libconfig-devel
+#TestRequires: smartmet-engine-contour >= 20.10.6
+#TestRequires: smartmet-engine-contour-devel >= 20.10.6
+#TestRequires: smartmet-engine-geonames >= 20.10.6
+#TestRequires: smartmet-engine-geonames-devel >= 20.10.6
+#TestRequires: smartmet-engine-querydata >= 20.10.6
+#TestRequires: smartmet-engine-querydata-devel >= 20.10.6
+#TestRequires: smartmet-library-spine-devel >= 20.10.20
+#TestRequires: smartmet-test-data >= 20.10.29
+#TestRequires: smartmet-test-db
 
 %description
 SmartMet Cross-Section plugin
