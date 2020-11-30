@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.11.24
+Version: 20.11.30
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,11 +14,11 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
-BuildRequires: smartmet-library-macgyver-devel >= 20.10.28
+BuildRequires: smartmet-library-macgyver-devel >= 20.11.24
 BuildRequires: smartmet-library-spine-devel >= 20.11.23
 BuildRequires: smartmet-engine-querydata-devel >= 20.10.6
 BuildRequires: smartmet-engine-geonames-devel >= 20.10.28
-BuildRequires: smartmet-engine-grid-devel >= 20.11.24
+BuildRequires: smartmet-engine-grid-devel >= 20.11.30
 BuildRequires: smartmet-engine-contour-devel >= 20.11.6
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
@@ -27,10 +27,10 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.10.28
+Requires: smartmet-library-macgyver >= 20.11.24
 Requires: smartmet-engine-querydata >= 20.10.6
 Requires: smartmet-engine-geonames >= 20.10.28
-Requires: smartmet-engine-grid >= 20.11.24
+Requires: smartmet-engine-grid >= 20.11.30
 Requires: smartmet-engine-contour >= 20.11.6
 Requires: smartmet-server >= 20.10.28
 Requires: smartmet-library-spine >= 20.11.23
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
 
 %changelog
+* Mon Nov 30 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.11.30-1.fmi
+- Repackaged due to grid-content library API changes
+
 * Tue Nov 24 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.11.24-1.fmi
 - Repackaged due to library ABI changes
 
