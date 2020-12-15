@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.10.15
+Version: 20.12.15
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,11 +14,11 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
-BuildRequires: smartmet-library-macgyver-devel >= 20.10.23
-BuildRequires: smartmet-library-spine-devel >= 20.10.20
-BuildRequires: smartmet-engine-querydata-devel >= 20.10.6
-BuildRequires: smartmet-engine-geonames-devel >= 20.10.6
-BuildRequires: smartmet-engine-contour-devel >= 20.10.6
+BuildRequires: smartmet-library-macgyver-devel >= 20.12.15
+BuildRequires: smartmet-library-spine-devel >= 20.12.15
+BuildRequires: smartmet-engine-querydata-devel >= 20.12.15
+BuildRequires: smartmet-engine-geonames-devel >= 20.12.15
+BuildRequires: smartmet-engine-contour-devel >= 20.12.15
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 0.10.5
 BuildRequires: bzip2-devel
@@ -26,12 +26,12 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 0.10.5
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.10.9
-Requires: smartmet-engine-querydata >= 20.10.6
-Requires: smartmet-engine-geonames >= 20.10.6
-Requires: smartmet-engine-contour >= 20.10.6
-Requires: smartmet-server >= 20.10.12
-Requires: smartmet-library-spine >= 20.10.14
+Requires: smartmet-library-macgyver >= 20.12.15
+Requires: smartmet-engine-querydata >= 20.12.15
+Requires: smartmet-engine-geonames >= 20.12.15
+Requires: smartmet-engine-contour >= 20.12.15
+Requires: smartmet-server >= 20.10.28
+Requires: smartmet-library-spine >= 20.12.15
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -43,16 +43,16 @@ Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: boost169-devel
 #TestRequires: gcc-c++
-#TestRequires: gdal-devel
+#TestRequires: gdal32-devel
 #TestRequires: jsoncpp-devel >= 0.10.5
 #TestRequires: libconfig-devel
-#TestRequires: smartmet-engine-contour >= 20.10.6
-#TestRequires: smartmet-engine-contour-devel >= 20.10.6
-#TestRequires: smartmet-engine-geonames >= 20.10.6
-#TestRequires: smartmet-engine-geonames-devel >= 20.10.6
-#TestRequires: smartmet-engine-querydata >= 20.10.6
-#TestRequires: smartmet-engine-querydata-devel >= 20.10.6
-#TestRequires: smartmet-library-spine-devel >= 20.10.20
+#TestRequires: smartmet-engine-contour >= 20.12.15
+#TestRequires: smartmet-engine-contour-devel >= 20.12.15
+#TestRequires: smartmet-engine-geonames >= 20.12.15
+#TestRequires: smartmet-engine-geonames-devel >= 20.12.15
+#TestRequires: smartmet-engine-querydata >= 20.12.15
+#TestRequires: smartmet-engine-querydata-devel >= 20.12.15
+#TestRequires: smartmet-library-spine-devel >= 20.12.15
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Tue Dec 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.12.15-1.fmi
+- Upgrade to pgdg12
+
 * Thu Oct 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.15-1.fmi
 - Repackaged due to library ABI changes
 
