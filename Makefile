@@ -21,6 +21,11 @@ LIBS += -L$(libdir) \
 	-lboost_system \
 	-lbz2 -lz
 
+# Templates
+
+TEMPLATES = $(wildcard tmpl/*.tmpl)
+BYTECODES = $(TEMPLATES:%.tmpl=%.c2t)
+
 # What to install
 
 LIBFILE = $(SUBNAME).so
@@ -42,7 +47,7 @@ INCLUDES := -I$(SUBNAME) $(INCLUDES)
 
 # The rules
 
-all: objdir $(LIBFILE)
+all: objdir $(LIBFILE) $(BYTECODES)
 debug: all
 release: all
 profile: all
@@ -56,6 +61,7 @@ $(LIBFILE): $(OBJS)
 clean:
 	rm -f $(LIBFILE) *~ $(SUBNAME)/*~
 	rm -rf obj
+	rm tmpl/*.c2t
 	$(MAKE) -C test $@
 
 format:
