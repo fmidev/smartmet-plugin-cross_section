@@ -28,13 +28,13 @@ clean:
 	rm -f $(PROG) *~
 
 ifdef CI
-test: fminames $(PROG)
+test: $(PROG) fminames
 	@sed -i -e 's|"../tmpl"|"/etc/smartmet/plugins/cross_section"|g' cnf/cross_section.conf
 else
 test: $(PROG)
 endif
 	@./PluginTest -c cnf/reactor.conf
-	@test -f PluginTest.err && mv PluginTest.err sqlite.err || echo All tests passed
+	@test -f PluginTest.err || echo All tests passed
 	@printf "\n"
 	@test `find . -name \*.err | wc -l` = "0" || ( echo ; echo "The following tests have errors:" ; \
 	   for i in *.err ; do echo `basename $$i .err`; done ; rm -f *.err ; false )
