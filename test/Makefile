@@ -23,6 +23,7 @@ LIBS += -L$(libdir) \
 	-lpthread -ldl
 
 all: $(PROG)
+
 clean:
 	rm -f $(PROG) *~
 
@@ -44,11 +45,3 @@ fminames:
 
 $(PROG) : % : %.cpp Makefile
 	$(CXX) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
-
-clean:
-	rm -f $(PROG) *~
-
-	@mkdir -p failures
-	@echo Running tests:
-	@for prog in $(PROG); do ./$$prog; done
-	@rm -f cross-section-access-log
