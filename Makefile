@@ -61,7 +61,7 @@ $(LIBFILE): $(OBJS)
 clean:
 	rm -f $(LIBFILE) *~ $(SUBNAME)/*~
 	rm -rf obj
-	rm tmpl/*.c2t
+	rm -f tmpl/*.c2t
 	$(MAKE) -C test $@
 
 format:
