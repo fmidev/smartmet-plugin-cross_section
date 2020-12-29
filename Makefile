@@ -6,6 +6,9 @@ REQUIRES = gdal jsoncpp ctpp2
 
 include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
+sysconfdir ?= /etc
+tmpldir = $(sysconfdir)/smartmet/plugins/$(SUBNAME)
+
 DEFINES = -DUNIX -D_REENTRANT
 
 LIBS += -L$(libdir) \
@@ -61,6 +64,10 @@ format:
 install:
 	@mkdir -p $(plugindir)
 	$(INSTALL_PROG) $(LIBFILE) $(plugindir)/$(LIBFILE)
+	@mkdir -p $(tmpldir)
+	@list=`ls -1 tmpl/*.c2t`; \
+	echo $(INSTALL_DATA) $$list $(tmpldir)/; \
+	$(INSTALL_DATA) $$list $(tmpldir)/
 
 test:
 	cd test && make test
