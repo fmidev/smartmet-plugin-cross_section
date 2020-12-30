@@ -44,8 +44,8 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: boost169-devel
 #TestRequires: gcc-c++
 #TestRequires: gdal32-devel
-#TestRequires: jsoncpp-devel >= 0.10.5
-#TestRequires: libconfig-devel > 1.8.4
+#TestRequires: jsoncpp-devel >= 1.8.4
+#TestRequires: libconfig-devel >= 1.7.2
 #TestRequires: smartmet-engine-contour >= 20.12.15
 #TestRequires: smartmet-engine-contour-devel >= 20.12.15
 #TestRequires: smartmet-engine-geonames >= 20.12.15
