@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.12.15
+Version: 20.12.30
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -15,23 +15,23 @@ BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
 BuildRequires: smartmet-library-macgyver-devel >= 20.12.15
-BuildRequires: smartmet-library-spine-devel >= 20.12.15
-BuildRequires: smartmet-engine-querydata-devel >= 20.12.15
+BuildRequires: smartmet-library-spine-devel >= 20.12.30
+BuildRequires: smartmet-engine-querydata-devel >= 20.12.30
 BuildRequires: smartmet-engine-geonames-devel >= 20.12.15
 BuildRequires: smartmet-engine-contour-devel >= 20.12.15
 BuildRequires: ctpp2 >= 2.8.8
-BuildRequires: jsoncpp-devel >= 0.10.5
+BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
 BuildRequires: zlib-devel
-Requires: jsoncpp >= 0.10.5
+Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
 Requires: smartmet-library-macgyver >= 20.12.15
-Requires: smartmet-engine-querydata >= 20.12.15
+Requires: smartmet-engine-querydata >= 20.12.30
 Requires: smartmet-engine-geonames >= 20.12.15
 Requires: smartmet-engine-contour >= 20.12.15
 Requires: smartmet-server >= 20.10.28
-Requires: smartmet-library-spine >= 20.12.15
+Requires: smartmet-library-spine >= 20.12.30
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -45,14 +45,14 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: gcc-c++
 #TestRequires: gdal32-devel
 #TestRequires: jsoncpp-devel >= 0.10.5
-#TestRequires: libconfig-devel
+#TestRequires: libconfig-devel > 1.8.4
 #TestRequires: smartmet-engine-contour >= 20.12.15
 #TestRequires: smartmet-engine-contour-devel >= 20.12.15
 #TestRequires: smartmet-engine-geonames >= 20.12.15
 #TestRequires: smartmet-engine-geonames-devel >= 20.12.15
-#TestRequires: smartmet-engine-querydata >= 20.12.15
-#TestRequires: smartmet-engine-querydata-devel >= 20.12.15
-#TestRequires: smartmet-library-spine-devel >= 20.12.15
+#TestRequires: smartmet-engine-querydata >= 20.12.30
+#TestRequires: smartmet-engine-querydata-devel >= 20.12.30
+#TestRequires: smartmet-library-spine-devel >= 20.12.30
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Wed Dec 30 2020 Andris Pavenis <andris.pavenis@fmi.fi> - 20.12.30-1.fmi
+- Rebuild due to jsoncpp upgrade for RHEL7 (also RHEL8 to avoid broken RPM dependencies)
+
 * Tue Dec 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.12.15-1.fmi
 - Upgrade to pgdg12
 
