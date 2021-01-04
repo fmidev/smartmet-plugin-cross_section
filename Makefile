@@ -45,27 +45,9 @@ ifneq "$(wildcard /usr/include/boost169)" ""
   LIBS += -L/usr/lib64/boost169
 endif
 
-ifneq "$(wildcard /usr/gdal30/include)" ""
-  INCLUDES += -isystem /usr/gdal30/include
-  LIBS += -L/usr/gdal30/lib
-else
-  INCLUDES += -isystem /usr/include/gdal
-endif
-
-ifeq ($(CXX), clang++)
-
- FLAGS = \
-	-std=c++11 -fPIC -MD \
-	-Wno-c++98-compat \
-	-Wno-float-equal \
-	-Wno-padded \
-	-Wno-missing-prototypes
-
- INCLUDES += \
-	-I$(includedir)/smartmet \
-	-isystem $(includedir)/mysql \
-	-isystem $(includedir)/jsoncpp
-
+ifneq "$(wildcard /usr/gdal32/include)" ""
+  INCLUDES += -isystem /usr/gdal32/include
+  LIBS += -L/usr/gdal32/lib
 else
   INCLUDES += -isystem /usr/include/gdal
 endif
