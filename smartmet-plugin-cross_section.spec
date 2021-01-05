@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 20.12.30
+Version: 21.1.5
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,11 +14,11 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
-BuildRequires: smartmet-library-macgyver-devel >= 20.12.15
-BuildRequires: smartmet-library-spine-devel >= 20.12.30
+BuildRequires: smartmet-library-macgyver-devel >= 21.1.5
+BuildRequires: smartmet-library-spine-devel >= 21.1.5
 BuildRequires: smartmet-engine-querydata-devel >= 20.12.30
-BuildRequires: smartmet-engine-geonames-devel >= 20.12.15
-BuildRequires: smartmet-engine-contour-devel >= 20.12.15
+BuildRequires: smartmet-engine-geonames-devel >= 21.1.5
+BuildRequires: smartmet-engine-contour-devel >= 21.1.5
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -26,12 +26,12 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 20.12.15
+Requires: smartmet-library-macgyver >= 21.1.5
 Requires: smartmet-engine-querydata >= 20.12.30
-Requires: smartmet-engine-geonames >= 20.12.15
-Requires: smartmet-engine-contour >= 20.12.15
+Requires: smartmet-engine-geonames >= 21.1.5
+Requires: smartmet-engine-contour >= 21.1.5
 Requires: smartmet-server >= 20.10.28
-Requires: smartmet-library-spine >= 20.12.30
+Requires: smartmet-library-spine >= 21.1.5
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -46,13 +46,13 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: gdal32-devel
 #TestRequires: jsoncpp-devel >= 1.8.4
 #TestRequires: libconfig-devel >= 1.7.2
-#TestRequires: smartmet-engine-contour >= 20.12.15
-#TestRequires: smartmet-engine-contour-devel >= 20.12.15
-#TestRequires: smartmet-engine-geonames >= 20.12.15
-#TestRequires: smartmet-engine-geonames-devel >= 20.12.15
+#TestRequires: smartmet-engine-contour >= 21.1.5
+#TestRequires: smartmet-engine-contour-devel >= 21.1.5
+#TestRequires: smartmet-engine-geonames >= 21.1.5
+#TestRequires: smartmet-engine-geonames-devel >= 21.1.5
 #TestRequires: smartmet-engine-querydata >= 20.12.30
 #TestRequires: smartmet-engine-querydata-devel >= 20.12.30
-#TestRequires: smartmet-library-spine-devel >= 20.12.30
+#TestRequires: smartmet-library-spine-devel >= 21.1.5
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Tue Jan  5 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.5-1.fmi
+- jsoncpp upgrade
+
 * Wed Dec 30 2020 Andris Pavenis <andris.pavenis@fmi.fi> - 20.12.30-1.fmi
 - Rebuild due to jsoncpp upgrade for RHEL7 (also RHEL8 to avoid broken RPM dependencies)
 
