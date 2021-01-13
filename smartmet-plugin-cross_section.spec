@@ -30,7 +30,7 @@ Requires: smartmet-library-macgyver >= 21.1.5
 Requires: smartmet-engine-querydata >= 20.12.30
 Requires: smartmet-engine-geonames >= 21.1.5
 Requires: smartmet-engine-contour >= 21.1.5
-Requires: smartmet-server >= 20.10.28
+Requires: smartmet-server >= 21.1.5
 Requires: smartmet-library-spine >= 21.1.5
 Requires: boost169-date-time
 Requires: boost169-iostreams
