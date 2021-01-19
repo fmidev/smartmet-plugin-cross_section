@@ -3,7 +3,7 @@
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
 Version: 21.1.19
-Release: 1%{?dist}.fmi
+Release: 2%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
@@ -18,7 +18,7 @@ BuildRequires: smartmet-library-macgyver-devel >= 21.1.14
 BuildRequires: smartmet-library-spine-devel >= 21.1.14
 BuildRequires: smartmet-engine-querydata-devel >= 21.1.14
 BuildRequires: smartmet-engine-geonames-devel >= 21.1.14
-BuildRequires: smartmet-engine-grid-devel >= 21.1.14
+BuildRequires: smartmet-engine-grid-devel >= 21.1.19
 BuildRequires: smartmet-engine-contour-devel >= 21.1.14
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
@@ -30,7 +30,7 @@ Requires: libconfig
 Requires: smartmet-library-macgyver >= 21.1.14
 Requires: smartmet-engine-querydata >= 21.1.14
 Requires: smartmet-engine-geonames >= 21.1.14
-Requires: smartmet-engine-grid >= 21.1.14
+Requires: smartmet-engine-grid >= 21.1.19
 Requires: smartmet-engine-contour >= 21.1.14
 Requires: smartmet-server >= 21.1.14
 Requires: smartmet-library-spine >= 21.1.14
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
 
 %changelog
+* Tue Jan 19 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.19-2.fmi
+- Repackaged due to base library ABI changes
+
 * Tue Jan 19 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.19-1.fmi
 - Repackaged to fix postgresql dependencies
 
