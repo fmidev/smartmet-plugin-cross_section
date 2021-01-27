@@ -26,7 +26,7 @@ landcoverdir = "/usr/share/smartmet/test/data/gis/rasters/globcover";
 
 database:
 {
-	host	 = "smartmet-test";
+	host	 = "localhost";
 	user	 = "fminames_user";
 	database = "fminames";
 	pass	 = "fminames_pw";

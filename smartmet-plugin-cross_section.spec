@@ -47,12 +47,9 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: jsoncpp-devel >= 1.8.4
 #TestRequires: libconfig-devel >= 1.7.2
 #TestRequires: smartmet-engine-contour >= 21.1.14
-#TestRequires: smartmet-engine-contour-devel >= 21.1.14
 #TestRequires: smartmet-engine-geonames >= 21.1.14
-#TestRequires: smartmet-engine-geonames-devel >= 21.1.14
 #TestRequires: smartmet-engine-querydata >= 21.1.14
-#TestRequires: smartmet-engine-querydata-devel >= 21.1.14
-#TestRequires: smartmet-library-spine-devel >= 21.1.14
+#TestRequires: smartmet-library-macgyver-devel >= 21.1.14
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 

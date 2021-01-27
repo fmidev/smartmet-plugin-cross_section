@@ -27,21 +27,45 @@ all: $(PROG)
 clean:
 	rm -f $(PROG) *~
 
+TEST_PREPARE_TARGETS := templates cnf/geonames.conf
+TEST_FINISH_TARGETS := .dummy
 ifdef CI
-test: $(PROG) fminames
-	@sed -i -e 's|"../tmpl"|"/etc/smartmet/plugins/cross_section"|g' cnf/cross_section.conf
+GEONAMES_HOST_EDIT := sed -e 's/"smartmet-test"/"localhost"/g'
+TEST_PREPARE_TARGETS += start-geonames-db
+TEST_FINISH_TARGETS += stop-geonames-db
 else
-test: $(PROG)
+GEONAMES_HOST_EDIT := cat
 endif
-	@./PluginTest -c cnf/reactor.conf
-	@test -f PluginTest.err || echo All tests passed
-	@printf "\n"
-	@test `find . -name \*.err | wc -l` = "0" || ( echo ; echo "The following tests have errors:" ; \
-	   for i in *.err ; do echo `basename $$i .err`; done ; rm -f *.err ; false )
 
-fminames:
-	sed -i -e 's/"smartmet-test"/"localhost"/g' cnf/*.conf
-	@/usr/share/smartmet/test/db/init-and-start.sh && /usr/share/smartmet/test/db/install-test-db.sh > /dev/null
+TEST_DB_DIR := tmp-geonames-db
+TESTER_PARAM := --handler=/csection --reactor-config=cnf/reactor.conf
 
-$(PROG) : % : %.cpp Makefile
-	$(CXX) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
+test: $(TEST_PREPARE_TARGETS)
+	@rm -f failures/*
+	@echo Running tests:
+	ok=true; smartmet-plugin-test $(TESTER_PARAM) || ok=false; $(MAKE) $(TEST_FINISH_TARGETS); $$ok
+
+cnf/geonames.conf: cnf/geonames.conf.in .dummy
+	$(GEONAMES_HOST_EDIT) $< >$@
+
+geonames-database:
+	@-$(MAKE) stop-geonames-db
+	rm -rf tmp-geonames-db
+	if ! /usr/share/smartmet/test/db/create-local-db.sh $(TEST_DB_DIR) >tmp-geonames-db.log 2>&1 ; then \
+	    cat tmp-geonames-db.log; \
+	    false; \
+	fi
+
+start-geonames-db: geonames-database
+	/usr/share/smartmet/test/db/test-db-ctl.sh $(TEST_DB_DIR) start -w
+
+stop-geonames-db:
+	-/usr/share/smartmet/test/db/test-db-ctl.sh $(TEST_DB_DIR) stop -w
+
+templates:
+	$(MAKE) -C .. all-templates
+
+.dummy:
+	true
+
+.PHONY: meta.conf geonames.conf

@@ -47,7 +47,7 @@ INCLUDES := -I$(SUBNAME) $(INCLUDES)
 
 # The rules
 
-all: objdir $(LIBFILE) $(BYTECODES)
+all: objdir $(LIBFILE) all-templates
 debug: all
 release: all
 profile: all
@@ -91,6 +91,8 @@ rpm: clean $(SPEC).spec
 
 obj/%.o: %.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
+all-templates: $(BYTECODES)
 
 %.c2t:  %.tmpl
 	ctpp2c $< $@
