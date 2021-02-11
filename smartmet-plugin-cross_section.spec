@@ -14,11 +14,11 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
-BuildRequires: smartmet-library-macgyver-devel >= 21.1.14
-BuildRequires: smartmet-library-spine-devel >= 21.1.14
-BuildRequires: smartmet-engine-querydata-devel >= 21.1.14
-BuildRequires: smartmet-engine-geonames-devel >= 21.1.14
-BuildRequires: smartmet-engine-contour-devel >= 21.1.14
+BuildRequires: smartmet-library-macgyver-devel >= 21.1.25
+BuildRequires: smartmet-library-spine-devel >= 21.2.5
+BuildRequires: smartmet-engine-querydata-devel >= 21.2.10
+BuildRequires: smartmet-engine-geonames-devel >= 21.1.25
+BuildRequires: smartmet-engine-contour-devel >= 21.2.10
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -26,12 +26,12 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 21.1.14
-Requires: smartmet-engine-querydata >= 21.1.14
-Requires: smartmet-engine-geonames >= 21.1.14
-Requires: smartmet-engine-contour >= 21.1.14
+Requires: smartmet-library-macgyver >= 21.1.25
+Requires: smartmet-engine-querydata >= 21.2.10
+Requires: smartmet-engine-geonames >= 21.1.25
+Requires: smartmet-engine-contour >= 21.2.10
 Requires: smartmet-server >= 21.1.14
-Requires: smartmet-library-spine >= 21.1.14
+Requires: smartmet-library-spine >= 21.2.5
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -46,10 +46,10 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: gdal32-devel
 #TestRequires: jsoncpp-devel >= 1.8.4
 #TestRequires: libconfig-devel >= 1.7.2
-#TestRequires: smartmet-engine-contour >= 21.1.14
-#TestRequires: smartmet-engine-geonames >= 21.1.14
-#TestRequires: smartmet-engine-querydata >= 21.1.14
-#TestRequires: smartmet-library-macgyver-devel >= 21.1.14
+#TestRequires: smartmet-engine-contour >= 21.2.10
+#TestRequires: smartmet-engine-geonames >= 21.1.25
+#TestRequires: smartmet-engine-querydata >= 21.2.10
+#TestRequires: smartmet-library-macgyver-devel >= 21.1.25
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
