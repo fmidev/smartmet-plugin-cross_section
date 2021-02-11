@@ -154,7 +154,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
                 << hash.RecursiveDump() << std::endl;
     }
 
-    std::ostringstream output, log;
+    std::string output, log;
     try
     {
       std::string report = "Template processing finished in %t sec CPU, %w sec real\n";
@@ -176,7 +176,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
           .addParameter("Format name", format_name);
     }
 
-    return output.str();
+    return output;
   }
   catch (...)
   {

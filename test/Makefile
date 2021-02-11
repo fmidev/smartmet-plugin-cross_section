@@ -1,68 +1,71 @@
-PROG = $(patsubst %.cpp,%,$(wildcard *Test.cpp))
+PROG = PluginTest
 
-FLAGS = -std=c++11 -Wall -W -Wno-unused-parameter
+REQUIRES = gdal configpp jsoncpp
 
-EXTRAFLAGS = -Werror -pedantic -Wpointer-arith -Wcast-qual \
-	-Wcast-align -Wwrite-strings -Wconversion -Winline \
-	-Wctor-dtor-privacy -Wnon-virtual-dtor -Wno-pmf-conversions \
-	-Wsign-promo -Wchar-subscripts -Wold-style-cast \
-	-Wshadow -Woverloaded-virtual
+include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
-DIFFICULTFLAGS = -Weffc++ -Wunreachable-code -Wredundant-decls
+CFLAGS = -DUNIX -O0 -g $(FLAGS) -Wno-unknown-pragmas
 
-ifeq ($(TSAN), yes)
-  FLAGS += -fsanitize=thread
-endif
-ifeq ($(ASAN), yes)
-  FLAGS += -fsanitize=address -fsanitize=pointer-compare -fsanitize=pointer-subtract -fsanitize=undefined -fsanitize-address-use-after-scope
-endif
-
-CFLAGS = -DUNIX -O0 -g $(FLAGS)
-
-# Boost 1.69
-
-ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -isystem /usr/include/boost169
-  LIBS += -L/usr/lib64/boost169
-endif
-
-ifneq "$(wildcard /usr/gdal30/include)" ""
-  INCLUDES += -isystem /usr/gdal30/include
-  LIBS += -L/usr/gdal30/lib
-else
-  INCLUDES += -isystem /usr/include/gdal
-endif
-
+# Unfortunately otlv4.h forces us to define the full oracle include path
 INCLUDES += \
-	-I../cross_section \
-	-I/usr/include/smartmet \
-	`pkg-config --cflags libconfig++` \
-	`pkg-config --cflags jsoncpp`
+	-I ../cross_section
 
-LIBS += -lsmartmet-spine  \
-	-lsmartmet-newbase \
+LIBS += -L$(libdir) \
+	$(REQUIRED_LIBS) \
+	-lsmartmet-spine  \
 	-lsmartmet-macgyver \
-	`pkg-config --libs libconfig++` \
-	`pkg-config --libs jsoncpp` \
-	-lctpp2 \
+	-lsmartmet-newbase \
 	-lboost_date_time \
 	-lboost_thread \
 	-lboost_filesystem \
 	-lboost_iostreams \
 	-lboost_system \
-	-lbz2 -lz -lpthread -ldl
+	-lpthread -ldl
 
 all: $(PROG)
+
 clean:
 	rm -f $(PROG) *~
 
-test: $(PROG)
-	@mkdir -p failures
-	@echo Running tests:
-	@for prog in $(PROG); do \
-	./$$prog; \
-	done
-	@rm -f cross-section-access-log
+TEST_PREPARE_TARGETS := templates cnf/geonames.conf
+TEST_FINISH_TARGETS := .dummy
+ifdef CI
+GEONAMES_HOST_EDIT := sed -e 's/"smartmet-test"/"localhost"/g'
+TEST_PREPARE_TARGETS += start-geonames-db
+TEST_FINISH_TARGETS += stop-geonames-db
+else
+GEONAMES_HOST_EDIT := cat
+endif
 
-$(PROG) : % : %.cpp Makefile ../cross_section.so
-	$(CXX) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
+TEST_DB_DIR := tmp-geonames-db
+TESTER_PARAM := --handler=/csection --reactor-config=cnf/reactor.conf
+
+test: $(TEST_PREPARE_TARGETS)
+	@rm -f failures/*
+	@echo Running tests:
+	ok=true; smartmet-plugin-test $(TESTER_PARAM) || ok=false; $(MAKE) $(TEST_FINISH_TARGETS); $$ok
+
+cnf/geonames.conf: cnf/geonames.conf.in .dummy
+	$(GEONAMES_HOST_EDIT) $< >$@
+
+geonames-database:
+	@-$(MAKE) stop-geonames-db
+	rm -rf tmp-geonames-db
+	if ! /usr/share/smartmet/test/db/create-local-db.sh $(TEST_DB_DIR) >tmp-geonames-db.log 2>&1 ; then \
+	    cat tmp-geonames-db.log; \
+	    false; \
+	fi
+
+start-geonames-db: geonames-database
+	/usr/share/smartmet/test/db/test-db-ctl.sh $(TEST_DB_DIR) start -w
+
+stop-geonames-db:
+	-/usr/share/smartmet/test/db/test-db-ctl.sh $(TEST_DB_DIR) stop -w
+
+templates:
+	$(MAKE) -C .. all-templates
+
+.dummy:
+	true
+
+.PHONY: meta.conf geonames.conf
