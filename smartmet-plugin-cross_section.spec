@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.1.27
+Version: 21.2.11
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Thu Feb 11 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.11-1.fmi
+- Merged master and WGS84 branches
+
 * Wed Jan 27 2021 Andris Pavenis <andris.pavenis@fmi.fi> - 21.1.27-1.fmi
 - Test build update
 
@@ -111,6 +114,9 @@ rm -rf $RPM_BUILD_ROOT
 
 * Sat Apr 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.18-1.fmi
 - Upgraded to Boost 1.69
+
+* Thu Feb 13 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.13-1.fmi
+- Upgrade to GDAL 3.0
 
 * Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
 - Rebuilt since Spine::Parameter size changed
