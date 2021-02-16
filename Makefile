@@ -7,7 +7,7 @@ REQUIRES = gdal jsoncpp ctpp2
 include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
 sysconfdir ?= /etc
-tmpldir = $(sysconfdir)/smartmet/plugins/$(SUBNAME)
+tmpldir = $(sysconfdir)/smartmet/plugins/grib$(SUBNAME)
 
 DEFINES = -DUNIX -D_REENTRANT
 
