@@ -458,11 +458,11 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
       throw Fmi::Exception(
           BCP, "Unknown isoline interpolation method '" + interpolation + "'");
 
-    boost::shared_ptr<NFmiFastQueryInfo> qInfo = q->info();
+    auto qInfo = q->info();
 
     std::vector<OGRGeometryPtr> geoms;
     if (!zparameter)
-      geoms = contourer.crossection(qInfo,
+      geoms = contourer.crossection(*qInfo,
                                     options,
                                     theState.query().longitude1,
                                     theState.query().latitude1,
@@ -470,7 +470,7 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
                                     theState.query().latitude2,
                                     theState.query().steps);
     else
-      geoms = contourer.crossection(qInfo,
+      geoms = contourer.crossection(*qInfo,
                                     zparam,
                                     options,
                                     theState.query().longitude1,

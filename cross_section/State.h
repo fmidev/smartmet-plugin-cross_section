@@ -23,6 +23,7 @@
 #include <engines/contour/Engine.h>
 #include <engines/querydata/Q.h>
 #include <map>
+#include <ogr_geometry.h>
 
 namespace CTPP
 {

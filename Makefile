@@ -2,115 +2,33 @@ SUBNAME = cross_section
 SPEC = smartmet-plugin-gribcross-section
 INCDIR = smartmet/plugins/$(SUBNAME)
 
-# Installation directories
+REQUIRES = gdal jsoncpp ctpp2
 
-processor := $(shell uname -p)
+include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
-ifeq ($(origin PREFIX), undefined)
-  PREFIX = /usr
-else
-  PREFIX = $(PREFIX)
-endif
-
-ifeq ($(processor), x86_64)
-  libdir = $(PREFIX)/lib64
-else
-  libdir = $(PREFIX)/lib
-endif
-
-ifeq ($(origin sysconfdir), undefined)
-  sysconfdir = /etc
-else
-  sysconfdir = $(sysconfdir)
-endif
-
-bindir = $(PREFIX)/bin
-includedir = $(PREFIX)/include
-datadir = $(PREFIX)/share
-plugindir = $(datadir)/smartmet/plugins
-tmpldir = $(sysconfdir)/smartmet/plugins/grib$(SUBNAME)
-objdir = obj
-
-# Compiler options
+sysconfdir ?= /etc
+tmpldir = $(sysconfdir)/smartmet/plugins/$(SUBNAME)
 
 DEFINES = -DUNIX -D_REENTRANT
 
--include $(HOME)/.smartmet.mk
-GCC_DIAG_COLOR ?= always
-
-# Boost 1.69
-
-ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -isystem /usr/include/boost169
-  LIBS += -L/usr/lib64/boost169
-endif
-
-ifneq "$(wildcard /usr/gdal32/include)" ""
-  INCLUDES += -isystem /usr/gdal32/include
-  LIBS += -L/usr/gdal32/lib
-else
-  INCLUDES += -isystem /usr/include/gdal
-endif
-
-FLAGS = -std=c++11 -fPIC -MD -Wall -W -Wno-unused-parameter -fno-omit-frame-pointer -Wno-unknown-pragmas -fdiagnostics-color=$(GCC_DIAG_COLOR)
-
-FLAGS_DEBUG = \
-	-Wcast-align \
-	-Wcast-qual \
-	-Winline \
-	-Wno-multichar \
-	-Wno-pmf-conversions \
-	-Wpointer-arith \
-	-Wwrite-strings
-
-FLAGS_RELEASE = -Wuninitialized
-
- INCLUDES += \
-	-I$(includedir)/smartmet \
-	`pkg-config --cflags jsoncpp`
-
-ifeq ($(TSAN), yes)
-  FLAGS += -fsanitize=thread
-endif
-ifeq ($(ASAN), yes)
-  FLAGS += -fsanitize=address -fsanitize=pointer-compare -fsanitize=pointer-subtract -fsanitize=undefined -fsanitize-address-use-after-scope
-endif
-
-# Compile options in detault, debug and profile modes
-
-CFLAGS_RELEASE = $(DEFINES) $(FLAGS) $(FLAGS_RELEASE) -DNDEBUG -O2 -g
-CFLAGS_DEBUG   = $(DEFINES) $(FLAGS) $(FLAGS_DEBUG)   -Werror  -O0 -g
-
-ifneq (,$(findstring debug,$(MAKECMDGOALS)))
-  override CFLAGS += $(CFLAGS_DEBUG)
-else
-  override CFLAGS += $(CFLAGS_RELEASE)
-endif
-
 LIBS += -L$(libdir) \
+	$(REQUIRED_LIBS) \
 	-lsmartmet-spine \
 	-lsmartmet-gis \
-	`pkg-config --libs jsoncpp` \
-	-lctpp2 \
 	-lboost_date_time \
 	-lboost_thread \
 	-lboost_iostreams \
 	-lboost_system \
 	-lbz2 -lz
 
-# What to install
-
-LIBFILE = grib$(SUBNAME).so
-
-# How to install
-
-INSTALL_PROG = install -p -m 775
-INSTALL_DATA = install -p -m 664
-
 # Templates
 
 TEMPLATES = $(wildcard tmpl/*.tmpl)
 BYTECODES = $(TEMPLATES:%.tmpl=%.c2t)
+
+# What to install
+
+LIBFILE = grib$(SUBNAME).so
 
 # Compilation directories
 
@@ -129,7 +47,7 @@ INCLUDES := -I$(SUBNAME) $(INCLUDES)
 
 # The rules
 
-all: objdir $(LIBFILE) $(BYTECODES)
+all: objdir $(LIBFILE) all-templates
 debug: all
 release: all
 profile: all
@@ -141,8 +59,10 @@ $(LIBFILE): $(OBJS)
 	$(CC) $(LDFLAGS) -shared -rdynamic -o $(LIBFILE) $(OBJS) $(LIBS)
 
 clean:
-	rm -f $(LIBFILE) *~ */*~  */*/*~ */*/*/*~ */*/*/*/*/*~
-	rm -rf $(objdir)
+	rm -f $(LIBFILE) *~ $(SUBNAME)/*~
+	rm -rf obj
+	rm -f tmpl/*.c2t
+	$(MAKE) -C test $@
 
 format:
 	clang-format -i -style=file $(SUBNAME)/*.h $(SUBNAME)/*.cpp test/*.cpp
@@ -155,7 +75,7 @@ install:
 	echo $(INSTALL_DATA) $$list $(tmpldir)/; \
 	$(INSTALL_DATA) $$list $(tmpldir)/
 
-test:	configtest
+test:
 	cd test && make test
 
 objdir:
@@ -171,6 +91,8 @@ rpm: clean $(SPEC).spec
 
 obj/%.o: %.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
+all-templates: $(BYTECODES)
 
 %.c2t:  %.tmpl
 	ctpp2c $< $@

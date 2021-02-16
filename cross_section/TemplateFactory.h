@@ -11,9 +11,9 @@
 
 #include <boost/filesystem/path.hpp>
 #include <boost/noncopyable.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
 #include <macgyver/TemplateFormatter.h>
+#include <memory>
 
 namespace SmartMet
 {
@@ -21,7 +21,7 @@ namespace Plugin
 {
 namespace CrossSection
 {
-using SharedFormatter = boost::shared_ptr<Fmi::TemplateFormatter>;
+using SharedFormatter = std::shared_ptr<Fmi::TemplateFormatter>;
 
 class TemplateFactory : public boost::noncopyable
 {
