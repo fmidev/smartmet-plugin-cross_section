@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.2.11
+Version: 21.2.18
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -16,9 +16,9 @@ BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
 BuildRequires: smartmet-library-macgyver-devel >= 21.1.25
 BuildRequires: smartmet-library-spine-devel >= 21.2.5
-BuildRequires: smartmet-engine-querydata-devel >= 21.2.10
+BuildRequires: smartmet-engine-querydata-devel >= 21.2.18
 BuildRequires: smartmet-engine-geonames-devel >= 21.1.25
-BuildRequires: smartmet-engine-contour-devel >= 21.2.10
+BuildRequires: smartmet-engine-contour-devel >= 21.2.18
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -27,9 +27,9 @@ Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
 Requires: smartmet-library-macgyver >= 21.1.25
-Requires: smartmet-engine-querydata >= 21.2.10
+Requires: smartmet-engine-querydata >= 21.2.18
 Requires: smartmet-engine-geonames >= 21.1.25
-Requires: smartmet-engine-contour >= 21.2.10
+Requires: smartmet-engine-contour >= 21.2.18
 Requires: smartmet-server >= 21.1.14
 Requires: smartmet-library-spine >= 21.2.5
 Requires: boost169-date-time
@@ -46,9 +46,9 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: gdal32-devel
 #TestRequires: jsoncpp-devel >= 1.8.4
 #TestRequires: libconfig-devel >= 1.7.2
-#TestRequires: smartmet-engine-contour >= 21.2.10
+#TestRequires: smartmet-engine-contour >= 21.2.18
 #TestRequires: smartmet-engine-geonames >= 21.1.25
-#TestRequires: smartmet-engine-querydata >= 21.2.10
+#TestRequires: smartmet-engine-querydata >= 21.2.18
 #TestRequires: smartmet-library-macgyver-devel >= 21.1.25
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
 
 %changelog
+* Thu Feb 18 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.18-1.fmi
+- Repackaged due to newbase ABI changes
+
 * Thu Feb 11 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.11-1.fmi
 - Merged master and WGS84 branches
 
