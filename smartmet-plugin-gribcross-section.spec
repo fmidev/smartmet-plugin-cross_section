@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.2.18
+Version: 21.2.19
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -18,7 +18,7 @@ BuildRequires: smartmet-library-macgyver-devel >= 21.1.25
 BuildRequires: smartmet-library-spine-devel >= 21.2.5
 BuildRequires: smartmet-engine-grid-devel >= 21.2.16
 BuildRequires: smartmet-engine-querydata-devel >= 21.2.18
-BuildRequires: smartmet-engine-geonames-devel >= 21.1.25
+BuildRequires: smartmet-engine-geonames-devel >= 21.2.18
 BuildRequires: smartmet-engine-contour-devel >= 21.2.18
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
@@ -30,7 +30,7 @@ Requires: libconfig
 Requires: smartmet-library-macgyver >= 21.1.25
 Requires: smartmet-engine-grid >= 21.2.16
 Requires: smartmet-engine-querydata >= 21.2.18
-Requires: smartmet-engine-geonames >= 21.1.25
+Requires: smartmet-engine-geonames >= 21.2.18
 Requires: smartmet-engine-contour >= 21.2.18
 Requires: smartmet-server >= 21.1.14
 Requires: smartmet-library-spine >= 21.2.5
@@ -50,8 +50,8 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: libconfig-devel >= 1.7.2
 #TestRequires: smartmet-engine-contour >= 21.2.11
 #TestRequires: smartmet-engine-contour-devel >= 21.2.11
-#TestRequires: smartmet-engine-geonames >= 21.1.25
-#TestRequires: smartmet-engine-geonames-devel >= 21.1.25
+#TestRequires: smartmet-engine-geonames >= 21.2.18
+#TestRequires: smartmet-engine-geonames-devel >= 21.2.18
 #TestRequires: smartmet-engine-querydata >= 21.2.15
 #TestRequires: smartmet-engine-querydata-devel >= 21.2.15
 #TestRequires: smartmet-library-spine-devel >= 21.2.5
@@ -84,7 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
 
 %changelog
-* Thu Feb 18 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.18-1.fmi
+* Fri Feb 19 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.19-1.fmi
 - Repackaged due to newbase ABI changes
 
 * Tue Feb 16 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.16-1.fmi
