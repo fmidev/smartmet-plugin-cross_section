@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.2.19
+Version: 21.3.3
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,10 +14,10 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
-BuildRequires: smartmet-library-macgyver-devel >= 21.1.25
-BuildRequires: smartmet-library-spine-devel >= 21.2.5
-BuildRequires: smartmet-engine-grid-devel >= 21.2.16
-BuildRequires: smartmet-engine-querydata-devel >= 21.2.18
+BuildRequires: smartmet-library-macgyver-devel >= 21.2.25
+BuildRequires: smartmet-library-spine-devel >= 21.3.1
+BuildRequires: smartmet-engine-grid-devel >= 21.3.3
+BuildRequires: smartmet-engine-querydata-devel >= 21.3.2
 BuildRequires: smartmet-engine-geonames-devel >= 21.2.18
 BuildRequires: smartmet-engine-contour-devel >= 21.2.18
 BuildRequires: ctpp2 >= 2.8.8
@@ -27,13 +27,13 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 21.1.25
-Requires: smartmet-engine-grid >= 21.2.16
-Requires: smartmet-engine-querydata >= 21.2.18
+Requires: smartmet-library-macgyver >= 21.2.25
+Requires: smartmet-engine-grid >= 21.3.3
+Requires: smartmet-engine-querydata >= 21.3.2
 Requires: smartmet-engine-geonames >= 21.2.18
 Requires: smartmet-engine-contour >= 21.2.18
 Requires: smartmet-server >= 21.1.14
-Requires: smartmet-library-spine >= 21.2.5
+Requires: smartmet-library-spine >= 21.3.1
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -54,7 +54,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-engine-geonames-devel >= 21.2.18
 #TestRequires: smartmet-engine-querydata >= 21.2.15
 #TestRequires: smartmet-engine-querydata-devel >= 21.2.15
-#TestRequires: smartmet-library-spine-devel >= 21.2.5
+#TestRequires: smartmet-library-spine-devel >= 21.3.1
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
 
 %changelog
+* Wed Mar  3 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.3.3-1.fmi
+- Added support for a disabled grid-engine
+
 * Fri Feb 19 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.19-1.fmi
 - Repackaged due to newbase ABI changes
 
