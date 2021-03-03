@@ -112,6 +112,10 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 {
   try
   {
+    const auto& gridEngine = theState.getGridEngine();
+    if (!gridEngine.isEnabled())
+      throw Fmi::Exception(BCP, "The grid-engine is disabled!");
+
     std::string report = "IsolineLayer::generate finished in %t sec CPU, %w sec real\n";
     boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> timer;
     if (theState.query().timer)
@@ -122,9 +126,6 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
     if (zparameter == boost::none)
       throw Fmi::Exception(BCP, "Z-Parameter not set for isoband-layer");
-
-
-    const auto& gridEngine = theState.getGridEngine();
 
     std::string pName = *parameter;
     bool raw = false;
