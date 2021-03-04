@@ -1,5 +1,5 @@
-%define DIRNAME gribcross-section
-%define SPECNAME smartmet-plugin-gribcross-section
+%define DIRNAME cross_section
+%define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
 Version: 21.3.4
@@ -72,16 +72,16 @@ make %{_smp_mflags}
 %install
 %makeinstall
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins/gribcross_section
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins/cross_section
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(0775,root,root,0775)
-%{_datadir}/smartmet/plugins/gribcross_section.so
+%{_datadir}/smartmet/plugins/cross_section.so
 %defattr(0664,root,root,0775)
-%{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
+%{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
 * Thu Mar  4 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.3.4-1.fmi

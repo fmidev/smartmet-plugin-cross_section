@@ -1,5 +1,5 @@
 SUBNAME = cross_section
-SPEC = smartmet-plugin-cross-section
+SPEC = smartmet-plugin-cross_section
 INCDIR = smartmet/plugins/$(SUBNAME)
 
 REQUIRES = gdal jsoncpp ctpp2
