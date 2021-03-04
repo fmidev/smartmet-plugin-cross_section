@@ -1,5 +1,5 @@
 SUBNAME = cross_section
-SPEC = smartmet-plugin-gribcross-section
+SPEC = smartmet-plugin-cross-section
 INCDIR = smartmet/plugins/$(SUBNAME)
 
 REQUIRES = gdal jsoncpp ctpp2
@@ -7,7 +7,7 @@ REQUIRES = gdal jsoncpp ctpp2
 include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
 sysconfdir ?= /etc
-tmpldir = $(sysconfdir)/smartmet/plugins/grib$(SUBNAME)
+tmpldir = $(sysconfdir)/smartmet/plugins/$(SUBNAME)
 
 DEFINES = -DUNIX -D_REENTRANT
 
@@ -30,7 +30,7 @@ BYTECODES = $(TEMPLATES:%.tmpl=%.c2t)
 
 # What to install
 
-LIBFILE = grib$(SUBNAME).so
+LIBFILE = $(SUBNAME).so
 
 # Compilation directories
 
