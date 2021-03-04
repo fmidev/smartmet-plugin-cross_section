@@ -1,5 +1,5 @@
 SUBNAME = cross_section
-SPEC = smartmet-plugin-$(SUBNAME)
+SPEC = smartmet-plugin-gribcross-section
 INCDIR = smartmet/plugins/$(SUBNAME)
 
 REQUIRES = gdal jsoncpp ctpp2
@@ -7,9 +7,11 @@ REQUIRES = gdal jsoncpp ctpp2
 include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
 sysconfdir ?= /etc
-tmpldir = $(sysconfdir)/smartmet/plugins/$(SUBNAME)
+tmpldir = $(sysconfdir)/smartmet/plugins/grib$(SUBNAME)
 
 DEFINES = -DUNIX -D_REENTRANT
+
+FLAGS += -Wno-variadic-macros -Wno-deprecated-declarations
 
 LIBS += -L$(libdir) \
 	$(REQUIRED_LIBS) \
@@ -28,7 +30,7 @@ BYTECODES = $(TEMPLATES:%.tmpl=%.c2t)
 
 # What to install
 
-LIBFILE = $(SUBNAME).so
+LIBFILE = grib$(SUBNAME).so
 
 # Compilation directories
 
@@ -59,7 +61,7 @@ configtest:
 	@if [ -x "$$(command -v cfgvalidate)" ]; then cfgvalidate -v test/cnf/cross_section.conf; fi
 
 $(LIBFILE): $(OBJS)
-	$(CC) $(LDFLAGS) -shared -rdynamic -o $(LIBFILE) $(OBJS) $(LIBS)
+	$(CXX) $(LDFLAGS) -shared -rdynamic -o $(LIBFILE) $(OBJS) $(LIBS)
 
 clean:
 	rm -f $(LIBFILE) *~ $(SUBNAME)/*~

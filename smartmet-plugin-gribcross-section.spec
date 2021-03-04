@@ -1,8 +1,8 @@
-%define DIRNAME cross_section
-%define SPECNAME smartmet-plugin-cross_section
+%define DIRNAME gribcross-section
+%define SPECNAME smartmet-plugin-gribcross-section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.2.18
+Version: 21.3.3
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,10 +14,11 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
-BuildRequires: smartmet-library-macgyver-devel >= 21.1.25
-BuildRequires: smartmet-library-spine-devel >= 21.2.5
-BuildRequires: smartmet-engine-querydata-devel >= 21.2.18
-BuildRequires: smartmet-engine-geonames-devel >= 21.1.25
+BuildRequires: smartmet-library-macgyver-devel >= 21.2.25
+BuildRequires: smartmet-library-spine-devel >= 21.3.1
+BuildRequires: smartmet-engine-grid-devel >= 21.3.3
+BuildRequires: smartmet-engine-querydata-devel >= 21.3.2
+BuildRequires: smartmet-engine-geonames-devel >= 21.2.18
 BuildRequires: smartmet-engine-contour-devel >= 21.2.18
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
@@ -26,12 +27,13 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 21.1.25
-Requires: smartmet-engine-querydata >= 21.2.18
-Requires: smartmet-engine-geonames >= 21.1.25
+Requires: smartmet-library-macgyver >= 21.2.25
+Requires: smartmet-engine-grid >= 21.3.3
+Requires: smartmet-engine-querydata >= 21.3.2
+Requires: smartmet-engine-geonames >= 21.2.18
 Requires: smartmet-engine-contour >= 21.2.18
 Requires: smartmet-server >= 21.1.14
-Requires: smartmet-library-spine >= 21.2.5
+Requires: smartmet-library-spine >= 21.3.1
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -43,13 +45,16 @@ Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: boost169-devel
 #TestRequires: gcc-c++
-#TestRequires: gdal32-devel
+#TestRequires: gdal-devel
 #TestRequires: jsoncpp-devel >= 1.8.4
 #TestRequires: libconfig-devel >= 1.7.2
-#TestRequires: smartmet-engine-contour >= 21.2.18
-#TestRequires: smartmet-engine-geonames >= 21.1.25
-#TestRequires: smartmet-engine-querydata >= 21.2.18
-#TestRequires: smartmet-library-macgyver-devel >= 21.1.25
+#TestRequires: smartmet-engine-contour >= 21.2.11
+#TestRequires: smartmet-engine-contour-devel >= 21.2.11
+#TestRequires: smartmet-engine-geonames >= 21.2.18
+#TestRequires: smartmet-engine-geonames-devel >= 21.2.18
+#TestRequires: smartmet-engine-querydata >= 21.2.15
+#TestRequires: smartmet-engine-querydata-devel >= 21.2.15
+#TestRequires: smartmet-library-spine-devel >= 21.3.1
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
@@ -67,38 +72,62 @@ make %{_smp_mflags}
 %install
 %makeinstall
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins/cross_section
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/smartmet/plugins/gribcross_section
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(0775,root,root,0775)
-%{_datadir}/smartmet/plugins/%{DIRNAME}.so
+%{_datadir}/smartmet/plugins/gribcross_section.so
 %defattr(0664,root,root,0775)
-%{_sysconfdir}/smartmet/plugins/%{DIRNAME}/*.c2t
+%{_sysconfdir}/smartmet/plugins/gribcross_section/*.c2t
 
 %changelog
-* Thu Feb 18 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.18-1.fmi
+* Wed Mar  3 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.3.3-1.fmi
+- Added support for a disabled grid-engine
+
+* Fri Feb 19 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.19-1.fmi
 - Repackaged due to newbase ABI changes
+
+* Tue Feb 16 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.16-1.fmi
+- Merged master to GRIB branch
 
 * Thu Feb 11 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.11-1.fmi
 - Merged master and WGS84 branches
 
-* Wed Jan 27 2021 Andris Pavenis <andris.pavenis@fmi.fi> - 21.1.27-1.fmi
-- Test build update
+* Wed Feb  3 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.3-1.fmi
+- Repackaged due to base library ABI changes
+
+* Wed Jan 27 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.27-1.fmi
+- Repackaged due to base library ABI changes
+
+* Tue Jan 19 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.19-2.fmi
+- Repackaged due to base library ABI changes
+
+* Tue Jan 19 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.19-1.fmi
+- Repackaged to fix postgresql dependencies
 
 * Thu Jan 14 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.14-1.fmi
 - Repackaged smartmet to resolve debuginfo issues
 
-* Tue Jan  5 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.5-1.fmi
-- jsoncpp upgrade
+* Mon Jan 11 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.11-1.fmi
+- Repackaged due to grid-files API changes
 
-* Wed Dec 30 2020 Andris Pavenis <andris.pavenis@fmi.fi> - 20.12.30-1.fmi
-- Rebuild due to jsoncpp upgrade for RHEL7 (also RHEL8 to avoid broken RPM dependencies)
+* Mon Jan  4 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.4-1.fmi
+- Ported to GDAL 3.2
 
-* Tue Dec 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.12.15-1.fmi
-- Upgrade to pgdg12
+* Thu Dec  3 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.12.3-1.fmi
+- Repackaged due to library ABI changes
+
+* Mon Nov 30 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.11.30-1.fmi
+- Repackaged due to grid-content library API changes
+
+* Tue Nov 24 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.11.24-1.fmi
+- Repackaged due to library ABI changes
+
+* Thu Oct 22 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.22-1.fmi
+- Repackaged due to library ABI changes
 
 * Thu Oct 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.15-1.fmi
 - Repackaged due to library ABI changes
@@ -106,20 +135,76 @@ rm -rf $RPM_BUILD_ROOT
 * Tue Oct  6 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.6-1.fmi
 - Enable sensible relative libconfig include paths
 
+* Thu Oct  1 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.1-1.fmi
+- Repackaged due to library ABI changes
+
 * Wed Sep 23 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.23-1.fmi
 - Use Fmi::Exception instead of Spine::Exception
+
+* Fri Sep 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.18-1.fmi
+- Repackaged due to library ABI changes
+
+* Tue Sep 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.15-1.fmi
+- Repackaged due to library ABI changes
+
+* Mon Sep 14 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.14-1.fmi
+- Repackaged due to library ABI changes
+
+* Mon Aug 31 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.31-1.fmi
+- Repackaged due to library ABI changes
 
 * Fri Aug 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.21-1.fmi
 - Upgrade to fmt 6.2
 
+* Tue Aug 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.18-1.fmi
+- Repackaged due to grid library ABI changes
+
+* Fri Aug 14 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.14-1.fmi
+- Repackaged due to grid library ABI changes
+
+* Mon Jun 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.6.15-1.fmi
+- Renamed the .so to enable simultaneous installations of cross-section and grib-cross-section
+
+* Mon Jun  8 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.6.8-1.fmi
+- Repackaged due to base library changes
+
 * Mon May 25 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.5.25-1.fmi
 - Repackaged since Spine::Parameter changed
+
+* Fri May 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.5.15-1.fmi
+- Repackaged due to base library API changes
+
+* Thu Apr 30 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.30-1.fmi
+- Repackaged due to base library API changes
 
 * Sat Apr 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.18-1.fmi
 - Upgraded to Boost 1.69
 
-* Thu Feb 13 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.13-1.fmi
-- Upgrade to GDAL 3.0
+* Thu Mar  5 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.3.5-1.fmi
+- Repackaged due to base library API changes
+
+* Tue Feb 25 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.25-1.fmi
+- Repackaged due to base library API changes
+
+* Wed Feb 19 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.19-1.fmi
+- Repackaged due to base library API changes
+
+* Wed Jan 29 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.1.29-1.fmi
+
+* Tue Jan 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.1.21-1.fmi
+- Repackaged due to grid-content and grid-engine API changes
+
+* Thu Jan 16 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.1.16-1.fmi
+- Repackaged due to base library API changes
+
+* Wed Dec 11 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.11-1.fmi
+- Fixed Isoband- and Isoline layer bugs
+
+* Wed Dec  4 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.4-1.fmi
+- Repackaged due to base library changes
+
+* Fri Nov 22 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.22-1.fmi
+- Repackaged due to API changes in grid-content library
 
 * Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
 - Rebuilt since Spine::Parameter size changed

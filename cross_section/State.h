@@ -66,6 +66,10 @@ class State
   {
     return itsPlugin.getContourEngine();
   }
+  const SmartMet::Engine::Grid::Engine& getGridEngine() const
+  {
+    return itsPlugin.getGridEngine();
+  }
   // Valid time
   void time(const boost::local_time::local_date_time& theTime) { itsLocalTime = theTime; }
   const boost::local_time::local_date_time& time() const { return itsLocalTime; }
