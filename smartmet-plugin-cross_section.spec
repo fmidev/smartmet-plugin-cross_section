@@ -16,7 +16,7 @@ BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
 BuildRequires: smartmet-library-macgyver-devel >= 21.2.25
 BuildRequires: smartmet-library-spine-devel >= 21.3.1
-BuildRequires: smartmet-library-grid-content >= 21.3.4
+BuildRequires: smartmet-library-grid-content-devel >= 21.3.4
 BuildRequires: smartmet-engine-grid-devel >= 21.3.3
 BuildRequires: smartmet-engine-querydata-devel >= 21.3.4
 BuildRequires: smartmet-engine-geonames-devel >= 21.2.18
