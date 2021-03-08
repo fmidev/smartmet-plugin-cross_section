@@ -16,8 +16,9 @@ BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
 BuildRequires: smartmet-library-macgyver-devel >= 21.2.25
 BuildRequires: smartmet-library-spine-devel >= 21.3.1
+BuildRequires: smartmet-library-grid-content >= 21.3.4
 BuildRequires: smartmet-engine-grid-devel >= 21.3.3
-BuildRequires: smartmet-engine-querydata-devel >= 21.3.2
+BuildRequires: smartmet-engine-querydata-devel >= 21.3.4
 BuildRequires: smartmet-engine-geonames-devel >= 21.2.18
 BuildRequires: smartmet-engine-contour-devel >= 21.2.18
 BuildRequires: ctpp2 >= 2.8.8
@@ -29,7 +30,7 @@ Requires: ctpp2 >= 2.8.8
 Requires: libconfig
 Requires: smartmet-library-macgyver >= 21.2.25
 Requires: smartmet-engine-grid >= 21.3.3
-Requires: smartmet-engine-querydata >= 21.3.2
+Requires: smartmet-engine-querydata >= 21.3.4
 Requires: smartmet-engine-geonames >= 21.2.18
 Requires: smartmet-engine-contour >= 21.2.18
 Requires: smartmet-server >= 21.1.14
