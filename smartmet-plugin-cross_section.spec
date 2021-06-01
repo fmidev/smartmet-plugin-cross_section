@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.5.25
+Version: 21.6.1
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -14,12 +14,12 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: libconfig >= 1.7.2
-BuildRequires: smartmet-library-macgyver-devel >= 21.5.21
-BuildRequires: smartmet-library-spine-devel >= 21.5.21
-BuildRequires: smartmet-library-grid-content-devel >= 21.5.25
-BuildRequires: smartmet-library-grid-files-devel >= 21.5.25
-BuildRequires: smartmet-engine-grid-devel >= 21.5.25
-BuildRequires: smartmet-engine-querydata-devel >= 21.5.21
+BuildRequires: smartmet-library-macgyver-devel >= 21.5.31
+BuildRequires: smartmet-library-spine-devel >= 21.5.31
+BuildRequires: smartmet-library-grid-content-devel >= 21.6.1
+BuildRequires: smartmet-library-grid-files-devel >= 21.6.1
+BuildRequires: smartmet-engine-grid-devel >= 21.6.1
+BuildRequires: smartmet-engine-querydata-devel >= 21.5.31
 BuildRequires: smartmet-engine-geonames-devel >= 21.5.20
 BuildRequires: smartmet-engine-contour-devel >= 21.5.20
 BuildRequires: ctpp2 >= 2.8.8
@@ -29,13 +29,13 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig
-Requires: smartmet-library-macgyver >= 21.5.21
-Requires: smartmet-engine-grid >= 21.5.25
-Requires: smartmet-engine-querydata >= 21.5.21
+Requires: smartmet-library-macgyver >= 21.5.31
+Requires: smartmet-engine-grid >= 21.6.1
+Requires: smartmet-engine-querydata >= 21.5.31
 Requires: smartmet-engine-geonames >= 21.5.20
 Requires: smartmet-engine-contour >= 21.5.20
 Requires: smartmet-server >= 21.1.14
-Requires: smartmet-library-spine >= 21.5.21
+Requires: smartmet-library-spine >= 21.5.31
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -54,10 +54,10 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-engine-contour-devel >= 21.2.11
 #TestRequires: smartmet-engine-geonames >= 21.5.20
 #TestRequires: smartmet-engine-geonames-devel >= 21.5.20
-#TestRequires: smartmet-engine-grid >= 21.5.25
+#TestRequires: smartmet-engine-grid >= 21.6.1
 #TestRequires: smartmet-engine-querydata >= 21.2.15
 #TestRequires: smartmet-engine-querydata-devel >= 21.2.15
-#TestRequires: smartmet-library-spine-devel >= 21.5.21
+#TestRequires: smartmet-library-spine-devel >= 21.5.31
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
@@ -87,6 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Tue Jun  1 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.6.1-1.fmi
+- Repackaged due to ABI changes in grid libraries
+
 * Tue May 25 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.5.25-1.fmi
 - Repackaged due to ABI changes in grid-files
 
