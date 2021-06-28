@@ -89,6 +89,9 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
     query.producer = SmartMet::Spine::required_string(
         theRequest.getParameter("producer"), "Product configuration option 'producer' not given");
 
+    query.zproducer = SmartMet::Spine::optional_string(theRequest.getParameter("zproducer"),query.producer);
+    query.source = SmartMet::Spine::optional_string(theRequest.getParameter("source"),"querydata");
+
     query.steps = SmartMet::Spine::required_unsigned_long(
         theRequest.getParameter("steps"),
         "Configuration option 'steps' must be given to determine "
@@ -120,7 +123,9 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
 
     SmartMet::Spine::TimeSeriesGeneratorOptions toptions =
         SmartMet::Spine::OptionParsers::parseTimes(theRequest);
-    toptions.setDataTimes(state.producer()->validTimes(), state.producer()->isClimatology());
+
+    if (!query.source || *query.source != "grid")
+      toptions.setDataTimes(state.producer()->validTimes(), state.producer()->isClimatology());
 
     auto tz = itsGeoEngine->getTimeZones().time_zone_from_string(query.timezone);
     auto times = SmartMet::Spine::TimeSeriesGenerator::generate(toptions, tz);
@@ -355,7 +360,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 
     catch (...)
     {
-      Fmi::Exception exception(BCP, "Request processing exception!");
+      Fmi::Exception exception(BCP, "Request processing exception!",nullptr);
       exception.addParameter("URI", theRequest.getURI());
       exception.addParameter("ClientIP", theRequest.getClientIP());
       exception.printError();
@@ -431,6 +436,12 @@ void Plugin::init()
     if (!engine)
       throw Fmi::Exception(BCP, "Querydata engine unavailable");
     itsQEngine = reinterpret_cast<SmartMet::Engine::Querydata::Engine *>(engine);
+
+    /* GridEngine */
+    engine = itsReactor->getSingleton("grid", nullptr);
+    if (!engine)
+      throw Fmi::Exception(BCP, "Grid engine unavailable");
+    itsGridEngine = reinterpret_cast<SmartMet::Engine::Grid::Engine *>(engine);
 
     /* Contour */
     engine = itsReactor->getSingleton("Contour", nullptr);

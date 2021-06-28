@@ -9,6 +9,7 @@
 #include <engines/contour/Engine.h>
 #include <engines/geonames/Engine.h>
 #include <engines/querydata/Engine.h>
+#include <engines/grid/Engine.h>
 #include <spine/HTTP.h>
 #include <spine/Reactor.h>
 #include <spine/SmartMetPlugin.h>
@@ -36,6 +37,7 @@ class Plugin : public SmartMetPlugin, private boost::noncopyable
 
   // Get the engines
   const SmartMet::Engine::Querydata::Engine& getQEngine() const { return *itsQEngine; }
+  const SmartMet::Engine::Grid::Engine& getGridEngine() const { return *itsGridEngine; }
   const SmartMet::Engine::Contour::Engine& getContourEngine() const { return *itsContourEngine; }
   // Plugin specific public API:
 
@@ -64,6 +66,7 @@ class Plugin : public SmartMetPlugin, private boost::noncopyable
   // Cache server and engine instances
   SmartMet::Spine::Reactor* itsReactor;
   SmartMet::Engine::Querydata::Engine* itsQEngine;
+  SmartMet::Engine::Grid::Engine* itsGridEngine;
   SmartMet::Engine::Contour::Engine* itsContourEngine;
   SmartMet::Engine::Geonames::Engine* itsGeoEngine;
 

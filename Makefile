@@ -1,5 +1,5 @@
 SUBNAME = cross_section
-SPEC = smartmet-plugin-$(SUBNAME)
+SPEC = smartmet-plugin-cross_section
 INCDIR = smartmet/plugins/$(SUBNAME)
 
 REQUIRES = gdal jsoncpp ctpp2
@@ -10,6 +10,8 @@ sysconfdir ?= /etc
 tmpldir = $(sysconfdir)/smartmet/plugins/$(SUBNAME)
 
 DEFINES = -DUNIX -D_REENTRANT
+
+FLAGS += -Wno-variadic-macros -Wno-deprecated-declarations
 
 LIBS += -L$(libdir) \
 	$(REQUIRED_LIBS) \
@@ -52,11 +54,14 @@ debug: all
 release: all
 profile: all
 
+# Forcibly lower RPM_BUILD_NCPUs in CircleCI cloud(but not on local builds)
+RPMBUILD=$(shell test "$$CIRCLE_BUILD_NUM" && echo RPM_BUILD_NCPUS=2 rpmbuild || echo rpmbuild)
+
 configtest:
 	@if [ -x "$$(command -v cfgvalidate)" ]; then cfgvalidate -v test/cnf/cross_section.conf; fi
 
 $(LIBFILE): $(OBJS)
-	$(CC) $(LDFLAGS) -shared -rdynamic -o $(LIBFILE) $(OBJS) $(LIBS)
+	$(CXX) $(LDFLAGS) -shared -rdynamic -o $(LIBFILE) $(OBJS) $(LIBS)
 
 clean:
 	rm -f $(LIBFILE) *~ $(SUBNAME)/*~
@@ -84,7 +89,7 @@ objdir:
 rpm: clean $(SPEC).spec
 	rm -f $(SPEC).tar.gz # Clean a possible leftover from previous attempt
 	tar -czvf $(SPEC).tar.gz --exclude test --exclude-vcs --transform "s,^,$(SPEC)/," *
-	rpmbuild -tb $(SPEC).tar.gz
+	$(RPMBUILD) -tb $(SPEC).tar.gz
 	rm -f $(SPEC).tar.gz
 
 .SUFFIXES: $(SUFFIXES) .cpp
