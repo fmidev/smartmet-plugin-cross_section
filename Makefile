@@ -2,7 +2,7 @@ SUBNAME = cross_section
 SPEC = smartmet-plugin-cross_section
 INCDIR = smartmet/plugins/$(SUBNAME)
 
-REQUIRES = gdal jsoncpp ctpp2
+REQUIRES = gdal jsoncpp ctpp2 configpp
 
 include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
