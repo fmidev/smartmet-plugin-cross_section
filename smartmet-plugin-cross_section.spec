@@ -45,6 +45,7 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel
+#TestRequires: smartmet-library-spine-plugin-test
 #TestRequires: smartmet-engine-contour >= 21.2.11
 #TestRequires: smartmet-engine-geonames >= 21.8.30
 #TestRequires: smartmet-engine-grid >= 21.9.7
