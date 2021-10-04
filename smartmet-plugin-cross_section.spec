@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.9.15
+Version: 21.10.4
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -13,14 +13,14 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
-BuildRequires: smartmet-library-macgyver-devel >= 21.9.13
-BuildRequires: smartmet-library-spine-devel >= 21.9.13
-BuildRequires: smartmet-library-grid-content-devel >= 21.9.15
-BuildRequires: smartmet-library-grid-files-devel >= 21.9.15
-BuildRequires: smartmet-engine-grid-devel >= 21.9.15
-BuildRequires: smartmet-engine-querydata-devel >= 21.9.13
-BuildRequires: smartmet-engine-geonames-devel >= 21.9.13
-BuildRequires: smartmet-engine-contour-devel >= 21.9.13
+BuildRequires: smartmet-library-macgyver-devel >= 21.9.21
+BuildRequires: smartmet-library-spine-devel >= 21.9.10
+BuildRequires: smartmet-library-grid-content-devel >= 21.8.31
+BuildRequires: smartmet-library-grid-files-devel >= 21.8.31
+BuildRequires: smartmet-engine-grid-devel >= 21.9.7
+BuildRequires: smartmet-engine-querydata-devel >= 21.9.7
+BuildRequires: smartmet-engine-geonames-devel >= 21.8.30
+BuildRequires: smartmet-engine-contour-devel >= 21.9.7
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -28,11 +28,11 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-macgyver >= 21.9.13
-Requires: smartmet-engine-grid >= 21.9.15
-Requires: smartmet-engine-querydata >= 21.9.13
-Requires: smartmet-engine-geonames >= 21.9.13
-Requires: smartmet-engine-contour >= 21.9.13
+Requires: smartmet-library-macgyver >= 21.9.21
+Requires: smartmet-engine-grid >= 21.9.7
+Requires: smartmet-engine-querydata >= 21.9.7
+Requires: smartmet-engine-geonames >= 21.8.30
+Requires: smartmet-engine-contour >= 21.9.7
 Requires: smartmet-server >= 21.9.7
 Requires: smartmet-library-spine >= 21.9.13
 Requires: boost169-date-time
@@ -44,11 +44,8 @@ Requires: bzip2-devel
 Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
-#TestRequires: boost169-devel
-#TestRequires: gcc-c++
-#TestRequires: gdal32-devel
-#TestRequires: jsoncpp-devel >= 1.8.4
-#TestRequires: libconfig17-devel >= 1.7.2
+#TestRequires: smartmet-utils-devel
+#TestRequires: smartmet-library-spine-plugin-test
 #TestRequires: smartmet-engine-contour >= 21.2.11
 #TestRequires: smartmet-engine-contour-devel >= 21.2.11
 #TestRequires: smartmet-engine-geonames >= 21.9.13
@@ -86,6 +83,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Mon Oct  4 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.10.4-1.fmi
+- Repackaged due to grid-files ABI changes
+
 * Wed Sep 15 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.9.15-1.fmi
 - Repackaged due to NetCDF related ABI changes in base libraries
 
