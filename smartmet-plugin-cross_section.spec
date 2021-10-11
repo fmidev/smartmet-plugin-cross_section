@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.10.4
+Version: 21.10.11
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -13,11 +13,11 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: boost169-devel
-BuildRequires: smartmet-library-macgyver-devel >= 21.9.21
-BuildRequires: smartmet-library-spine-devel >= 21.9.17
-BuildRequires: smartmet-library-grid-content-devel >= 21.10.4
-BuildRequires: smartmet-library-grid-files-devel >= 21.10.4
-BuildRequires: smartmet-engine-grid-devel >= 21.10.4
+BuildRequires: smartmet-library-macgyver-devel >= 21.10.4
+BuildRequires: smartmet-library-spine-devel >= 21.10.11
+BuildRequires: smartmet-library-grid-content-devel >= 21.10.11
+BuildRequires: smartmet-library-grid-files-devel >= 21.10.11
+BuildRequires: smartmet-engine-grid-devel >= 21.10.11
 BuildRequires: smartmet-engine-querydata-devel >= 21.9.13
 BuildRequires: smartmet-engine-geonames-devel >= 21.9.28
 BuildRequires: smartmet-engine-contour-devel >= 21.9.13
@@ -28,13 +28,13 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-macgyver >= 21.9.21
-Requires: smartmet-engine-grid >= 21.10.4
+Requires: smartmet-library-macgyver >= 21.10.4
+Requires: smartmet-engine-grid >= 21.10.11
 Requires: smartmet-engine-querydata >= 21.9.13
 Requires: smartmet-engine-geonames >= 21.9.28
 Requires: smartmet-engine-contour >= 21.9.13
 Requires: smartmet-server >= 21.9.7
-Requires: smartmet-library-spine >= 21.9.17
+Requires: smartmet-library-spine >= 21.10.11
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -83,6 +83,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Mon Oct 11 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.10.11-1.fmi
+- Simplified grid storage structures
+
 * Mon Oct  4 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.10.4-1.fmi
 - Repackaged due to grid-files ABI changes
 
