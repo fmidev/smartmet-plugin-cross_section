@@ -155,16 +155,16 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
         if (rec->mLevelId > " " || rec->mLevel > " ")
         {
           if (rec->mGeometryId > " ")
-            gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), T::ParamLevelIdTypeValue::ANY, atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
+            gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
           else
-            gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, T::ParamLevelIdTypeValue::ANY, atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
+            gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
 
           if (mappings.size() == 0  &&  rec->mLevel < " ")
           {
             if (rec->mGeometryId > " ")
-              gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), T::ParamLevelIdTypeValue::ANY, atoi(rec->mLevelId.c_str()), -1, false, mappings);
+              gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), atoi(rec->mLevelId.c_str()), -1, false, mappings);
             else
-              gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, T::ParamLevelIdTypeValue::ANY, atoi(rec->mLevelId.c_str()), -1, false, mappings);
+              gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), -1, false, mappings);
             //getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
           }
         }
@@ -213,16 +213,16 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
         if (rec->mLevelId > " " || rec->mLevel > " ")
         {
           if (rec->mGeometryId > " ")
-            gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), T::ParamLevelIdTypeValue::ANY, atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
+            gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
           else
-            gridEngine.getParameterMappings(pn, rec->mOriginalParameter, T::ParamLevelIdTypeValue::ANY, atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
+            gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
 
           if (mappings.size() == 0  &&  rec->mLevel < " ")
           {
             if (rec->mGeometryId > " ")
-              gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), T::ParamLevelIdTypeValue::ANY, atoi(rec->mLevelId.c_str()), -1, false, mappings);
+              gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), atoi(rec->mLevelId.c_str()), -1, false, mappings);
             else
-              gridEngine.getParameterMappings(pn, rec->mOriginalParameter, T::ParamLevelIdTypeValue::ANY, atoi(rec->mLevelId.c_str()), -1, false, mappings);
+              gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), -1, false, mappings);
             //getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
           }
         }
