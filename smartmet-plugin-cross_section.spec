@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 21.10.19
+Version: 21.10.29
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -15,9 +15,9 @@ BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: smartmet-library-macgyver-devel >= 21.10.4
 BuildRequires: smartmet-library-spine-devel >= 21.10.18
-BuildRequires: smartmet-library-grid-content-devel >= 21.10.19
-BuildRequires: smartmet-library-grid-files-devel >= 21.10.19
-BuildRequires: smartmet-engine-grid-devel >= 21.10.19
+BuildRequires: smartmet-library-grid-content-devel >= 21.10.29
+BuildRequires: smartmet-library-grid-files-devel >= 21.10.29
+BuildRequires: smartmet-engine-grid-devel >= 21.10.29
 BuildRequires: smartmet-engine-querydata-devel >= 21.9.13
 BuildRequires: smartmet-engine-geonames-devel >= 21.9.28
 BuildRequires: smartmet-engine-contour-devel >= 21.9.13
@@ -29,7 +29,7 @@ Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 21.10.4
-Requires: smartmet-engine-grid >= 21.10.19
+Requires: smartmet-engine-grid >= 21.10.29
 Requires: smartmet-engine-querydata >= 21.9.13
 Requires: smartmet-engine-geonames >= 21.9.28
 Requires: smartmet-engine-contour >= 21.9.13
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Fri Oct 29 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.10.29-1.fmi
+- Repackaged due to ABI changes in base grid libraries
+
 * Fri Oct 29 2021 Pertti Kinnia <pertti.kinnia@fmi.fi> - upcoming
 - Added test dependency for smartmet-library-newbase-devel
 
