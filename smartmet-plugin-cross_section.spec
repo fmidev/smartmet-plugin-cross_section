@@ -54,6 +54,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-engine-querydata >= 21.9.13
 #TestRequires: smartmet-engine-querydata-devel >= 21.9.13
 #TestRequires: smartmet-library-spine-devel >= 21.9.13
+#TestRequires: smartmet-library-newbase-devel >= 21.9.22
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
@@ -83,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Fri Oct 29 2021 Pertti Kinnia <pertti.kinnia@fmi.fi> - upcoming
+- Added test dependency for smartmet-library-newbase-devel
+
 * Tue Oct 19 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.10.19-1.fmi
 - Repackaged due to base grid library ABI changes
 
