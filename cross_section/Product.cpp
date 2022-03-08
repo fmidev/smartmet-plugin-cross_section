@@ -3,8 +3,8 @@
 #include "State.h"
 #include <boost/lexical_cast.hpp>
 #include <ctpp2/CDT.hpp>
-#include <macgyver/TimeParser.h>
 #include <macgyver/Exception.h>
+#include <macgyver/TimeParser.h>
 #include <spine/HTTP.h>
 
 namespace
@@ -91,8 +91,7 @@ void Product::init(const Json::Value& theJson, const Config& theConfig)
       if (name == "layers")
         layers.init(json, theConfig);
       else
-        throw Fmi::Exception(BCP,
-                                         "Product does not have a setting named '" + name + "'");
+        throw Fmi::Exception(BCP, "Product does not have a setting named '" + name + "'");
     }
   }
   catch (...)
@@ -110,7 +109,7 @@ void Product::init(const Json::Value& theJson, const Config& theConfig)
 
 void Product::generate(CTPP::CDT& theGlobals,
                        State& theState,
-                       const SmartMet::Spine::TimeSeriesGenerator::LocalTimeList& theTimes)
+                       const TimeSeries::TimeSeriesGenerator::LocalTimeList& theTimes)
 {
   try
   {

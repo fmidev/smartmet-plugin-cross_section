@@ -7,9 +7,8 @@
 #pragma once
 
 #include "Layers.h"
-#include <spine/TimeSeriesGenerator.h>
-
 #include <json/json.h>
+#include <timeseries/TimeSeriesGenerator.h>
 #include <string>
 #include <vector>
 
@@ -28,7 +27,7 @@ class Product
   void init(const Json::Value& theJson, const Config& theConfig);
   void generate(CTPP::CDT& theGlobals,
                 State& theState,
-                const SmartMet::Spine::TimeSeriesGenerator::LocalTimeList& theTimes);
+                const TimeSeries::TimeSeriesGenerator::LocalTimeList& theTimes);
 
   Layers layers;
 

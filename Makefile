@@ -15,6 +15,7 @@ FLAGS += -Wno-variadic-macros -Wno-deprecated-declarations
 
 LIBS += -L$(libdir) \
 	$(REQUIRED_LIBS) \
+	-lsmartmet-timeseries \
 	-lsmartmet-spine \
 	-lsmartmet-gis \
 	-lboost_date_time \

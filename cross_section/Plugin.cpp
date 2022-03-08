@@ -17,11 +17,11 @@
 #include <json/json.h>
 #include <json/reader.h>
 #include <macgyver/AnsiEscapeCodes.h>
-#include <spine/Convenience.h>
 #include <macgyver/Exception.h>
+#include <spine/Convenience.h>
 #include <spine/OptionParsers.h>
 #include <spine/SmartMet.h>
-#include <spine/TimeSeriesGeneratorOptions.h>
+#include <timeseries/TimeSeriesGeneratorOptions.h>
 #include <stdexcept>
 
 namespace
@@ -89,8 +89,9 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
     query.producer = SmartMet::Spine::required_string(
         theRequest.getParameter("producer"), "Product configuration option 'producer' not given");
 
-    query.zproducer = SmartMet::Spine::optional_string(theRequest.getParameter("zproducer"),query.producer);
-    query.source = SmartMet::Spine::optional_string(theRequest.getParameter("source"),"querydata");
+    query.zproducer =
+        SmartMet::Spine::optional_string(theRequest.getParameter("zproducer"), query.producer);
+    query.source = SmartMet::Spine::optional_string(theRequest.getParameter("source"), "querydata");
 
     query.steps = SmartMet::Spine::required_unsigned_long(
         theRequest.getParameter("steps"),
@@ -105,8 +106,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
     SmartMet::Engine::Geonames::LocationOptions loptions = itsGeoEngine->parseLocations(theRequest);
 
     if (loptions.size() != 2)
-      throw Fmi::Exception(BCP,
-                                       "Exactly two locations are required for a cross-section");
+      throw Fmi::Exception(BCP, "Exactly two locations are required for a cross-section");
 
     const auto &locs = loptions.locations();
     query.longitude1 = locs.front().loc->longitude;
@@ -121,14 +121,14 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
 
     // And timeseries options now that state (and querydata) is established
 
-    SmartMet::Spine::TimeSeriesGeneratorOptions toptions =
+    TimeSeries::TimeSeriesGeneratorOptions toptions =
         SmartMet::Spine::OptionParsers::parseTimes(theRequest);
 
     if (!query.source || *query.source != "grid")
       toptions.setDataTimes(state.producer()->validTimes(), state.producer()->isClimatology());
 
     auto tz = itsGeoEngine->getTimeZones().time_zone_from_string(query.timezone);
-    auto times = SmartMet::Spine::TimeSeriesGenerator::generate(toptions, tz);
+    auto times = TimeSeries::TimeSeriesGenerator::generate(toptions, tz);
 
     // Product JSON
 
@@ -360,7 +360,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 
     catch (...)
     {
-      Fmi::Exception exception(BCP, "Request processing exception!",nullptr);
+      Fmi::Exception exception(BCP, "Request processing exception!", nullptr);
       exception.addParameter("URI", theRequest.getURI());
       exception.addParameter("ClientIP", theRequest.getClientIP());
       exception.printError();
