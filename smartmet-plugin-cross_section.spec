@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 22.3.8
+Version: 22.3.10
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -16,9 +16,9 @@ BuildRequires: boost169-devel
 BuildRequires: smartmet-library-macgyver-devel >= 22.3.8
 BuildRequires: smartmet-library-timeseries-devel >= 22.3.8
 BuildRequires: smartmet-library-spine-devel >= 22.3.8
-BuildRequires: smartmet-library-grid-content-devel >= 22.3.7
+BuildRequires: smartmet-library-grid-content-devel >= 22.3.10
 BuildRequires: smartmet-library-grid-files-devel >= 22.3.8
-BuildRequires: smartmet-engine-grid-devel >= 22.3.7
+BuildRequires: smartmet-engine-grid-devel >= 22.3.10
 BuildRequires: smartmet-engine-querydata-devel >= 22.3.8
 BuildRequires: smartmet-engine-geonames-devel >= 22.1.31
 BuildRequires: smartmet-engine-contour-devel >= 22.1.21
@@ -31,7 +31,7 @@ Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 22.3.8
 Requires: smartmet-library-timeseries >= 22.3.8
-Requires: smartmet-engine-grid >= 22.3.7
+Requires: smartmet-engine-grid >= 22.3.10
 Requires: smartmet-engine-querydata >= 22.3.8
 Requires: smartmet-engine-geonames >= 22.1.31
 Requires: smartmet-engine-contour >= 22.1.21
@@ -50,7 +50,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-library-spine-plugin-test >= 21.1.21
 #TestRequires: smartmet-engine-contour >= 22.1.21
 #TestRequires: smartmet-engine-geonames >= 22.1.31
-#TestRequires: smartmet-engine-grid >= 22.3.7
+#TestRequires: smartmet-engine-grid >= 22.3.10
 #TestRequires: smartmet-engine-querydata >= 22.3.8
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
@@ -81,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Thu Mar 10 2022 Mika Heiskanen <mika.heiskanen@fmi.fi> - 22.3.10-1.fmi
+- Repackaged due to base library ABI changes
+
 * Tue Mar  8 2022 Mika Heiskanen <mika.heiskanen@fmi.fi> - 22.3.8-1.fmi
 - Use the new TimeSeries library
 
