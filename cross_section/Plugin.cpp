@@ -19,8 +19,8 @@
 #include <macgyver/AnsiEscapeCodes.h>
 #include <macgyver/Exception.h>
 #include <spine/Convenience.h>
-#include <spine/OptionParsers.h>
 #include <spine/SmartMet.h>
+#include <timeseries/OptionParsers.h>
 #include <timeseries/TimeSeriesGeneratorOptions.h>
 #include <stdexcept>
 
@@ -122,7 +122,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
     // And timeseries options now that state (and querydata) is established
 
     TimeSeries::TimeSeriesGeneratorOptions toptions =
-        SmartMet::Spine::OptionParsers::parseTimes(theRequest);
+        SmartMet::TimeSeries::parseTimes(theRequest);
 
     if (!query.source || *query.source != "grid")
       toptions.setDataTimes(state.producer()->validTimes(), state.producer()->isClimatology());

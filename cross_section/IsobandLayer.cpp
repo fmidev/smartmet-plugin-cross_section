@@ -11,10 +11,10 @@
 #include <gis/Box.h>
 #include <gis/OGR.h>
 #include <macgyver/TimeFormatter.h>
-#include <spine/ParameterFactory.h>
 #include <grid-files/common/ImagePaint.h>
 #include <macgyver/StringConversion.h>
 #include <macgyver/TimeParser.h>
+#include <timeseries/ParameterFactory.h>
 
 namespace SmartMet
 {
@@ -446,13 +446,13 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 
     if (parameter == boost::none)
       throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
-    auto param = SmartMet::Spine::ParameterFactory::instance().parse(*parameter);
+    auto param = SmartMet::TimeSeries::ParameterFactory::instance().parse(*parameter);
 
     // Establish z-parameter
 
     auto zparam = param;
     if (zparameter)
-      zparam = SmartMet::Spine::ParameterFactory::instance().parse(*zparameter);
+      zparam = SmartMet::TimeSeries::ParameterFactory::instance().parse(*zparameter);
 
     // Generate isobands and store them into the template engine
 
