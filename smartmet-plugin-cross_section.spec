@@ -30,13 +30,13 @@ Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 22.3.8
-Requires: smartmet-library-timeseries >= 22.3.8
+Requires: smartmet-library-timeseries >= 22.3.18
 Requires: smartmet-engine-grid >= 22.3.10
-Requires: smartmet-engine-querydata >= 22.3.8
+Requires: smartmet-engine-querydata >= 22.3.18
 Requires: smartmet-engine-geonames >= 22.1.31
 Requires: smartmet-engine-contour >= 22.1.21
 Requires: smartmet-server >= 21.11.25
-Requires: smartmet-library-spine >= 22.3.8
+Requires: smartmet-library-spine >= 22.3.18
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -51,7 +51,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-engine-contour >= 22.1.21
 #TestRequires: smartmet-engine-geonames >= 22.1.31
 #TestRequires: smartmet-engine-grid >= 22.3.10
-#TestRequires: smartmet-engine-querydata >= 22.3.8
+#TestRequires: smartmet-engine-querydata >= 22.3.18
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
