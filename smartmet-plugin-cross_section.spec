@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 22.3.28
+Version: 22.5.3
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -81,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Tue May  3 2022 Andris Pavenis <andris.pavenis@fmi.fi> 22.5.3-1.fmi
+- Repackage due to SmartMet::Spine::Reactor ABI changes
+
 * Mon Mar 28 2022 Mika Heiskanen <mika.heiskanen@fmi.fi> - 22.3.28-1.fmi
 - Repackaged due to ABI changes in grid-content library
 
