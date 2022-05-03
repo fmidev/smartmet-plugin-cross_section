@@ -15,7 +15,7 @@ BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: smartmet-library-macgyver-devel >= 22.3.28
 BuildRequires: smartmet-library-timeseries-devel >= 22.3.18
-BuildRequires: smartmet-library-spine-devel >= 22.3.18
+BuildRequires: smartmet-library-spine-devel >= 22.4.26
 BuildRequires: smartmet-library-grid-content-devel >= 22.3.28
 BuildRequires: smartmet-library-grid-files-devel >= 22.3.15
 BuildRequires: smartmet-engine-grid-devel >= 22.3.28
@@ -36,7 +36,7 @@ Requires: smartmet-engine-querydata >= 22.3.18
 Requires: smartmet-engine-geonames >= 22.3.21
 Requires: smartmet-engine-contour >= 22.3.11
 Requires: smartmet-server >= 21.11.25
-Requires: smartmet-library-spine >= 22.3.18
+Requires: smartmet-library-spine >= 22.4.26
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -47,7 +47,7 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 22.1.20
-#TestRequires: smartmet-library-spine-plugin-test >= 21.1.21
+#TestRequires: smartmet-library-spine-plugin-test >= 22.4.26
 #TestRequires: smartmet-engine-contour >= 22.3.11
 #TestRequires: smartmet-engine-geonames >= 22.3.21
 #TestRequires: smartmet-engine-grid >= 22.3.28
