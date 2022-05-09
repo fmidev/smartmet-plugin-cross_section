@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 22.5.3
+Version: 22.5.9
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -15,13 +15,14 @@ BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: smartmet-library-macgyver-devel >= 22.3.28
 BuildRequires: smartmet-library-timeseries-devel >= 22.3.18
-BuildRequires: smartmet-library-spine-devel >= 22.4.26
-BuildRequires: smartmet-library-grid-content-devel >= 22.3.28
+BuildRequires: smartmet-library-spine-devel >= 22.4.29
+BuildRequires: smartmet-library-trax-devel >= 22.5.5
+BuildRequires: smartmet-library-grid-content-devel >= 22.4.25
 BuildRequires: smartmet-library-grid-files-devel >= 22.3.15
-BuildRequires: smartmet-engine-grid-devel >= 22.3.28
-BuildRequires: smartmet-engine-querydata-devel >= 22.3.18
+BuildRequires: smartmet-engine-grid-devel >= 22.5.5
+BuildRequires: smartmet-engine-querydata-devel >= 22.5.4
 BuildRequires: smartmet-engine-geonames-devel >= 22.3.21
-BuildRequires: smartmet-engine-contour-devel >= 22.3.11
+BuildRequires: smartmet-engine-contour-devel >= 22.5.5
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -31,12 +32,12 @@ Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 22.3.28
 Requires: smartmet-library-timeseries >= 22.3.18
-Requires: smartmet-engine-grid >= 22.3.28
-Requires: smartmet-engine-querydata >= 22.3.18
+Requires: smartmet-engine-grid >= 22.5.5
+Requires: smartmet-engine-querydata >= 22.5.4
 Requires: smartmet-engine-geonames >= 22.3.21
-Requires: smartmet-engine-contour >= 22.3.11
-Requires: smartmet-server >= 21.11.25
-Requires: smartmet-library-spine >= 22.4.26
+Requires: smartmet-engine-contour >= 22.5.5
+Requires: smartmet-server >= 22.4.28
+Requires: smartmet-library-spine >= 22.4.29
 Requires: boost169-date-time
 Requires: boost169-iostreams
 Requires: boost169-system
@@ -48,10 +49,10 @@ Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 22.1.20
 #TestRequires: smartmet-library-spine-plugin-test >= 22.4.26
-#TestRequires: smartmet-engine-contour >= 22.3.11
+#TestRequires: smartmet-engine-contour >= 22.5.5
 #TestRequires: smartmet-engine-geonames >= 22.3.21
-#TestRequires: smartmet-engine-grid >= 22.3.28
-#TestRequires: smartmet-engine-querydata >= 22.3.18
+#TestRequires: smartmet-engine-grid >= 22.5.5
+#TestRequires: smartmet-engine-querydata >= 22.5.4
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 

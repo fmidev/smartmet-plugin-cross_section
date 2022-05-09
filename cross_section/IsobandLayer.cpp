@@ -7,14 +7,14 @@
 #include <boost/timer/timer.hpp>
 #include <ctpp2/CDT.hpp>
 #include <engines/contour/Engine.h>
-#include <engines/contour/Interpolation.h>
 #include <gis/Box.h>
 #include <gis/OGR.h>
-#include <macgyver/TimeFormatter.h>
 #include <grid-files/common/ImagePaint.h>
 #include <macgyver/StringConversion.h>
+#include <macgyver/TimeFormatter.h>
 #include <macgyver/TimeParser.h>
 #include <timeseries/ParameterFactory.h>
+#include <trax/InterpolationType.h>
 
 namespace SmartMet
 {
@@ -75,8 +75,7 @@ void IsobandLayer::init(const Json::Value& theJson, const Config& theConfig)
         }
       }
       else
-        throw Fmi::Exception(
-            BCP, "Isoband-layer does not have a setting named '" + name + "'");
+        throw Fmi::Exception(BCP, "Isoband-layer does not have a setting named '" + name + "'");
     }
   }
   catch (...)
@@ -95,18 +94,16 @@ void IsobandLayer::generate(CTPP::CDT& theGlobals, State& theState)
 {
   try
   {
-    if (theState.query().source  &&  *theState.query().source == "grid")
-      generate_gridEngine(theGlobals,theState);
+    if (theState.query().source && *theState.query().source == "grid")
+      generate_gridEngine(theGlobals, theState);
     else
-      generate_qEngine(theGlobals,theState);
+      generate_qEngine(theGlobals, theState);
   }
   catch (...)
   {
     throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
-
-
 
 void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 {
@@ -127,56 +124,83 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     if (zparameter == boost::none)
       throw Fmi::Exception(BCP, "Z-Parameter not set for isoband-layer");
 
-
     std::string pName = *parameter;
     bool raw = false;
     auto pos = pName.find(".raw");
     if (pos != std::string::npos)
     {
       raw = true;
-      pName.erase(pos,4);
+      pName.erase(pos, 4);
     }
 
     std::string key = theState.query().producer + ";" + pName;
 
     Engine::Grid::ParameterDetails_vec parameterDetails;
-    gridEngine.getParameterDetails(theState.query().producer,pName,parameterDetails);
-    //gridEngine.mapParameterDetails(parameterDetails);
+    gridEngine.getParameterDetails(theState.query().producer, pName, parameterDetails);
+    // gridEngine.mapParameterDetails(parameterDetails);
 
-
-    if (!(parameterDetails.size() == 1  &&  parameterDetails[0].mProducerName == key))
+    if (!(parameterDetails.size() == 1 && parameterDetails[0].mProducerName == key))
     {
       for (auto rec = parameterDetails.begin(); rec != parameterDetails.end(); ++rec)
       {
         QueryServer::ParameterMapping_vec mappings;
         std::string pn = rec->mProducerName;
-        //if (pn == key)
-          pn = rec->mOriginalProducer;
+        // if (pn == key)
+        pn = rec->mOriginalProducer;
 
         if (rec->mLevelId > " " || rec->mLevel > " ")
         {
           if (rec->mGeometryId > " ")
-            gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
+            gridEngine.getParameterMappings(rec->mProducerName,
+                                            rec->mOriginalParameter,
+                                            atoi(rec->mGeometryId.c_str()),
+                                            atoi(rec->mLevelId.c_str()),
+                                            atoi(rec->mLevel.c_str()),
+                                            false,
+                                            mappings);
           else
-            gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
+            gridEngine.getParameterMappings(rec->mProducerName,
+                                            rec->mOriginalParameter,
+                                            atoi(rec->mLevelId.c_str()),
+                                            atoi(rec->mLevel.c_str()),
+                                            false,
+                                            mappings);
 
-          if (mappings.size() == 0  &&  rec->mLevel < " ")
+          if (mappings.size() == 0 && rec->mLevel < " ")
           {
             if (rec->mGeometryId > " ")
-              gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), atoi(rec->mLevelId.c_str()), -1, false, mappings);
+              gridEngine.getParameterMappings(rec->mProducerName,
+                                              rec->mOriginalParameter,
+                                              atoi(rec->mGeometryId.c_str()),
+                                              atoi(rec->mLevelId.c_str()),
+                                              -1,
+                                              false,
+                                              mappings);
             else
-              gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), -1, false, mappings);
-            //getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
+              gridEngine.getParameterMappings(rec->mProducerName,
+                                              rec->mOriginalParameter,
+                                              atoi(rec->mLevelId.c_str()),
+                                              -1,
+                                              false,
+                                              mappings);
+            // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId,
+            // T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
           }
         }
         else
         {
           if (rec->mGeometryId > " ")
-            gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), true, mappings);
+            gridEngine.getParameterMappings(rec->mProducerName,
+                                            rec->mOriginalParameter,
+                                            atoi(rec->mGeometryId.c_str()),
+                                            true,
+                                            mappings);
           else
-            gridEngine.getParameterMappings(rec->mProducerName, rec->mOriginalParameter, true, mappings);
+            gridEngine.getParameterMappings(
+                rec->mProducerName, rec->mOriginalParameter, true, mappings);
 
-          //getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, true, mappings);
+          // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, true,
+          // mappings);
         }
         if (mappings.size() > 0)
         {
@@ -190,8 +214,8 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       if (parameterDetails.size() == 0 || parameterDetails[0].mMappings.size() == 0)
       {
         Fmi::Exception exception(BCP, "Parameter mappings not found");
-        exception.addParameter("Parameter",*parameter);
-        exception.addParameter("Producer",theState.query().producer);
+        exception.addParameter("Parameter", *parameter);
+        exception.addParameter("Producer", theState.query().producer);
         throw exception;
       }
     }
@@ -199,10 +223,10 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     std::string zkey = *theState.query().zproducer + ";" + *zparameter;
 
     Engine::Grid::ParameterDetails_vec zParameterDetails;
-    gridEngine.getParameterDetails(*theState.query().zproducer,*zparameter,zParameterDetails);
-    //gridEngine.mapParameterDetails(zParameterDetails);
+    gridEngine.getParameterDetails(*theState.query().zproducer, *zparameter, zParameterDetails);
+    // gridEngine.mapParameterDetails(zParameterDetails);
 
-    if (!(zParameterDetails.size() == 1  &&  zParameterDetails[0].mProducerName == zkey))
+    if (!(zParameterDetails.size() == 1 && zParameterDetails[0].mProducerName == zkey))
     {
       for (auto rec = zParameterDetails.begin(); rec != zParameterDetails.end(); ++rec)
       {
@@ -214,26 +238,47 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
         if (rec->mLevelId > " " || rec->mLevel > " ")
         {
           if (rec->mGeometryId > " ")
-            gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
+            gridEngine.getParameterMappings(pn,
+                                            rec->mOriginalParameter,
+                                            atoi(rec->mGeometryId.c_str()),
+                                            atoi(rec->mLevelId.c_str()),
+                                            atoi(rec->mLevel.c_str()),
+                                            false,
+                                            mappings);
           else
-            gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), atoi(rec->mLevel.c_str()), false, mappings);
+            gridEngine.getParameterMappings(pn,
+                                            rec->mOriginalParameter,
+                                            atoi(rec->mLevelId.c_str()),
+                                            atoi(rec->mLevel.c_str()),
+                                            false,
+                                            mappings);
 
-          if (mappings.size() == 0  &&  rec->mLevel < " ")
+          if (mappings.size() == 0 && rec->mLevel < " ")
           {
             if (rec->mGeometryId > " ")
-              gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), atoi(rec->mLevelId.c_str()), -1, false, mappings);
+              gridEngine.getParameterMappings(pn,
+                                              rec->mOriginalParameter,
+                                              atoi(rec->mGeometryId.c_str()),
+                                              atoi(rec->mLevelId.c_str()),
+                                              -1,
+                                              false,
+                                              mappings);
             else
-              gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), -1, false, mappings);
-            //getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
+              gridEngine.getParameterMappings(
+                  pn, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), -1, false, mappings);
+            // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId,
+            // T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
           }
         }
         else
         {
           if (rec->mGeometryId > " ")
-            gridEngine.getParameterMappings(pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), true, mappings);
+            gridEngine.getParameterMappings(
+                pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), true, mappings);
           else
             gridEngine.getParameterMappings(pn, rec->mOriginalParameter, true, mappings);
-          //getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, true, mappings);
+          // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, true,
+          // mappings);
         }
 
         if (mappings.size() > 0)
@@ -249,8 +294,8 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       if (zParameterDetails.size() == 0 || zParameterDetails[0].mMappings.size() == 0)
       {
         Fmi::Exception exception(BCP, "Z-Parameter mappings not found");
-        exception.addParameter("Z-Parameter",*zparameter);
-        exception.addParameter("Producer",*theState.query().zproducer);
+        exception.addParameter("Z-Parameter", *zparameter);
+        exception.addParameter("Producer", *theState.query().zproducer);
         throw exception;
       }
     }
@@ -277,7 +322,8 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       if (raw)
         areaInterpolationMethod = T::AreaInterpolationMethod::Linear;
       else
-        areaInterpolationMethod = parameterDetails[0].mMappings[0].mMapping.mAreaInterpolationMethod;
+        areaInterpolationMethod =
+            parameterDetails[0].mMappings[0].mMapping.mAreaInterpolationMethod;
 
       timeInterpolationMethod = parameterDetails[0].mMappings[0].mMapping.mTimeInterpolationMethod;
     }
@@ -302,10 +348,25 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
     std::string utcTime = Fmi::to_iso_string(theState.time().utc_time());
 
-    gridEngine.getVerticalGrid(lon1,lat1,lon2,lat2,steps,utcTime,
-        valueProducerName,valueParameter,heightProducerName,heightParameter,
-        geometryId,forecastType,forecastNumber,areaInterpolationMethod,timeInterpolationMethod,
-        coordinates,gridData,gridWidth,gridHeight);
+    gridEngine.getVerticalGrid(lon1,
+                               lat1,
+                               lon2,
+                               lat2,
+                               steps,
+                               utcTime,
+                               valueProducerName,
+                               valueParameter,
+                               heightProducerName,
+                               heightParameter,
+                               geometryId,
+                               forecastType,
+                               forecastNumber,
+                               areaInterpolationMethod,
+                               timeInterpolationMethod,
+                               coordinates,
+                               gridData,
+                               gridWidth,
+                               gridHeight);
 
     double maxHeight = 0;
     double maxDistance = 0;
@@ -347,9 +408,16 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       }
     }
 
-
-    getIsobands(gridData,&coordinates,gridWidth,gridHeight,contourLowValues,contourHighValues,T::AreaInterpolationMethod::Linear,smooth_size,smooth_degree,contours);
-
+    getIsobands(gridData,
+                &coordinates,
+                gridWidth,
+                gridHeight,
+                contourLowValues,
+                contourHighValues,
+                T::AreaInterpolationMethod::Linear,
+                smooth_size,
+                smooth_degree,
+                contours);
 
     std::vector<OGRGeometryPtr> geoms;
 
@@ -358,9 +426,9 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       uint c = 0;
       for (auto wkb = contours.begin(); wkb != contours.end(); ++wkb)
       {
-        unsigned char *cwkb = reinterpret_cast<unsigned char *>(wkb->data());
-        OGRGeometry *geom = nullptr;
-        OGRGeometryFactory::createFromWkb(cwkb,nullptr,&geom,wkb->size());
+        unsigned char* cwkb = reinterpret_cast<unsigned char*>(wkb->data());
+        OGRGeometry* geom = nullptr;
+        OGRGeometryFactory::createFromWkb(cwkb, nullptr, &geom, wkb->size());
         auto geomPtr = OGRGeometryPtr(geom);
         geoms.push_back(geomPtr);
 
@@ -383,52 +451,49 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
         c++;
       }
     }
-/*
-    int imageWidth = 1200;
-    int imageHeight = 1100;
-    bool rotate = true;
-    double mpy = (double)imageHeight / maxHeight;
-    double mpx = (double)imageWidth / maxDistance;
-    double ms = 2;
-    float m = minValue;
+    /*
+        int imageWidth = 1200;
+        int imageHeight = 1100;
+        bool rotate = true;
+        double mpy = (double)imageHeight / maxHeight;
+        double mpx = (double)imageWidth / maxDistance;
+        double ms = 2;
+        float m = minValue;
 
-    ImagePaint imagePaint(imageWidth,imageHeight,0xFFFFFFFF,false,rotate);
+        ImagePaint imagePaint(imageWidth,imageHeight,0xFFFFFFFF,false,rotate);
 
-    int sz = imageWidth * imageHeight;
-    unsigned long *image = new unsigned long[sz];
-    for (int t=0; t<sz; t++)
-      image[t] = 0xFF0000;
+        int sz = imageWidth * imageHeight;
+        unsigned long *image = new unsigned long[sz];
+        for (int t=0; t<sz; t++)
+          image[t] = 0xFF0000;
 
-    // ### Painting contours into the image:
+        // ### Painting contours into the image:
 
-    if (contours.size() > 0)
-    {
-      uint c = 250;
-      uint step = 250 / contours.size();
+        if (contours.size() > 0)
+        {
+          uint c = 250;
+          uint step = 250 / contours.size();
 
-      uint t = 0;
-      for (auto it = contours.begin(); it != contours.end(); ++it)
-      {
-        uint col = (c << 16) + (c << 8) + c;
+          uint t = 0;
+          for (auto it = contours.begin(); it != contours.end(); ++it)
+          {
+            uint col = (c << 16) + (c << 8) + c;
 
-        imagePaint.paintWkb(mpx,mpy,0,0,*it,col);
-        c = c - step;
-        t++;
-      }
-    }
-    char fname[200];
-    sprintf(fname,"/tmp/contour.png");
-    imagePaint.savePngImage(fname);
-*/
-
+            imagePaint.paintWkb(mpx,mpy,0,0,*it,col);
+            c = c - step;
+            t++;
+          }
+        }
+        char fname[200];
+        sprintf(fname,"/tmp/contour.png");
+        imagePaint.savePngImage(fname);
+    */
   }
   catch (...)
   {
     throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
-
-
 
 void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 {
@@ -469,15 +534,13 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
       options.transformation(multiplier ? *multiplier : 1.0, offset ? *offset : 0.0);
 
     if (interpolation == "linear")
-      options.interpolation = SmartMet::Engine::Contour::Linear;
+      options.interpolation = Trax::InterpolationType::Linear;
     else if (interpolation == "nearest")
-      options.interpolation = SmartMet::Engine::Contour::Nearest;
+      options.interpolation = Trax::InterpolationType::Midpoint;
     else if (interpolation == "discrete")
-      options.interpolation = SmartMet::Engine::Contour::Discrete;
-    else if (interpolation == "loglinear")
-      options.interpolation = SmartMet::Engine::Contour::LogLinear;
+      options.interpolation = Trax::InterpolationType::Midpoint;
     else
-      throw std::runtime_error("Unknown isoband interpolation method '" + interpolation + "'");
+      throw Fmi::Exception(BCP, "Unknown isoband interpolation method '" + interpolation + "'");
 
     auto qInfo = q->info();
 
