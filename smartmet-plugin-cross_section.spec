@@ -49,6 +49,7 @@ Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 22.1.20
 #TestRequires: smartmet-library-spine-plugin-test >= 22.4.26
+#TestRequires: smartmet-library-newbase-devel >= 22.5.18
 #TestRequires: smartmet-engine-contour >= 22.5.5
 #TestRequires: smartmet-engine-geonames >= 22.3.21
 #TestRequires: smartmet-engine-grid >= 22.5.5

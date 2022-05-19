@@ -29,8 +29,8 @@ clean:
 
 TEST_DB_DIR := $(shell pwd)/tmp-geonames-db
 
-TEST_PREPARE_TARGETS := templates cnf/geonames.conf
-TEST_FINISH_TARGETS := .dummy
+TEST_PREPARE_TARGETS := templates cnf/geonames.conf wgs84mode
+TEST_FINISH_TARGETS := .dummy wgs84mode_end
 ifdef CI
 GEONAMES_HOST_EDIT := sed -e 's|"smartmet-test"|"$(TEST_DB_DIR)"|g'
 TEST_PREPARE_TARGETS += start-geonames-db
@@ -39,7 +39,7 @@ else
 GEONAMES_HOST_EDIT := cat
 endif
 
-TESTER_PARAM := --handler=/csection --reactor-config=cnf/reactor.conf
+TESTER_PARAM := --handler=/csection --reactor-config=cnf/reactor.conf -e tmp/
 
 test: $(TEST_PREPARE_TARGETS)
 	@rm -f failures/*
@@ -56,6 +56,10 @@ geonames-database:
 	    cat tmp-geonames-db.log; \
 	    false; \
 	fi
+
+wgs84mode:
+	rm -rf tmp && mkdir tmp && cp output/* tmp/
+	grep --quiet "#define WGS84 1" /usr/include/smartmet/newbase/NFmiGlobals.h && for f in tmp/*.wgs84; do mv $$f tmp/$$(basename $$f .wgs84); done
 
 start-geonames-db: geonames-database
 	/usr/share/smartmet/test/db/test-db-ctl.sh $(TEST_DB_DIR) start -w
