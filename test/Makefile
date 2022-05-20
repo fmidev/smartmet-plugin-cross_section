@@ -59,7 +59,7 @@ geonames-database:
 
 wgs84mode:
 	rm -rf tmp && mkdir tmp && cp output/* tmp/
-	grep --quiet "#define WGS84 1" /usr/include/smartmet/newbase/NFmiGlobals.h && for f in tmp/*.wgs84; do mv $$f tmp/$$(basename $$f .wgs84); done
+	if grep --quiet "#define WGS84 1" /usr/include/smartmet/newbase/NFmiGlobals.h; then for f in tmp/*.wgs84; do mv $$f tmp/$$(basename $$f .wgs84); done; fi
 
 start-geonames-db: geonames-database
 	/usr/share/smartmet/test/db/test-db-ctl.sh $(TEST_DB_DIR) start -w
