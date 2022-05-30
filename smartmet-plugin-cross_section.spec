@@ -20,7 +20,7 @@ BuildRequires: smartmet-library-trax-devel >= 22.5.23
 BuildRequires: smartmet-library-grid-content-devel >= 22.5.24
 BuildRequires: smartmet-library-grid-files-devel >= 22.5.24
 BuildRequires: smartmet-engine-grid-devel >= 22.5.24
-BuildRequires: smartmet-engine-querydata-devel >= 22.5.24
+BuildRequires: smartmet-engine-querydata-devel >= 22.5.30
 BuildRequires: smartmet-engine-geonames-devel >= 22.5.24
 BuildRequires: smartmet-engine-contour-devel >= 22.5.24
 BuildRequires: ctpp2 >= 2.8.8
@@ -33,7 +33,7 @@ Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 22.5.24
 Requires: smartmet-library-timeseries >= 22.5.24
 Requires: smartmet-engine-grid >= 22.5.24
-Requires: smartmet-engine-querydata >= 22.5.24
+Requires: smartmet-engine-querydata >= 22.5.30
 Requires: smartmet-engine-geonames >= 22.5.24
 Requires: smartmet-engine-contour >= 22.5.24
 Requires: smartmet-server >= 22.5.16
@@ -53,7 +53,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-engine-contour >= 22.5.24
 #TestRequires: smartmet-engine-geonames >= 22.5.24
 #TestRequires: smartmet-engine-grid >= 22.5.24
-#TestRequires: smartmet-engine-querydata >= 22.5.24
+#TestRequires: smartmet-engine-querydata >= 22.5.30
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
