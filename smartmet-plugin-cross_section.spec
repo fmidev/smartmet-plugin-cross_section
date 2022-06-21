@@ -9,20 +9,29 @@ Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
 Source0: %{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%if 0%{?rhel} && 0%{rhel} < 9
+%define smartmet_boost boost169
+%else
+%define smartmet_boost boost
+%endif
+
+%define smartmet_fmt_min 8.1.1
+%define smartmet_fmt_max 8.2.0
+
 BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
-BuildRequires: boost169-devel
-BuildRequires: smartmet-library-macgyver-devel >= 22.5.24
-BuildRequires: smartmet-library-timeseries-devel >= 22.5.24
-BuildRequires: smartmet-library-spine-devel >= 22.5.24
-BuildRequires: smartmet-library-trax-devel >= 22.5.23
+BuildRequires: %{smartmet_boost}-devel
+BuildRequires: smartmet-library-macgyver-devel >= 22.6.16
+BuildRequires: smartmet-library-timeseries-devel >= 22.6.16
+BuildRequires: smartmet-library-spine-devel >= 22.6.16
+BuildRequires: smartmet-library-trax-devel >= 22.6.16
 BuildRequires: smartmet-library-grid-content-devel >= 22.5.24
 BuildRequires: smartmet-library-grid-files-devel >= 22.5.24
-BuildRequires: smartmet-engine-grid-devel >= 22.5.24
-BuildRequires: smartmet-engine-querydata-devel >= 22.5.31
-BuildRequires: smartmet-engine-geonames-devel >= 22.5.24
-BuildRequires: smartmet-engine-contour-devel >= 22.5.24
+BuildRequires: smartmet-engine-grid-devel >= 22.6.17
+BuildRequires: smartmet-engine-querydata-devel >= 22.6.17
+BuildRequires: smartmet-engine-geonames-devel >= 22.6.17
+BuildRequires: smartmet-engine-contour-devel >= 22.6.17
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -30,30 +39,30 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-macgyver >= 22.5.24
-Requires: smartmet-library-timeseries >= 22.5.24
-Requires: smartmet-engine-grid >= 22.5.24
-Requires: smartmet-engine-querydata >= 22.5.31
-Requires: smartmet-engine-geonames >= 22.5.24
-Requires: smartmet-engine-contour >= 22.5.24
+Requires: smartmet-library-macgyver >= 22.6.16
+Requires: smartmet-library-timeseries >= 22.6.16
+Requires: smartmet-engine-grid >= 22.6.17
+Requires: smartmet-engine-querydata >= 22.6.17
+Requires: smartmet-engine-geonames >= 22.6.17
+Requires: smartmet-engine-contour >= 22.6.17
 Requires: smartmet-server >= 22.5.16
-Requires: smartmet-library-spine >= 22.5.24
-Requires: boost169-date-time
-Requires: boost169-iostreams
-Requires: boost169-system
-Requires: boost169-thread
+Requires: smartmet-library-spine >= 22.6.16
+Requires: %{smartmet_boost}-date-time
+Requires: %{smartmet_boost}-iostreams
+Requires: %{smartmet_boost}-system
+Requires: %{smartmet_boost}-thread
 Requires: zlib-devel
 Requires: bzip2-devel
 Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 22.1.20
-#TestRequires: smartmet-library-spine-plugin-test >= 22.4.26
-#TestRequires: smartmet-library-newbase-devel >= 22.5.18
-#TestRequires: smartmet-engine-contour >= 22.5.24
-#TestRequires: smartmet-engine-geonames >= 22.5.24
-#TestRequires: smartmet-engine-grid >= 22.5.24
-#TestRequires: smartmet-engine-querydata >= 22.5.31
+#TestRequires: smartmet-library-spine-plugin-test >= 22.6.16
+#TestRequires: smartmet-library-newbase-devel >= 22.6.16
+#TestRequires: smartmet-engine-contour >= 22.6.17
+#TestRequires: smartmet-engine-geonames >= 22.6.17
+#TestRequires: smartmet-engine-grid >= 22.6.17
+#TestRequires: smartmet-engine-querydata >= 22.6.17
 #TestRequires: smartmet-test-data >= 20.10.29
 #TestRequires: smartmet-test-db
 
