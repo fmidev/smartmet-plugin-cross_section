@@ -31,10 +31,10 @@ class TemplateFactory : public boost::noncopyable
  private:
   struct TemplateInfo
   {
-    std::time_t modtime;
+    std::time_t modtime = 0;
     SharedFormatter formatter;
 
-    TemplateInfo() : modtime(0), formatter() {}
+    TemplateInfo() = default;
   };
 
   // CT++ may not be thread safe - but using a thread specific

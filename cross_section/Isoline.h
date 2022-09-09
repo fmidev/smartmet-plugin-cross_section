@@ -22,11 +22,11 @@ class Config;
 class Isoline
 {
  public:
-  Isoline() : value(0) {}
+  Isoline() = default;
   void init(const Json::Value& theJson, const Config& theConfig);
 
   // Must be present:
-  double value;
+  double value = 0.0;
 
   // SVG attributes (id, class, style, ...)
   Attributes attributes;

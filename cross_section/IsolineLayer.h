@@ -18,11 +18,11 @@ class IsolineLayer : public Layer
 {
  public:
   IsolineLayer();
-  ~IsolineLayer() = default;
+  ~IsolineLayer() override = default;
 
-  virtual void init(const Json::Value& theJson, const Config& theConfig);
+  void init(const Json::Value& theJson, const Config& theConfig) override;
 
-  virtual void generate(CTPP::CDT& theGlobals, State& theState);
+  void generate(CTPP::CDT& theGlobals, State& theState) override;
 
   boost::optional<std::string> parameter;
   boost::optional<std::string> zparameter;
@@ -33,7 +33,6 @@ class IsolineLayer : public Layer
   boost::optional<double> offset;
 
  private:
-
   void generate_qEngine(CTPP::CDT& theGlobals, State& theState);
   void generate_gridEngine(CTPP::CDT& theGlobals, State& theState);
 };  // class IsolineHandler

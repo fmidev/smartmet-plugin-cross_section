@@ -8,8 +8,8 @@
 
 #include <engines/contour/Engine.h>
 #include <engines/geonames/Engine.h>
-#include <engines/querydata/Engine.h>
 #include <engines/grid/Engine.h>
+#include <engines/querydata/Engine.h>
 #include <spine/HTTP.h>
 #include <spine/Reactor.h>
 #include <spine/SmartMetPlugin.h>
@@ -29,11 +29,12 @@ namespace CrossSection
 class Plugin : public SmartMetPlugin, private boost::noncopyable
 {
  public:
+  Plugin() = delete;
   Plugin(SmartMet::Spine::Reactor* theReactor, const char* theConfig);
-  virtual ~Plugin();
+  ~Plugin() override;
 
-  const std::string& getPluginName() const;
-  int getRequiredAPIVersion() const;
+  const std::string& getPluginName() const override;
+  int getRequiredAPIVersion() const override;
 
   // Get the engines
   const SmartMet::Engine::Querydata::Engine& getQEngine() const { return *itsQEngine; }
@@ -48,33 +49,32 @@ class Plugin : public SmartMetPlugin, private boost::noncopyable
                      bool theDebugFlag) const;
 
  protected:
-  void init();
-  void shutdown();
+  void init() override;
+  void shutdown() override;
   void requestHandler(SmartMet::Spine::Reactor& theReactor,
                       const SmartMet::Spine::HTTP::Request& theRequest,
-                      SmartMet::Spine::HTTP::Response& theResponse);
+                      SmartMet::Spine::HTTP::Response& theResponse) override;
 
  private:
-  Plugin();
   std::string query(SmartMet::Spine::Reactor& theReactor,
-                    const SmartMet::Spine::HTTP::Request& req,
-                    SmartMet::Spine::HTTP::Response& response);
+                    const SmartMet::Spine::HTTP::Request& theRequest,
+                    SmartMet::Spine::HTTP::Response& theResponse);
   // Plugin configuration
   const std::string itsModuleName;
   SmartMet::Plugin::CrossSection::Config itsConfig;
 
   // Cache server and engine instances
-  SmartMet::Spine::Reactor* itsReactor;
-  SmartMet::Engine::Querydata::Engine* itsQEngine;
-  SmartMet::Engine::Grid::Engine* itsGridEngine;
-  SmartMet::Engine::Contour::Engine* itsContourEngine;
-  SmartMet::Engine::Geonames::Engine* itsGeoEngine;
+  SmartMet::Spine::Reactor* itsReactor = nullptr;
+  SmartMet::Engine::Querydata::Engine* itsQEngine = nullptr;
+  SmartMet::Engine::Grid::Engine* itsGridEngine = nullptr;
+  SmartMet::Engine::Contour::Engine* itsContourEngine = nullptr;
+  SmartMet::Engine::Geonames::Engine* itsGeoEngine = nullptr;
 
   // Cache templates
   TemplateFactory itsTemplateFactory;
 
   // Cache products
-  typedef std::map<std::string, Product> ProductCache;
+  using ProductCache = std::map<std::string, Product>;
   mutable SmartMet::Spine::MutexType itsProductCacheMutex;
   mutable ProductCache itsProductCache;
 

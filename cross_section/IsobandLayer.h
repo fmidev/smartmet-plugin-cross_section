@@ -24,11 +24,11 @@ class IsobandLayer : public Layer
 {
  public:
   IsobandLayer();
-  ~IsobandLayer() = default;
+  ~IsobandLayer() override = default;
 
-  virtual void init(const Json::Value& theJson, const Config& theConfig);
+  void init(const Json::Value& theJson, const Config& theConfig) override;
 
-  virtual void generate(CTPP::CDT& theGlobals, State& theState);
+  void generate(CTPP::CDT& theGlobals, State& theState) override;
 
   boost::optional<std::string> parameter;
   boost::optional<std::string> zparameter;

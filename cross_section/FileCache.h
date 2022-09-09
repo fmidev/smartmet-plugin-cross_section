@@ -35,14 +35,14 @@ class FileCache
     std::time_t modification_time;
     std::string content;
 
-    FileContents() {}
-    FileContents(const std::time_t& theTime, const std::string& theContent)
-        : modification_time(theTime), content(theContent)
+    FileContents() = default;
+    FileContents(const std::time_t& theTime, std::string theContent)
+        : modification_time(theTime), content(std::move(theContent))
     {
     }
   };
 
-  typedef std::map<boost::filesystem::path, FileContents> Cache;
+  using Cache = std::map<boost::filesystem::path, FileContents>;
   mutable SmartMet::Spine::MutexType itsMutex;
   mutable Cache itsCache;
 

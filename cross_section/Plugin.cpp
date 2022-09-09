@@ -9,7 +9,6 @@
 #include "Product.h"
 #include "Query.h"
 #include "State.h"
-#include <boost/lexical_cast.hpp>
 #include <boost/move/unique_ptr.hpp>
 #include <boost/timer/timer.hpp>
 #include <ctpp2/CDT.hpp>
@@ -66,9 +65,9 @@ namespace CrossSection
  */
 // ----------------------------------------------------------------------
 
-std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
+std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
                           const SmartMet::Spine::HTTP::Request &theRequest,
-                          SmartMet::Spine::HTTP::Response &theResponse)
+                          SmartMet::Spine::HTTP::Response & /* theResponse */)
 {
   try
   {
@@ -121,8 +120,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
 
     // And timeseries options now that state (and querydata) is established
 
-    TimeSeries::TimeSeriesGeneratorOptions toptions =
-        SmartMet::TimeSeries::parseTimes(theRequest);
+    TimeSeries::TimeSeriesGeneratorOptions toptions = SmartMet::TimeSeries::parseTimes(theRequest);
 
     if (!query.source || *query.source != "grid")
       toptions.setDataTimes(state.producer()->validTimes(), state.producer()->isClimatology());
@@ -159,7 +157,8 @@ std::string Plugin::query(SmartMet::Spine::Reactor &theReactor,
                 << hash.RecursiveDump() << std::endl;
     }
 
-    std::string output, log;
+    std::string output;
+    std::string log;
     try
     {
       std::string report = "Template processing finished in %t sec CPU, %w sec real\n";
@@ -334,8 +333,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 
       std::shared_ptr<Fmi::TimeFormatter> tformat(Fmi::TimeFormatter::create("http"));
 
-      std::string cachecontrol =
-          "public, max-age=" + boost::lexical_cast<std::string>(expires_seconds);
+      std::string cachecontrol = "public, max-age=" + std::to_string(expires_seconds);
       std::string expiration = tformat->format(t_expires);
       std::string modification = tformat->format(t_now);
 
@@ -343,7 +341,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
       theResponse.setHeader("Expires", expiration);
       theResponse.setHeader("Last-Modified", modification);
 
-      if (response.size() == 0)
+      if (response.empty())
       {
         std::cerr << "Warning: Empty input for request " << theRequest.getQueryString() << " from "
                   << theRequest.getClientIP() << std::endl;
@@ -379,7 +377,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
       std::string msg = exception.what();
       boost::algorithm::replace_all(msg, "\n", " ");
       msg = msg.substr(0, 100);
-      theResponse.setHeader("X-CSection-Error", msg.c_str());
+      theResponse.setHeader("X-CSection-Error", msg);
     }
   }
   catch (...)
@@ -395,14 +393,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 // ----------------------------------------------------------------------
 
 Plugin::Plugin(SmartMet::Spine::Reactor *theReactor, const char *theConfig)
-    : SmartMetPlugin(),
-      itsModuleName("CrossSection"),
-      itsConfig(theConfig),
-      itsReactor(theReactor),
-      itsQEngine(nullptr),
-      itsContourEngine(nullptr),
-      itsGeoEngine(nullptr),
-      itsTemplateFactory()
+    : itsModuleName("CrossSection"), itsConfig(theConfig), itsReactor(theReactor)
 {
   try
   {

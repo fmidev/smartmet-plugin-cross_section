@@ -140,45 +140,45 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
     if (!(parameterDetails.size() == 1 && parameterDetails[0].mProducerName == key))
     {
-      for (auto rec = parameterDetails.begin(); rec != parameterDetails.end(); ++rec)
+      for (auto& rec : parameterDetails)
       {
         QueryServer::ParameterMapping_vec mappings;
-        std::string pn = rec->mProducerName;
+        std::string pn = rec.mProducerName;
         // if (pn == key)
-        pn = rec->mOriginalProducer;
+        pn = rec.mOriginalProducer;
 
-        if (rec->mLevelId > " " || rec->mLevel > " ")
+        if (rec.mLevelId > " " || rec.mLevel > " ")
         {
-          if (rec->mGeometryId > " ")
-            gridEngine.getParameterMappings(rec->mProducerName,
-                                            rec->mOriginalParameter,
-                                            atoi(rec->mGeometryId.c_str()),
-                                            atoi(rec->mLevelId.c_str()),
-                                            atoi(rec->mLevel.c_str()),
+          if (rec.mGeometryId > " ")
+            gridEngine.getParameterMappings(rec.mProducerName,
+                                            rec.mOriginalParameter,
+                                            std::stoi(rec.mGeometryId),
+                                            std::stoi(rec.mLevelId),
+                                            std::stoi(rec.mLevel),
                                             false,
                                             mappings);
           else
-            gridEngine.getParameterMappings(rec->mProducerName,
-                                            rec->mOriginalParameter,
-                                            atoi(rec->mLevelId.c_str()),
-                                            atoi(rec->mLevel.c_str()),
+            gridEngine.getParameterMappings(rec.mProducerName,
+                                            rec.mOriginalParameter,
+                                            std::stoi(rec.mLevelId),
+                                            std::stoi(rec.mLevel),
                                             false,
                                             mappings);
 
-          if (mappings.size() == 0 && rec->mLevel < " ")
+          if (mappings.size() == 0 && rec.mLevel < " ")
           {
-            if (rec->mGeometryId > " ")
-              gridEngine.getParameterMappings(rec->mProducerName,
-                                              rec->mOriginalParameter,
-                                              atoi(rec->mGeometryId.c_str()),
-                                              atoi(rec->mLevelId.c_str()),
+            if (rec.mGeometryId > " ")
+              gridEngine.getParameterMappings(rec.mProducerName,
+                                              rec.mOriginalParameter,
+                                              std::stoi(rec.mGeometryId),
+                                              std::stoi(rec.mLevelId),
                                               -1,
                                               false,
                                               mappings);
             else
-              gridEngine.getParameterMappings(rec->mProducerName,
-                                              rec->mOriginalParameter,
-                                              atoi(rec->mLevelId.c_str()),
+              gridEngine.getParameterMappings(rec.mProducerName,
+                                              rec.mOriginalParameter,
+                                              std::stoi(rec.mLevelId),
                                               -1,
                                               false,
                                               mappings);
@@ -188,29 +188,29 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
         }
         else
         {
-          if (rec->mGeometryId > " ")
-            gridEngine.getParameterMappings(rec->mProducerName,
-                                            rec->mOriginalParameter,
-                                            atoi(rec->mGeometryId.c_str()),
+          if (rec.mGeometryId > " ")
+            gridEngine.getParameterMappings(rec.mProducerName,
+                                            rec.mOriginalParameter,
+                                            std::stoi(rec.mGeometryId),
                                             true,
                                             mappings);
           else
             gridEngine.getParameterMappings(
-                rec->mProducerName, rec->mOriginalParameter, true, mappings);
+                rec.mProducerName, rec.mOriginalParameter, true, mappings);
 
           // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, true,
           // mappings);
         }
-        if (mappings.size() > 0)
+        if (!mappings.empty())
         {
           Engine::Grid::MappingDetails details;
           details.mMapping = mappings[0];
-          rec->mMappings.push_back(details);
+          rec.mMappings.push_back(details);
         }
-        // rec->print(std::cout,0,0);
+        // rec.print(std::cout,0,0);
       }
 
-      if (parameterDetails.size() == 0 || parameterDetails[0].mMappings.size() == 0)
+      if (parameterDetails.empty() || parameterDetails[0].mMappings.size() == 0)
       {
         Fmi::Exception exception(BCP, "Parameter mappings not found");
         exception.addParameter("Parameter", *parameter);
@@ -227,70 +227,70 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
     if (!(zParameterDetails.size() == 1 && zParameterDetails[0].mProducerName == zkey))
     {
-      for (auto rec = zParameterDetails.begin(); rec != zParameterDetails.end(); ++rec)
+      for (auto& rec : zParameterDetails)
       {
-        std::string pn = rec->mProducerName;
+        std::string pn = rec.mProducerName;
         if (pn == zkey)
-          pn = rec->mOriginalProducer;
+          pn = rec.mOriginalProducer;
 
         QueryServer::ParameterMapping_vec mappings;
-        if (rec->mLevelId > " " || rec->mLevel > " ")
+        if (rec.mLevelId > " " || rec.mLevel > " ")
         {
-          if (rec->mGeometryId > " ")
+          if (rec.mGeometryId > " ")
             gridEngine.getParameterMappings(pn,
-                                            rec->mOriginalParameter,
-                                            atoi(rec->mGeometryId.c_str()),
-                                            atoi(rec->mLevelId.c_str()),
-                                            atoi(rec->mLevel.c_str()),
+                                            rec.mOriginalParameter,
+                                            std::stoi(rec.mGeometryId),
+                                            std::stoi(rec.mLevelId),
+                                            std::stoi(rec.mLevel),
                                             false,
                                             mappings);
           else
             gridEngine.getParameterMappings(pn,
-                                            rec->mOriginalParameter,
-                                            atoi(rec->mLevelId.c_str()),
-                                            atoi(rec->mLevel.c_str()),
+                                            rec.mOriginalParameter,
+                                            std::stoi(rec.mLevelId),
+                                            std::stoi(rec.mLevel),
                                             false,
                                             mappings);
 
-          if (mappings.size() == 0 && rec->mLevel < " ")
+          if (mappings.size() == 0 && rec.mLevel < " ")
           {
-            if (rec->mGeometryId > " ")
+            if (rec.mGeometryId > " ")
               gridEngine.getParameterMappings(pn,
-                                              rec->mOriginalParameter,
-                                              atoi(rec->mGeometryId.c_str()),
-                                              atoi(rec->mLevelId.c_str()),
+                                              rec.mOriginalParameter,
+                                              std::stoi(rec.mGeometryId),
+                                              std::stoi(rec.mLevelId),
                                               -1,
                                               false,
                                               mappings);
             else
               gridEngine.getParameterMappings(
-                  pn, rec->mOriginalParameter, atoi(rec->mLevelId.c_str()), -1, false, mappings);
+                  pn, rec.mOriginalParameter, std::stoi(rec.mLevelId), -1, false, mappings);
             // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId,
             // T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
           }
         }
         else
         {
-          if (rec->mGeometryId > " ")
+          if (rec.mGeometryId > " ")
             gridEngine.getParameterMappings(
-                pn, rec->mOriginalParameter, atoi(rec->mGeometryId.c_str()), true, mappings);
+                pn, rec.mOriginalParameter, std::stoi(rec.mGeometryId), true, mappings);
           else
-            gridEngine.getParameterMappings(pn, rec->mOriginalParameter, true, mappings);
+            gridEngine.getParameterMappings(pn, rec.mOriginalParameter, true, mappings);
           // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, true,
           // mappings);
         }
 
-        if (mappings.size() > 0)
+        if (!mappings.empty())
         {
           Engine::Grid::MappingDetails details;
           details.mMapping = mappings[0];
-          rec->mMappings.push_back(details);
+          rec.mMappings.push_back(details);
         }
 
-        // rec->print(std::cout,0,0);
+        // rec.print(std::cout,0,0);
       }
 
-      if (zParameterDetails.size() == 0 || zParameterDetails[0].mMappings.size() == 0)
+      if (zParameterDetails.empty() || zParameterDetails[0].mMappings.size() == 0)
       {
         Fmi::Exception exception(BCP, "Z-Parameter mappings not found");
         exception.addParameter("Z-Parameter", *zparameter);
@@ -313,7 +313,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     std::string heightProducerName = zParameterDetails[0].mOriginalProducer;
     std::string heightParameter = zParameterDetails[0].mOriginalParameter;
 
-    if (parameterDetails[0].mMappings.size() > 0)
+    if (!parameterDetails[0].mMappings.empty())
     {
       valueProducerName = parameterDetails[0].mMappings[0].mMapping.mProducerName;
       valueParameter = parameterDetails[0].mMappings[0].mMapping.mParameterName;
@@ -328,7 +328,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       timeInterpolationMethod = parameterDetails[0].mMappings[0].mMapping.mTimeInterpolationMethod;
     }
 
-    if (zParameterDetails[0].mMappings.size() > 0)
+    if (!zParameterDetails[0].mMappings.empty())
     {
       heightProducerName = zParameterDetails[0].mMappings[0].mMapping.mProducerName;
       heightParameter = zParameterDetails[0].mMappings[0].mMapping.mParameterName;
@@ -372,22 +372,22 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     double maxValue = -1000000000;
     double minValue = 1000000000;
 
-    for (auto it = gridData.begin(); it != gridData.end(); ++it)
+    for (auto value : gridData)
     {
-      if (*it > maxValue)
-        maxValue = *it;
+      if (value > maxValue)
+        maxValue = value;
 
-      if (*it != ParamValueMissing && *it < minValue)
-        minValue = *it;
+      if (value != ParamValueMissing && value < minValue)
+        minValue = value;
     }
 
-    for (auto it = coordinates.begin(); it != coordinates.end(); ++it)
+    for (const auto& coord : coordinates)
     {
-      if (it->y() > maxHeight)
-        maxHeight = it->y();
+      if (coord.y() > maxHeight)
+        maxHeight = coord.y();
 
-      if (it->x() > maxDistance)
-        maxDistance = it->x();
+      if (coord.x() > maxDistance)
+        maxDistance = coord.x();
     }
 
     for (const auto& isoline : isolines)
@@ -408,14 +408,14 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
     std::vector<OGRGeometryPtr> geoms;
 
-    if (contours.size() > 0)
+    if (!contours.empty())
     {
       uint c = 0;
-      for (auto wkb = contours.begin(); wkb != contours.end(); ++wkb)
+      for (const auto& wkb : contours)
       {
-        unsigned char* cwkb = reinterpret_cast<unsigned char*>(wkb->data());
+        const auto* cwkb = reinterpret_cast<const unsigned char*>(wkb.data());
         OGRGeometry* geom = nullptr;
-        OGRGeometryFactory::createFromWkb(cwkb, nullptr, &geom, wkb->size());
+        OGRGeometryFactory::createFromWkb(cwkb, nullptr, &geom, wkb.size());
         auto geomPtr = OGRGeometryPtr(geom);
         geoms.push_back(geomPtr);
 
@@ -500,7 +500,7 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 
     // Generate isolines and store them into the template engine
 
-    auto timeformatter = Fmi::TimeFormatter::create("iso");
+    std::unique_ptr<Fmi::TimeFormatter> timeformatter(Fmi::TimeFormatter::create("iso"));
     std::string timekey = timeformatter->format(theState.time());
 
     const auto& contourer = theState.getContourEngine();
@@ -515,9 +515,8 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 
     if (interpolation == "linear")
       options.interpolation = Trax::InterpolationType::Linear;
-    else if (interpolation == "nearest")
-      options.interpolation = Trax::InterpolationType::Midpoint;
-    else if (interpolation == "discrete")
+    else if (interpolation == "nearest" || interpolation == "discrete" ||
+             interpolation == "midpoint")
       options.interpolation = Trax::InterpolationType::Midpoint;
     else
       throw Fmi::Exception(BCP, "Unknown isoline interpolation method '" + interpolation + "'");
