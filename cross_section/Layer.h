@@ -33,7 +33,7 @@ class State;
 class Layer
 {
  public:
-  virtual ~Layer() {}
+  virtual ~Layer() = default;
   bool init(const std::string& theName, const Json::Value& theJson, const Config& theConfig);
 
   virtual void init(const Json::Value& theJson, const Config& theConfig) = 0;

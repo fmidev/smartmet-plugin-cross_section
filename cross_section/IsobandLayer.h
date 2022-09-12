@@ -24,7 +24,6 @@ class IsobandLayer : public Layer
 {
  public:
   IsobandLayer();
-  ~IsobandLayer() override = default;
 
   void init(const Json::Value& theJson, const Config& theConfig) override;
 

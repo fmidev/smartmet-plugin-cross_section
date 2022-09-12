@@ -425,7 +425,7 @@ void Plugin::init()
   {
     /* QEngine */
 
-    auto engine = itsReactor->getSingleton("Querydata", nullptr);
+    auto *engine = itsReactor->getSingleton("Querydata", nullptr);
     if (!engine)
       throw Fmi::Exception(BCP, "Querydata engine unavailable");
     itsQEngine = reinterpret_cast<SmartMet::Engine::Querydata::Engine *>(engine);
@@ -471,13 +471,7 @@ void Plugin::shutdown()
 {
   std::cout << "  -- Shutdown requested (csection)\n";
 }
-// ----------------------------------------------------------------------
-/*!
- * \brief Destructor
- */
-// ----------------------------------------------------------------------
 
-Plugin::~Plugin() {}
 // ----------------------------------------------------------------------
 /*!
  * \brief Return the plugin name

@@ -165,7 +165,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
                                             false,
                                             mappings);
 
-          if (mappings.size() == 0 && rec.mLevel < " ")
+          if (mappings.empty() && rec.mLevel < " ")
           {
             if (rec.mGeometryId > " ")
               gridEngine.getParameterMappings(rec.mProducerName,
@@ -210,7 +210,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
         // rec.print(std::cout,0,0);
       }
 
-      if (parameterDetails.empty() || parameterDetails[0].mMappings.size() == 0)
+      if (parameterDetails.empty() || parameterDetails[0].mMappings.empty())
       {
         Fmi::Exception exception(BCP, "Parameter mappings not found");
         exception.addParameter("Parameter", *parameter);
@@ -252,7 +252,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
                                             false,
                                             mappings);
 
-          if (mappings.size() == 0 && rec.mLevel < " ")
+          if (mappings.empty() && rec.mLevel < " ")
           {
             if (rec.mGeometryId > " ")
               gridEngine.getParameterMappings(pn,
@@ -290,7 +290,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
         // rec.print(std::cout,0,0);
       }
 
-      if (zParameterDetails.empty() || zParameterDetails[0].mMappings.size() == 0)
+      if (zParameterDetails.empty() || zParameterDetails[0].mMappings.empty())
       {
         Fmi::Exception exception(BCP, "Z-Parameter mappings not found");
         exception.addParameter("Z-Parameter", *zparameter);

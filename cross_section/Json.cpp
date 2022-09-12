@@ -67,10 +67,8 @@ void JSON::expand(Json::Value& theJson,
     else if (theJson.isObject())
     {
       const auto members = theJson.getMemberNames();
-      for (auto& name : members)
-      {
+      for (const auto& name : members)
         expand(theJson[name], theRootPath, thePath, theFileCache);
-      }
     }
   }
   catch (...)
@@ -124,10 +122,8 @@ void deref(Json::Value& theJson, Json::Value& theRoot)
     else if (theJson.isObject())
     {
       const auto members = theJson.getMemberNames();
-      for (auto& name : members)
-      {
+      for (const auto& name : members)
         deref(theJson[name], theRoot);
-      }
     }
   }
   catch (...)

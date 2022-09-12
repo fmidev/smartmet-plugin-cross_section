@@ -18,7 +18,6 @@ class IsolineLayer : public Layer
 {
  public:
   IsolineLayer();
-  ~IsolineLayer() override = default;
 
   void init(const Json::Value& theJson, const Config& theConfig) override;
 
