@@ -10,7 +10,6 @@
 #pragma once
 
 #include <boost/filesystem/path.hpp>
-#include <boost/noncopyable.hpp>
 #include <boost/thread.hpp>
 #include <macgyver/TemplateFormatter.h>
 #include <memory>
@@ -23,9 +22,12 @@ namespace CrossSection
 {
 using SharedFormatter = std::shared_ptr<Fmi::TemplateFormatter>;
 
-class TemplateFactory : public boost::noncopyable
+class TemplateFactory
 {
  public:
+  TemplateFactory() = default;
+  TemplateFactory(const TemplateFactory& other) = delete;
+  TemplateFactory& operator=(const TemplateFactory& other) = delete;
   SharedFormatter get(const boost::filesystem::path& theFilename) const;
 
  private:

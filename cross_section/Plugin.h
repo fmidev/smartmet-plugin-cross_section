@@ -6,6 +6,10 @@
 
 #pragma once
 
+#include "Config.h"
+#include "FileCache.h"
+#include "Product.h"
+#include "TemplateFactory.h"
 #include <engines/contour/Engine.h>
 #include <engines/geonames/Engine.h>
 #include <engines/grid/Engine.h>
@@ -15,21 +19,18 @@
 #include <spine/SmartMetPlugin.h>
 #include <spine/Thread.h>
 
-#include "Config.h"
-#include "FileCache.h"
-#include "Product.h"
-#include "TemplateFactory.h"
-
 namespace SmartMet
 {
 namespace Plugin
 {
 namespace CrossSection
 {
-class Plugin : public SmartMetPlugin, private boost::noncopyable
+class Plugin : public SmartMetPlugin
 {
  public:
   Plugin() = delete;
+  Plugin(const Plugin& other) = delete;
+  Plugin& operator=(const Plugin& other) = delete;
   Plugin(SmartMet::Spine::Reactor* theReactor, const char* theConfig);
 
   const std::string& getPluginName() const override;

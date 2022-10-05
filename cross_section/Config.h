@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include <boost/utility.hpp>
 #include <libconfig.h++>
 #include <set>
 #include <string>
@@ -17,10 +16,12 @@ namespace Plugin
 {
 namespace CrossSection
 {
-class Config : private boost::noncopyable
+class Config
 {
  public:
   Config() = delete;
+  Config(const Config& other) = delete;
+  Config& operator=(const Config& other) = delete;
   Config(const std::string& configfile);
 
   const std::string& defaultUrl() const;
