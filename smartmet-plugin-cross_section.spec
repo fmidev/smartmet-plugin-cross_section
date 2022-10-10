@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 22.10.5
+Version: 22.10.10
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -23,12 +23,12 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
 BuildRequires: smartmet-library-macgyver-devel >= 22.8.23
-BuildRequires: smartmet-library-timeseries-devel >= 22.10.4
+BuildRequires: smartmet-library-timeseries-devel >= 22.10.10
 BuildRequires: smartmet-library-spine-devel >= 22.9.5
 BuildRequires: smartmet-library-trax-devel >= 22.10.3
-BuildRequires: smartmet-library-grid-content-devel >= 22.9.29
-BuildRequires: smartmet-library-grid-files-devel >= 22.9.29
-BuildRequires: smartmet-engine-grid-devel >= 22.9.9
+BuildRequires: smartmet-library-grid-content-devel >= 22.10.10
+BuildRequires: smartmet-library-grid-files-devel >= 22.10.10
+BuildRequires: smartmet-engine-grid-devel >= 22.10.10
 BuildRequires: smartmet-engine-querydata-devel >= 22.10.5
 BuildRequires: smartmet-engine-geonames-devel >= 22.10.5
 BuildRequires: smartmet-engine-contour-devel >= 22.10.5
@@ -40,8 +40,8 @@ Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 22.8.23
-Requires: smartmet-library-timeseries >= 22.10.4
-Requires: smartmet-engine-grid >= 22.9.9
+Requires: smartmet-library-timeseries >= 22.10.10
+Requires: smartmet-engine-grid >= 22.10.10
 Requires: smartmet-engine-querydata >= 22.10.5
 Requires: smartmet-engine-geonames >= 22.10.5
 Requires: smartmet-engine-contour >= 22.10.5
@@ -56,12 +56,12 @@ Requires: bzip2-devel
 Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
-#TestRequires: smartmet-utils-devel >= 22.2.8
+#TestRequires: smartmet-utils-devel >= 22.10.7
 #TestRequires: smartmet-library-spine-plugin-test >= 22.9.5
 #TestRequires: smartmet-library-newbase-devel >= 22.8.29
 #TestRequires: smartmet-engine-contour >= 22.10.5
 #TestRequires: smartmet-engine-geonames >= 22.10.5
-#TestRequires: smartmet-engine-grid >= 22.9.9
+#TestRequires: smartmet-engine-grid >= 22.10.10
 #TestRequires: smartmet-engine-querydata >= 22.10.5
 #TestRequires: smartmet-test-data >= 20.12.1
 #TestRequires: smartmet-test-db
@@ -92,6 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Mon Oct 10 2022 Mika Heiskanen <mika.heiskanen@fmi.fi> - 22.10.10-1.fmi
+- Repackaged due to base library ABI changes
+
 * Wed Oct  5 2022 Mika Heiskanen <mika.heiskanen@fmi.fi> - 22.10.5-1.fmi
 - Do not use boost::noncopyable
 
