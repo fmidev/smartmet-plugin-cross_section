@@ -2,9 +2,9 @@
  "distance": 82.0885701806,
  "bbox":
  {
-   "xmin": 16.4177131653,
+   "xmin": 16.4177140361,
    "ymin": 0,
-   "xmax": 65.6708526611,
+   "xmax": 65.6708561445,
    "ymax": 60
  },
 "layers":
@@ -28,7 +28,7 @@
          },
          { "attributes": {"class": "Salinity_7_8" }, "lolimit": 7, "hilimit": 8, "path": "M62 35 49.3 37.9 32.8 37.5 32.8 40 32.8 41.3 49.3 42.8 65.7 45 65.7 40 65.7 35 65.7 31.7Z"
          },
-         { "attributes": {"class": "Salinity_8_9" }, "lolimit": 8, "hilimit": 9, "path": "M32.8 41.3 32.8 45 32.8 50 41 52.5 43.8 50 49.3 49.3 52 50 55.8 55 60.2 58.3 65.7 60 65.7 55 65.7 50 65.7 45 49.3 42.8Z"
+         { "attributes": {"class": "Salinity_8_9" }, "lolimit": 8, "hilimit": 9, "path": "M32.8 41.2 32.8 45 32.8 50 41 52.5 43.8 50 49.3 49.3 52 50 55.8 55 60.2 58.3 65.7 60 65.7 55 65.7 50 65.7 45 49.3 42.8Z"
          },
          { "attributes": {"class": "Salinity_9_inf" }, "lolimit": 9, "path": "M43.8 50 41 52.5 49.3 55 60.2 58.3 55.8 55 52 50 49.3 49.3Z"
          }
@@ -47,7 +47,7 @@
          },
          { "attributes": {"class": "Salinity_7" }, "value": 7, "path": "M65.7 31.7 62 35 49.3 37.9 32.8 37.5"
          },
-         { "attributes": {"class": "Salinity_8" }, "value": 8, "path": "M65.7 45 49.3 42.8 32.8 41.3"
+         { "attributes": {"class": "Salinity_8" }, "value": 8, "path": "M65.7 45 49.3 42.8 32.8 41.2"
          },
          { "attributes": {"class": "Salinity_9" }, "value": 9, "path": "M55.8 55 52 50 49.3 49.3 43.8 50"
          }
