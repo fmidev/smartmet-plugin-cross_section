@@ -65,6 +65,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-engine-querydata >= 22.12.2
 #TestRequires: smartmet-test-data >= 20.12.1
 #TestRequires: smartmet-test-db
+#TestRequires: libwebp13
 
 %description
 SmartMet Cross-Section plugin
