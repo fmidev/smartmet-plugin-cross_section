@@ -1,6 +1,5 @@
 #include "Layer.h"
 #include "Config.h"
-#include "Layer.h"
 #include "LayerFactory.h"
 #include "State.h"
 #include <ctpp2/CDT.hpp>

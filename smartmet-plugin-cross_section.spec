@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 23.1.19
+Version: 23.1.26
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -27,11 +27,11 @@ BuildRequires: smartmet-library-timeseries-devel >= 22.10.25
 BuildRequires: smartmet-library-spine-devel >= 23.1.16
 BuildRequires: smartmet-library-trax-devel >= 22.12.22
 BuildRequires: smartmet-library-grid-content-devel >= 23.1.19
-BuildRequires: smartmet-library-grid-files-devel >= 23.1.19
+BuildRequires: smartmet-library-grid-files-devel >= 23.1.24
 BuildRequires: smartmet-engine-grid-devel >= 23.1.19
 BuildRequires: smartmet-engine-querydata-devel >= 22.12.15
-BuildRequires: smartmet-engine-geonames-devel >= 22.12.21
-BuildRequires: smartmet-engine-contour-devel >= 22.12.19
+BuildRequires: smartmet-engine-geonames-devel >= 23.1.18
+BuildRequires: smartmet-engine-contour-devel >= 23.1.26
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -43,8 +43,8 @@ Requires: smartmet-library-macgyver >= 22.12.16
 Requires: smartmet-library-timeseries >= 22.10.25
 Requires: smartmet-engine-grid >= 23.1.19
 Requires: smartmet-engine-querydata >= 22.12.15
-Requires: smartmet-engine-geonames >= 22.12.21
-Requires: smartmet-engine-contour >= 22.12.19
+Requires: smartmet-engine-geonames >= 23.1.18
+Requires: smartmet-engine-contour >= 23.1.26
 Requires: smartmet-server >= 23.1.10
 Requires: smartmet-library-spine >= 23.1.16
 Requires: %{smartmet_boost}-date-time
@@ -59,8 +59,8 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 23.1.19
 #TestRequires: smartmet-library-spine-plugin-test >= 23.1.16
 #TestRequires: smartmet-library-newbase-devel >= 22.11.14
-#TestRequires: smartmet-engine-contour >= 22.12.19
-#TestRequires: smartmet-engine-geonames >= 22.12.21
+#TestRequires: smartmet-engine-contour >= 23.1.26
+#TestRequires: smartmet-engine-geonames >= 23.1.18
 #TestRequires: smartmet-engine-grid >= 23.1.19
 #TestRequires: smartmet-engine-querydata >= 22.12.15
 #TestRequires: smartmet-test-data >= 20.12.1
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Thu Jan 26 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.1.26-1.fmi
+- Silenced CodeChecker warnings
+
 * Thu Jan 19 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.1.19-1.fmi
 - Repackaged due to ABI changes in grid libraries
 

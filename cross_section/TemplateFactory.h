@@ -26,8 +26,13 @@ class TemplateFactory
 {
  public:
   TemplateFactory() = default;
+  ~TemplateFactory() = default;
+
   TemplateFactory(const TemplateFactory& other) = delete;
   TemplateFactory& operator=(const TemplateFactory& other) = delete;
+  TemplateFactory(TemplateFactory&& other) = delete;
+  TemplateFactory& operator=(TemplateFactory&& other) = delete;
+
   SharedFormatter get(const boost::filesystem::path& theFilename) const;
 
  private:

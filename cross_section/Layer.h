@@ -34,6 +34,13 @@ class Layer
 {
  public:
   virtual ~Layer() = default;
+  Layer() = default;
+
+  Layer(const Layer& other) = delete;
+  Layer& operator=(const Layer& other) = delete;
+  Layer(Layer&& other) = delete;
+  Layer& operator=(Layer&& other) = delete;
+
   bool init(const std::string& theName, const Json::Value& theJson, const Config& theConfig);
 
   virtual void init(const Json::Value& theJson, const Config& theConfig) = 0;

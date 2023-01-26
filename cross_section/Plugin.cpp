@@ -306,8 +306,9 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
   try
   {
     // Check request method (support GET, OPTIONS)
-    if (checkRequest(theRequest, theResponse, false)) {
-        return;
+    if (checkRequest(theRequest, theResponse, false))
+    {
+      return;
     }
 
     theResponse.setHeader("Access-Control-Allow-Origin", "*");
@@ -457,7 +458,11 @@ void Plugin::init()
 
     if (!itsReactor->addContentHandler(this,
                                        itsConfig.defaultUrl(),
-                                       boost::bind(&Plugin::callRequestHandler, this, _1, _2, _3)))
+                                       [this](Spine::Reactor &theReactor,
+                                              const Spine::HTTP::Request &theRequest,
+                                              Spine::HTTP::Response &theResponse) {
+                                         callRequestHandler(theReactor, theRequest, theResponse);
+                                       }))
       throw Fmi::Exception(BCP, "Failed to register CSection content handler");
   }
   catch (...)
