@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 23.1.26
+Version: 23.2.8
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -23,8 +23,8 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
 BuildRequires: smartmet-library-macgyver-devel >= 22.12.16
-BuildRequires: smartmet-library-timeseries-devel >= 22.10.25
-BuildRequires: smartmet-library-spine-devel >= 23.1.16
+BuildRequires: smartmet-library-timeseries-devel >= 23.1.31
+BuildRequires: smartmet-library-spine-devel >= 23.2.8
 BuildRequires: smartmet-library-trax-devel >= 22.12.22
 BuildRequires: smartmet-library-grid-content-devel >= 23.1.19
 BuildRequires: smartmet-library-grid-files-devel >= 23.1.24
@@ -40,13 +40,13 @@ Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 22.12.16
-Requires: smartmet-library-timeseries >= 22.10.25
+Requires: smartmet-library-timeseries >= 23.1.31
 Requires: smartmet-engine-grid >= 23.1.19
 Requires: smartmet-engine-querydata >= 22.12.15
 Requires: smartmet-engine-geonames >= 23.1.18
 Requires: smartmet-engine-contour >= 23.1.26
-Requires: smartmet-server >= 23.1.10
-Requires: smartmet-library-spine >= 23.1.16
+Requires: smartmet-server >= 23.2.1
+Requires: smartmet-library-spine >= 23.2.8
 Requires: %{smartmet_boost}-date-time
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
@@ -57,13 +57,13 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 23.1.19
-#TestRequires: smartmet-library-spine-plugin-test >= 23.1.16
+#TestRequires: smartmet-library-spine-plugin-test >= 23.2.8
 #TestRequires: smartmet-library-newbase-devel >= 22.11.14
 #TestRequires: smartmet-engine-contour >= 23.1.26
 #TestRequires: smartmet-engine-geonames >= 23.1.18
 #TestRequires: smartmet-engine-grid >= 23.1.19
 #TestRequires: smartmet-engine-querydata >= 22.12.15
-#TestRequires: smartmet-test-data >= 20.12.1
+#TestRequires: smartmet-test-data >= 23.2.2
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
 
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Wed Feb  8 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.2.8-1.fmi
+- Add host name to stack traces
+
 * Thu Jan 26 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.1.26-1.fmi
 - Silenced CodeChecker warnings
 

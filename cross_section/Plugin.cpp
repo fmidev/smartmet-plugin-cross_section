@@ -18,6 +18,7 @@
 #include <macgyver/AnsiEscapeCodes.h>
 #include <macgyver/Exception.h>
 #include <spine/Convenience.h>
+#include <spine/HostInfo.h>
 #include <spine/SmartMet.h>
 #include <timeseries/OptionParsers.h>
 #include <timeseries/TimeSeriesGeneratorOptions.h>
@@ -367,6 +368,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
       Fmi::Exception exception(BCP, "Request processing exception!", nullptr);
       exception.addParameter("URI", theRequest.getURI());
       exception.addParameter("ClientIP", theRequest.getClientIP());
+      exception.addParameter("HostName", Spine::HostInfo::getHostName(theRequest.getClientIP()));
       exception.printError();
 
       if (isdebug)
