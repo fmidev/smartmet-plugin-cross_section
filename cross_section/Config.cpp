@@ -5,8 +5,9 @@
 // ======================================================================
 
 #include "Config.h"
-#include <macgyver/Exception.h>
 #include <boost/filesystem/path.hpp>
+#include <macgyver/Exception.h>
+#include <spine/ConfigTools.h>
 #include <stdexcept>
 
 using std::string;
@@ -40,6 +41,7 @@ Config::Config(const string& configfile)
       itsConfig.setIncludeDir(p.c_str());
 
       itsConfig.readFile(configfile.c_str());
+      Spine::expandVariables(itsConfig);
 
       // required parameters
       std::string root = itsConfig.lookup("root");
