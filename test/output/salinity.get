@@ -39,7 +39,7 @@
        
        "Salinity":
        [
-         { "attributes": {"class": "Salinity_4" }, "value": 4, "path": "M32.8 15 28.7 10 28.7 5 28.7 0M65.7 5 63.3 10 55.2 15 49.3 17.2 32.8 15"
+         { "attributes": {"class": "Salinity_4" }, "value": 4, "path": "M65.7 5 63.3 10 55.2 15 49.3 17.2 32.8 15 28.7 10 28.7 5 28.7 0"
          },
          { "attributes": {"class": "Salinity_5" }, "value": 5, "path": "M65.7 16.4 55.6 20 49.3 25 32.8 25.8"
          },
@@ -49,7 +49,7 @@
          },
          { "attributes": {"class": "Salinity_8" }, "value": 8, "path": "M65.7 45 49.3 42.8 32.8 41.2"
          },
-         { "attributes": {"class": "Salinity_9" }, "value": 9, "path": "M55.8 55 52 50 49.3 49.3 43.8 50"
+         { "attributes": {"class": "Salinity_9" }, "value": 9, "path": "M60.2 58.3 55.8 55 52 50 49.3 49.3 43.8 50 41 52.5"
          }
        ]
      }
