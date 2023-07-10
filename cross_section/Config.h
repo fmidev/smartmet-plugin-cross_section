@@ -19,8 +19,8 @@ namespace CrossSection
 class Config
 {
  public:
-  Config(const std::string& configfile);
-
+  explicit Config(const std::string& configfile);
+  ~Config() = default;
   Config() = delete;
   Config(const Config& other) = delete;
   Config& operator=(const Config& other) = delete;

@@ -45,7 +45,7 @@ class State
   State() = delete;
 
   // Set the state of the plugin
-  State(const Plugin& thePlugin);
+  explicit State(const Plugin& thePlugin);
 
   // Give access to configuration variables
   const Config& getConfig() const;
@@ -66,10 +66,7 @@ class State
   {
     return itsPlugin.getContourEngine();
   }
-  const SmartMet::Engine::Grid::Engine& getGridEngine() const
-  {
-    return itsPlugin.getGridEngine();
-  }
+  const SmartMet::Engine::Grid::Engine& getGridEngine() const { return itsPlugin.getGridEngine(); }
   // Valid time
   void time(const boost::local_time::local_date_time& theTime) { itsLocalTime = theTime; }
   const boost::local_time::local_date_time& time() const { return itsLocalTime; }

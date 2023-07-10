@@ -29,7 +29,7 @@ class Plugin : public SmartMetPlugin
 {
  public:
   Plugin(SmartMet::Spine::Reactor* theReactor, const char* theConfig);
-
+  ~Plugin() = default;
   Plugin() = delete;
   Plugin(const Plugin& other) = delete;
   Plugin& operator=(const Plugin& other) = delete;
