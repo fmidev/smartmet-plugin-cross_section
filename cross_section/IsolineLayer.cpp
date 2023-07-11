@@ -112,10 +112,12 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     if (!gridEngine.isEnabled())
       throw Fmi::Exception(BCP, "The grid-engine is disabled!");
 
-    std::string report = "IsolineLayer::generate finished in %t sec CPU, %w sec real\n";
     boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> timer;
     if (theState.query().timer)
+    {
+      std::string report = "IsolineLayer::generate finished in %t sec CPU, %w sec real\n";
       timer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
+    }
 
     if (parameter == boost::none)
       throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
@@ -406,11 +408,10 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
                 smooth_degree,
                 contours);
 
-    std::vector<OGRGeometryPtr> geoms;
-
     if (!contours.empty())
     {
       uint c = 0;
+      std::vector<OGRGeometryPtr> geoms;
       for (const auto& wkb : contours)
       {
         const auto* cwkb = reinterpret_cast<const unsigned char*>(wkb.data());
@@ -477,10 +478,12 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 {
   try
   {
-    std::string report = "IsolineLayer::generate finished in %t sec CPU, %w sec real\n";
     boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> timer;
     if (theState.query().timer)
+    {
+      std::string report = "IsolineLayer::generate finished in %t sec CPU, %w sec real\n";
       timer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
+    }
 
     // Establish the data
     auto q = theState.producer();

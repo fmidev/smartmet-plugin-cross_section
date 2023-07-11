@@ -32,7 +32,7 @@ class FileCache
  private:
   struct FileContents
   {
-    std::time_t modification_time;
+    std::time_t modification_time = 0UL;
     std::string content;
 
     FileContents() = default;

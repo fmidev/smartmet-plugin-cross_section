@@ -80,26 +80,26 @@ std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
 
     // Generate the query variables
 
-    Query query;
-    query.timer = SmartMet::Spine::optional_bool(theRequest.getParameter("timer"), false);
+    Query q;
+    q.timer = SmartMet::Spine::optional_bool(theRequest.getParameter("timer"), false);
 
-    query.customer = SmartMet::Spine::optional_string(theRequest.getParameter("customer"),
-                                                      itsConfig.defaultCustomer());
+    q.customer = SmartMet::Spine::optional_string(theRequest.getParameter("customer"),
+                                                  itsConfig.defaultCustomer());
 
-    query.producer = SmartMet::Spine::required_string(
+    q.producer = SmartMet::Spine::required_string(
         theRequest.getParameter("producer"), "Product configuration option 'producer' not given");
 
-    query.zproducer =
-        SmartMet::Spine::optional_string(theRequest.getParameter("zproducer"), query.producer);
-    query.source = SmartMet::Spine::optional_string(theRequest.getParameter("source"), "querydata");
+    q.zproducer =
+        SmartMet::Spine::optional_string(theRequest.getParameter("zproducer"), q.producer);
+    q.source = SmartMet::Spine::optional_string(theRequest.getParameter("source"), "querydata");
 
-    query.steps = SmartMet::Spine::required_unsigned_long(
+    q.steps = SmartMet::Spine::required_unsigned_long(
         theRequest.getParameter("steps"),
         "Configuration option 'steps' must be given to determine "
         "how many parts the isocircle is divided into");
 
-    query.timezone = SmartMet::Spine::optional_string(theRequest.getParameter("timezone"),
-                                                      itsConfig.defaultTimeZone());
+    q.timezone = SmartMet::Spine::optional_string(theRequest.getParameter("timezone"),
+                                                  itsConfig.defaultTimeZone());
 
     // We require exactly two locations
 
@@ -109,31 +109,31 @@ std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
       throw Fmi::Exception(BCP, "Exactly two locations are required for a cross-section");
 
     const auto &locs = loptions.locations();
-    query.longitude1 = locs.front().loc->longitude;
-    query.latitude1 = locs.front().loc->latitude;
-    query.longitude2 = locs.back().loc->longitude;
-    query.latitude2 = locs.back().loc->latitude;
+    q.longitude1 = locs.front().loc->longitude;
+    q.latitude1 = locs.front().loc->latitude;
+    q.longitude2 = locs.back().loc->longitude;
+    q.latitude2 = locs.back().loc->latitude;
 
     // State variable
 
     State state(*this);
-    state.query(query);
+    state.query(q);
 
     // And timeseries options now that state (and querydata) is established
 
     TimeSeries::TimeSeriesGeneratorOptions toptions = SmartMet::TimeSeries::parseTimes(theRequest);
 
-    if (!query.source || *query.source != "grid")
+    if (!q.source || *q.source != "grid")
       toptions.setDataTimes(state.producer()->validTimes(), state.producer()->isClimatology());
 
-    auto tz = itsGeoEngine->getTimeZones().time_zone_from_string(query.timezone);
+    auto tz = itsGeoEngine->getTimeZones().time_zone_from_string(q.timezone);
     auto times = TimeSeries::TimeSeriesGenerator::generate(toptions, tz);
 
     // Product JSON
 
     auto product_name = SmartMet::Spine::required_string(
         theRequest.getParameter("product"), "Product configuration option 'product' not given");
-    auto product = getProduct(query.customer, product_name, print_json);
+    auto product = getProduct(q.customer, product_name, print_json);
 
     // The template to fill
 
@@ -145,27 +145,31 @@ std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
     // Build the response CDT
     CTPP::CDT hash(CTPP::CDT::HASH_VAL);
     {
-      std::string report = "Product::generate finished in %t sec CPU, %w sec real\n";
       boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> mytimer;
-      if (query.timer)
+      if (q.timer)
+      {
+        std::string report = "Product::generate finished in %t sec CPU, %w sec real\n";
         mytimer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
+      }
       product.generate(hash, state, times);
     }
 
     if (print_hash)
     {
-      std::cout << "Generated CDT for " << query.customer << " " << product_name << std::endl
+      std::cout << "Generated CDT for " << q.customer << " " << product_name << std::endl
                 << hash.RecursiveDump() << std::endl;
     }
 
     std::string output;
-    std::string log;
     try
     {
-      std::string report = "Template processing finished in %t sec CPU, %w sec real\n";
+      std::string log;
       std::unique_ptr<boost::timer::auto_cpu_timer> mytimer;
-      if (query.timer)
+      if (q.timer)
+      {
+        std::string report = "Template processing finished in %t sec CPU, %w sec real\n";
         mytimer.reset(new boost::timer::auto_cpu_timer(2, report));
+      }
       tmpl->process(hash, output, log);
     }
     catch (const CTPP::CTPPException &e)
@@ -384,7 +388,8 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
       // Remove newlines, make sure length is reasonable
       std::string msg = exception.what();
       boost::algorithm::replace_all(msg, "\n", " ");
-      msg = msg.substr(0, 100);
+      if (msg.size() > 100)
+        msg.resize(100);
       theResponse.setHeader("X-CSection-Error", msg);
     }
   }
