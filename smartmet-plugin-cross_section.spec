@@ -22,9 +22,9 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: smartmet-library-macgyver-devel >= 23.6.15
+BuildRequires: smartmet-library-macgyver-devel >= 23.7.28
 BuildRequires: smartmet-library-timeseries-devel >= 23.7.10
-BuildRequires: smartmet-library-spine-devel >= 23.7.10
+BuildRequires: smartmet-library-spine-devel >= 23.7.28
 BuildRequires: smartmet-library-trax-devel >= 23.7.10
 BuildRequires: smartmet-library-grid-content-devel >= 23.7.10
 BuildRequires: smartmet-library-grid-files-devel >= 23.7.10
@@ -39,14 +39,14 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-macgyver >= 23.6.15
+Requires: smartmet-library-macgyver >= 23.7.28
 Requires: smartmet-library-timeseries >= 23.7.10
 Requires: smartmet-engine-grid >= 23.7.11
 Requires: smartmet-engine-querydata >= 23.7.10
 Requires: smartmet-engine-geonames >= 23.7.11
 Requires: smartmet-engine-contour >= 23.7.11
 Requires: smartmet-server >= 23.5.19
-Requires: smartmet-library-spine >= 23.7.10
+Requires: smartmet-library-spine >= 23.7.28
 Requires: %{smartmet_boost}-date-time
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
@@ -57,8 +57,8 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 23.7.11
-#TestRequires: smartmet-library-spine-plugin-test >= 23.7.10
-#TestRequires: smartmet-library-newbase-devel >= 23.7.10
+#TestRequires: smartmet-library-spine-plugin-test >= 23.7.28
+#TestRequires: smartmet-library-newbase-devel >= 23.7.28
 #TestRequires: smartmet-engine-contour >= 23.7.11
 #TestRequires: smartmet-engine-geonames >= 23.7.11
 #TestRequires: smartmet-engine-grid >= 23.7.11
