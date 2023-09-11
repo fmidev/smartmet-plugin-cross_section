@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 23.9.1
+Version: 23.9.11
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -30,7 +30,7 @@ BuildRequires: smartmet-library-grid-content-devel >= 23.7.28
 BuildRequires: smartmet-library-grid-files-devel >= 23.8.21
 BuildRequires: smartmet-engine-grid-devel >= 23.7.28
 BuildRequires: smartmet-engine-querydata-devel >= 23.8.31
-BuildRequires: smartmet-engine-geonames-devel >= 23.7.28
+BuildRequires: smartmet-engine-geonames-devel >= 23.9.6
 BuildRequires: smartmet-engine-contour-devel >= 23.8.28
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
@@ -43,7 +43,7 @@ Requires: smartmet-library-macgyver >= 23.8.31
 Requires: smartmet-library-timeseries >= 23.7.28
 Requires: smartmet-engine-grid >= 23.7.28
 Requires: smartmet-engine-querydata >= 23.8.31
-Requires: smartmet-engine-geonames >= 23.7.28
+Requires: smartmet-engine-geonames >= 23.9.6
 Requires: smartmet-engine-contour >= 23.8.28
 Requires: smartmet-server >= 23.8.30
 Requires: smartmet-library-spine >= 23.8.31
@@ -56,11 +56,11 @@ Requires: bzip2-devel
 Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
-#TestRequires: smartmet-utils-devel >= 23.8.23
+#TestRequires: smartmet-utils-devel >= 23.9.6
 #TestRequires: smartmet-library-spine-plugin-test >= 23.8.31
 #TestRequires: smartmet-library-newbase-devel >= 23.8.30
 #TestRequires: smartmet-engine-contour >= 23.8.28
-#TestRequires: smartmet-engine-geonames >= 23.7.28
+#TestRequires: smartmet-engine-geonames >= 23.9.6
 #TestRequires: smartmet-engine-grid >= 23.7.28
 #TestRequires: smartmet-engine-querydata >= 23.8.31
 #TestRequires: smartmet-test-data >= 23.7.14
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Mon Sep 11 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.9.11-1.fmi
+- Repackaged due to grid-files ABI changes
+
 * Fri Sep  1 2023 Mika Heiskanen <mheiskan@rhel8.dev.fmi.fi> - 23.9.1-1.fmi
 - Repackaged
 
