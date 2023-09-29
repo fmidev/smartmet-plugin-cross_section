@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 23.9.11
+Version: 23.9.29
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -23,12 +23,12 @@ BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
 BuildRequires: smartmet-library-macgyver-devel >= 23.8.31
-BuildRequires: smartmet-library-timeseries-devel >= 23.7.28
+BuildRequires: smartmet-library-timeseries-devel >= 23.9.18
 BuildRequires: smartmet-library-spine-devel >= 23.8.31
 BuildRequires: smartmet-library-trax-devel >= 23.8.17
-BuildRequires: smartmet-library-grid-content-devel >= 23.9.11
-BuildRequires: smartmet-library-grid-files-devel >= 23.9.11
-BuildRequires: smartmet-engine-grid-devel >= 23.9.11
+BuildRequires: smartmet-library-grid-content-devel >= 23.9.29
+BuildRequires: smartmet-library-grid-files-devel >= 23.9.29
+BuildRequires: smartmet-engine-grid-devel >= 23.9.29
 BuildRequires: smartmet-engine-querydata-devel >= 23.8.31
 BuildRequires: smartmet-engine-geonames-devel >= 23.9.6
 BuildRequires: smartmet-engine-contour-devel >= 23.8.28
@@ -40,8 +40,8 @@ Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 23.8.31
-Requires: smartmet-library-timeseries >= 23.7.28
-Requires: smartmet-engine-grid >= 23.9.11
+Requires: smartmet-library-timeseries >= 23.9.18
+Requires: smartmet-engine-grid >= 23.9.29
 Requires: smartmet-engine-querydata >= 23.8.31
 Requires: smartmet-engine-geonames >= 23.9.6
 Requires: smartmet-engine-contour >= 23.8.28
@@ -61,7 +61,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-library-newbase-devel >= 23.8.30
 #TestRequires: smartmet-engine-contour >= 23.8.28
 #TestRequires: smartmet-engine-geonames >= 23.9.6
-#TestRequires: smartmet-engine-grid >= 23.9.11
+#TestRequires: smartmet-engine-grid >= 23.9.29
 #TestRequires: smartmet-engine-querydata >= 23.8.31
 #TestRequires: smartmet-test-data >= 23.7.14
 #TestRequires: smartmet-test-db
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
 
 %changelog
+* Fri Sep 29 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.9.29-1.fmi
+- Repackaged due to ABI changes in grid-libraries
+
 * Mon Sep 11 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.9.11-1.fmi
 - Repackaged due to grid-files ABI changes
 
