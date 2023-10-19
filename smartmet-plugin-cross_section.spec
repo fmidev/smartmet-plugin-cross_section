@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 23.10.12
+Version: 23.10.19
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -90,9 +90,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(0775,root,root,0775)
 %{_datadir}/smartmet/plugins/cross_section.so
 %defattr(0664,root,root,0775)
-%{_sysconfdir}/smartmet/plugins/cross_section/*.c2t
+%{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Thu Oct 19 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.10.19-1.fmi
+- Moved templates from /etc/smartmet/plugins/cross_section to /usr/share/smartmet/cross_section
+
 * Thu Oct 12 2023 Andris Pavēnis <andris.pavenis@fmi.fi> 23.10.12-1.fmi
 - Repackage due to smartmet-library-grid-files and smartmet-library-grid-files changes
 
