@@ -29,7 +29,7 @@ Config::Config(const string& configfile)
       itsDefaultTemplate("svgjson"),
       itsDefaultCustomer("fmi"),
       itsDefaultTimeZone("UTC"),
-      itsTemplateDirectory("/etc/brainstorm/plugins/csection/templates")
+      itsTemplateDirectory("/usr/share/smartmet/cross_section")
 {
   try
   {
