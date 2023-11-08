@@ -68,8 +68,8 @@ class State
   }
   const SmartMet::Engine::Grid::Engine& getGridEngine() const { return itsPlugin.getGridEngine(); }
   // Valid time
-  void time(const boost::local_time::local_date_time& theTime) { itsLocalTime = theTime; }
-  const boost::local_time::local_date_time& time() const { return itsLocalTime; }
+  void time(const Fmi::LocalDateTime& theTime) { itsLocalTime = theTime; }
+  const Fmi::LocalDateTime& time() const { return itsLocalTime; }
   const OGREnvelope& envelope() const { return itsEnvelope; }
   void updateEnvelope(const OGRGeometryPtr& theGeom);
 
@@ -79,7 +79,7 @@ class State
 
   // current state:
   SmartMet::Engine::Querydata::Q itsQ;
-  boost::local_time::local_date_time itsLocalTime;
+  Fmi::LocalDateTime itsLocalTime;
 
   OGREnvelope itsEnvelope;
 };

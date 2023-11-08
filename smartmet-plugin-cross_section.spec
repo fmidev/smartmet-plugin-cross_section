@@ -22,7 +22,7 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: smartmet-library-macgyver-devel >= 23.10.10
+BuildRequires: smartmet-library-macgyver-devel >= 23.11.8
 BuildRequires: smartmet-library-timeseries-devel >= 23.10.30
 BuildRequires: smartmet-library-spine-devel >= 23.10.20
 BuildRequires: smartmet-library-trax-devel >= 23.8.17
@@ -39,7 +39,7 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-macgyver >= 23.10.10
+Requires: smartmet-library-macgyver >= 23.11.8
 Requires: smartmet-library-timeseries >= 23.10.30
 Requires: smartmet-engine-grid >= 23.10.30
 Requires: smartmet-engine-querydata >= 23.10.12

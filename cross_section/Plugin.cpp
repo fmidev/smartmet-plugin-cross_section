@@ -318,7 +318,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 
     theResponse.setHeader("Access-Control-Allow-Origin", "*");
 
-    using boost::posix_time::ptime;
+    using Fmi::DateTime;
 
     const bool isdebug = SmartMet::Spine::optional_bool(theRequest.getParameter("debug"), false);
 
@@ -328,7 +328,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 
     // Now
 
-    ptime t_now = boost::posix_time::second_clock::universal_time();
+    Fmi::DateTime t_now = Fmi::SecondClock::universal_time();
 
     try
     {
@@ -338,7 +338,7 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 
       // Build cache expiration time info
 
-      ptime t_expires = t_now + boost::posix_time::seconds(expires_seconds);
+      Fmi::DateTime t_expires = t_now + Fmi::Seconds(expires_seconds);
 
       // The headers themselves
 
