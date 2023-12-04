@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 23.11.17
+Version: 23.12.4
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -22,14 +22,14 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: smartmet-library-macgyver-devel >= 23.11.8
-BuildRequires: smartmet-library-timeseries-devel >= 23.10.30
+BuildRequires: smartmet-library-macgyver-devel >= 23.11.21
+BuildRequires: smartmet-library-timeseries-devel >= 23.11.21
 BuildRequires: smartmet-library-spine-devel >= 23.10.20
 BuildRequires: smartmet-library-trax-devel >= 23.8.17
-BuildRequires: smartmet-library-grid-content-devel >= 23.11.10
-BuildRequires: smartmet-library-grid-files-devel >= 23.11.6
-BuildRequires: smartmet-engine-grid-devel >= 23.11.10
-BuildRequires: smartmet-engine-querydata-devel >= 23.10.12
+BuildRequires: smartmet-library-grid-content-devel >= 23.11.27
+BuildRequires: smartmet-library-grid-files-devel >= 23.11.28
+BuildRequires: smartmet-engine-grid-devel >= 23.11.17
+BuildRequires: smartmet-engine-querydata-devel >= 23.12.1
 BuildRequires: smartmet-engine-geonames-devel >= 23.9.6
 BuildRequires: smartmet-engine-contour-devel >= 23.10.3
 BuildRequires: ctpp2 >= 2.8.8
@@ -39,10 +39,10 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-macgyver >= 23.11.8
-Requires: smartmet-library-timeseries >= 23.10.30
-Requires: smartmet-engine-grid >= 23.11.10
-Requires: smartmet-engine-querydata >= 23.10.12
+Requires: smartmet-library-macgyver >= 23.11.21
+Requires: smartmet-library-timeseries >= 23.11.21
+Requires: smartmet-engine-grid >= 23.11.17
+Requires: smartmet-engine-querydata >= 23.12.1
 Requires: smartmet-engine-geonames >= 23.9.6
 Requires: smartmet-engine-contour >= 23.10.3
 Requires: smartmet-server >= 23.8.30
@@ -58,11 +58,11 @@ Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 23.9.6
 #TestRequires: smartmet-library-spine-plugin-test >= 23.10.20
-#TestRequires: smartmet-library-newbase-devel >= 23.10.11
+#TestRequires: smartmet-library-newbase-devel >= 23.11.21
 #TestRequires: smartmet-engine-contour >= 23.10.3
 #TestRequires: smartmet-engine-geonames >= 23.9.6
-#TestRequires: smartmet-engine-grid >= 23.11.10
-#TestRequires: smartmet-engine-querydata >= 23.10.12
+#TestRequires: smartmet-engine-grid >= 23.11.17
+#TestRequires: smartmet-engine-querydata >= 23.12.1
 #TestRequires: smartmet-test-data >= 23.11.8
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Mon Dec  4 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.12.4-1.fmi
+- Repackaged due to QEngine ABI changes
+
 * Fri Nov 17 2023 Pertti Kinnia <pertti.kinnia@fmi.fi> - 23.11.17-1.fmi
 - Repackaged due to API changes in grid-files and grid-content
 
