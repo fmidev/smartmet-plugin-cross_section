@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 23.12.4
+Version: 23.12.5
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -24,12 +24,12 @@ BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
 BuildRequires: smartmet-library-macgyver-devel >= 23.11.21
 BuildRequires: smartmet-library-timeseries-devel >= 23.11.21
-BuildRequires: smartmet-library-spine-devel >= 23.10.20
+BuildRequires: smartmet-library-spine-devel >= 23.12.5
 BuildRequires: smartmet-library-trax-devel >= 23.8.17
 BuildRequires: smartmet-library-grid-content-devel >= 23.11.27
-BuildRequires: smartmet-library-grid-files-devel >= 23.11.28
+BuildRequires: smartmet-library-grid-files-devel >= 23.12.4
 BuildRequires: smartmet-engine-grid-devel >= 23.11.17
-BuildRequires: smartmet-engine-querydata-devel >= 23.12.1
+BuildRequires: smartmet-engine-querydata-devel >= 23.12.4
 BuildRequires: smartmet-engine-geonames-devel >= 23.9.6
 BuildRequires: smartmet-engine-contour-devel >= 23.10.3
 BuildRequires: ctpp2 >= 2.8.8
@@ -42,11 +42,11 @@ Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 23.11.21
 Requires: smartmet-library-timeseries >= 23.11.21
 Requires: smartmet-engine-grid >= 23.11.17
-Requires: smartmet-engine-querydata >= 23.12.1
+Requires: smartmet-engine-querydata >= 23.12.4
 Requires: smartmet-engine-geonames >= 23.9.6
 Requires: smartmet-engine-contour >= 23.10.3
-Requires: smartmet-server >= 23.8.30
-Requires: smartmet-library-spine >= 23.10.20
+Requires: smartmet-server >= 23.12.5
+Requires: smartmet-library-spine >= 23.12.5
 Requires: %{smartmet_boost}-date-time
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
@@ -57,12 +57,12 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 23.9.6
-#TestRequires: smartmet-library-spine-plugin-test >= 23.10.20
+#TestRequires: smartmet-library-spine-plugin-test >= 23.12.5
 #TestRequires: smartmet-library-newbase-devel >= 23.11.21
 #TestRequires: smartmet-engine-contour >= 23.10.3
 #TestRequires: smartmet-engine-geonames >= 23.9.6
 #TestRequires: smartmet-engine-grid >= 23.11.17
-#TestRequires: smartmet-engine-querydata >= 23.12.1
+#TestRequires: smartmet-engine-querydata >= 23.12.4
 #TestRequires: smartmet-test-data >= 23.11.8
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Tue Dec  5 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.12.5-1.fmi
+- Repackaged due to an ABI change in SmartMetPlugin
+
 * Mon Dec  4 2023 Mika Heiskanen <mika.heiskanen@fmi.fi> - 23.12.4-1.fmi
 - Repackaged due to QEngine ABI changes
 
