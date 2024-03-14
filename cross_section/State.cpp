@@ -17,7 +17,7 @@ namespace CrossSection
 // ----------------------------------------------------------------------
 
 State::State(const Plugin& thePlugin)
-    : itsPlugin(thePlugin), itsLocalTime(boost::date_time::not_a_date_time)
+    : itsPlugin(thePlugin), itsLocalTime(Fmi::LocalDateTime::NOT_A_DATE_TIME)
 {
 }
 
