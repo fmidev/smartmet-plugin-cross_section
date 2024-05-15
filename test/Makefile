@@ -15,7 +15,6 @@ LIBS += -L$(libdir) \
 	-lsmartmet-spine  \
 	-lsmartmet-macgyver \
 	-lsmartmet-newbase \
-	-lboost_date_time \
 	-lboost_thread \
 	-lboost_filesystem \
 	-lboost_iostreams \
