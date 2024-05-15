@@ -18,7 +18,6 @@ LIBS += -L$(libdir) \
 	-lsmartmet-timeseries \
 	-lsmartmet-spine \
 	-lsmartmet-gis \
-	-lboost_date_time \
 	-lboost_thread \
 	-lboost_iostreams \
 	-lboost_system \
