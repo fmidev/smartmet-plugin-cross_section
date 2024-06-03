@@ -3,7 +3,7 @@
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
 Version: 24.6.3
-Release: 1%{?dist}.fmi
+Release: 2%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
@@ -26,7 +26,7 @@ BuildRequires: smartmet-library-macgyver-devel >= 24.5.30
 BuildRequires: smartmet-library-timeseries-devel >= 24.5.28
 BuildRequires: smartmet-library-spine-devel >= 24.5.27
 BuildRequires: smartmet-library-trax-devel >= 24.5.24
-BuildRequires: smartmet-library-grid-content-devel >= 24.5.29
+BuildRequires: smartmet-library-grid-content-devel >= 24.6.3
 BuildRequires: smartmet-library-grid-files-devel >= 24.5.30
 BuildRequires: smartmet-engine-grid-devel >= 24.6.3
 BuildRequires: smartmet-engine-querydata-devel >= 24.5.29
@@ -92,6 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Mon Jun  3 2024 Mika Heiskanen <mika.heiskanen@fmi.fi> - 24.6.3-2.fmi
+- Updated grid-content requirement
+
 * Mon Jun  3 2024 Mika Heiskanen <mika.heiskanen@fmi.fi> - 24.6.3-1.fmi
 - Repackaged due to ABI changes
 
