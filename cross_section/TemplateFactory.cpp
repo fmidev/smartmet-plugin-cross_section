@@ -4,6 +4,7 @@
 #include <boost/filesystem/operations.hpp>
 #include <boost/make_shared.hpp>
 #include <macgyver/Exception.h>
+#include <macgyver/FileSystem.h>
 
 namespace SmartMet
 {
@@ -36,7 +37,12 @@ SharedFormatter TemplateFactory::get(const std::filesystem::path& theFilename) c
 
     const auto& tinfo = tmap.find(theFilename);
 
-    const std::time_t modtime = std::filesystem::last_write_time(theFilename);
+    const std::optional<std::time_t> opt_modtime = Fmi::last_write_time(theFilename);
+    if (!opt_modtime)
+    {
+      throw Fmi::Exception(BCP, "Failed to get last write time of " + theFilename.string());
+    }
+    const std::time_t modtime = *opt_modtime;
 
     // Use cached template if it is up to date
     if (tinfo != tmap.end())

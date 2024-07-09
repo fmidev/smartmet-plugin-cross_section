@@ -3,6 +3,7 @@
 #include "FileCache.h"
 #include <boost/filesystem/operations.hpp>
 #include <macgyver/Exception.h>
+#include <macgyver/FileSystem.h>
 #include <fstream>
 #include <stdexcept>
 
@@ -22,7 +23,14 @@ std::string FileCache::get(const std::filesystem::path& thePath) const
 {
   try
   {
-    std::time_t mtime = std::filesystem::last_write_time(thePath);
+    const std::optional<std::time_t> opt_modtime = Fmi::last_write_time(thePath);
+    if (!opt_modtime)
+    {
+      Fmi::Exception err(BCP, "Failed to get last write time");
+      err.addParameter("Path", thePath);
+      throw err;
+    }
+    const std::time_t mtime = *opt_modtime;
 
     // Try using the cache with a lock first
     {

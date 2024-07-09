@@ -113,17 +113,17 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     if (!gridEngine.isEnabled())
       throw Fmi::Exception(BCP, "The grid-engine is disabled!");
 
-    boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> timer;
+    std::unique_ptr<boost::timer::auto_cpu_timer> timer;
     if (theState.query().timer)
     {
       std::string report = "IsobandLayer::generate finished in %t sec CPU, %w sec real\n";
       timer = std::make_unique<boost::timer::auto_cpu_timer>(2, report);
     }
 
-    if (parameter == boost::none)
+    if (parameter == std::nullopt)
       throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
 
-    if (zparameter == boost::none)
+    if (zparameter == std::nullopt)
       throw Fmi::Exception(BCP, "Z-Parameter not set for isoband-layer");
 
     std::string pName = *parameter;
@@ -496,7 +496,7 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 {
   try
   {
-    boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> timer;
+    std::unique_ptr<boost::timer::auto_cpu_timer> timer;
     if (theState.query().timer)
     {
       std::string report = "IsobandLayer::generate finished in %t sec CPU, %w sec real\n";
@@ -508,7 +508,7 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 
     // Establish the parameter
 
-    if (parameter == boost::none)
+    if (parameter == std::nullopt)
       throw Fmi::Exception(BCP, "Parameter not set for isoband-layer");
     auto param = SmartMet::TimeSeries::ParameterFactory::instance().parse(*parameter);
 

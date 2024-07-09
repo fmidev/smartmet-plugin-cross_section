@@ -145,7 +145,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
     // Build the response CDT
     CTPP::CDT hash(CTPP::CDT::HASH_VAL);
     {
-      boost::movelib::unique_ptr<boost::timer::auto_cpu_timer> mytimer;
+      std::unique_ptr<boost::timer::auto_cpu_timer> mytimer;
       if (q.timer)
       {
         std::string report = "Product::generate finished in %t sec CPU, %w sec real\n";
