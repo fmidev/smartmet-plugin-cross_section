@@ -149,7 +149,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
       if (q.timer)
       {
         std::string report = "Product::generate finished in %t sec CPU, %w sec real\n";
-        mytimer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
+        mytimer = std::make_unique<boost::timer::auto_cpu_timer>(2, report);
       }
       product.generate(hash, state, times);
     }

@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <boost/filesystem/path.hpp>
+#include <filesystem>
 #include <boost/thread.hpp>
 #include <macgyver/TemplateFormatter.h>
 #include <memory>
@@ -33,7 +33,7 @@ class TemplateFactory
   TemplateFactory(TemplateFactory&& other) = delete;
   TemplateFactory& operator=(TemplateFactory&& other) = delete;
 
-  SharedFormatter get(const boost::filesystem::path& theFilename) const;
+  SharedFormatter get(const std::filesystem::path& theFilename) const;
 
  private:
   struct TemplateInfo
@@ -46,7 +46,7 @@ class TemplateFactory
 
   // CT++ may not be thread safe - but using a thread specific
   // storage for cached copies makes using it thread safe
-  using TemplateMap = std::map<boost::filesystem::path, TemplateInfo>;
+  using TemplateMap = std::map<std::filesystem::path, TemplateInfo>;
   using Templates = boost::thread_specific_ptr<TemplateMap>;
   mutable Templates itsTemplates;
 

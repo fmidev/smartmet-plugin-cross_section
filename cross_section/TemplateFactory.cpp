@@ -17,7 +17,7 @@ namespace CrossSection
  */
 // ----------------------------------------------------------------------
 
-SharedFormatter TemplateFactory::get(const boost::filesystem::path& theFilename) const
+SharedFormatter TemplateFactory::get(const std::filesystem::path& theFilename) const
 {
   try
   {
@@ -36,7 +36,7 @@ SharedFormatter TemplateFactory::get(const boost::filesystem::path& theFilename)
 
     const auto& tinfo = tmap.find(theFilename);
 
-    const std::time_t modtime = boost::filesystem::last_write_time(theFilename);
+    const std::time_t modtime = std::filesystem::last_write_time(theFilename);
 
     // Use cached template if it is up to date
     if (tinfo != tmap.end())

@@ -117,7 +117,7 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     if (theState.query().timer)
     {
       std::string report = "IsobandLayer::generate finished in %t sec CPU, %w sec real\n";
-      timer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
+      timer = std::make_unique<boost::timer::auto_cpu_timer>(2, report);
     }
 
     if (parameter == boost::none)
@@ -500,7 +500,7 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
     if (theState.query().timer)
     {
       std::string report = "IsobandLayer::generate finished in %t sec CPU, %w sec real\n";
-      timer = boost::movelib::make_unique<boost::timer::auto_cpu_timer>(2, report);
+      timer = std::make_unique<boost::timer::auto_cpu_timer>(2, report);
     }
 
     // Establish the data

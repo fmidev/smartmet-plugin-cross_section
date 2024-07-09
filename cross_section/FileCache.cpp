@@ -18,11 +18,11 @@ namespace CrossSection
  */
 // ----------------------------------------------------------------------
 
-std::string FileCache::get(const boost::filesystem::path& thePath) const
+std::string FileCache::get(const std::filesystem::path& thePath) const
 {
   try
   {
-    std::time_t mtime = boost::filesystem::last_write_time(thePath);
+    std::time_t mtime = std::filesystem::last_write_time(thePath);
 
     // Try using the cache with a lock first
     {

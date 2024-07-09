@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <boost/optional.hpp>
+#include <optional>
 
 namespace SmartMet
 {
@@ -18,8 +18,8 @@ struct Query
 {
   std::string producer;  // the producer
   std::string customer;  // the customer
-  boost::optional<std::string> zproducer;  // the z-producer
-  boost::optional<std::string> source;
+  std::optional<std::string> zproducer;  // the z-producer
+  std::optional<std::string> source;
 
   double longitude1;  // cross section start point
   double latitude1;

@@ -7,7 +7,7 @@
 #pragma once
 
 #include "Attributes.h"
-#include <boost/optional.hpp>
+#include <optional>
 #include <json/json.h>
 #include <string>
 
@@ -27,8 +27,8 @@ class Isoband
   // value,null --> value,inf
   // null,null  --> missing values
 
-  boost::optional<double> lolimit;
-  boost::optional<double> hilimit;
+  std::optional<double> lolimit;
+  std::optional<double> hilimit;
 
   // Attributes (id, class, style, ...)
   Attributes attributes;
