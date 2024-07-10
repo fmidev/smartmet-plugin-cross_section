@@ -37,12 +37,7 @@ SharedFormatter TemplateFactory::get(const std::filesystem::path& theFilename) c
 
     const auto& tinfo = tmap.find(theFilename);
 
-    const std::optional<std::time_t> opt_modtime = Fmi::last_write_time(theFilename);
-    if (!opt_modtime)
-    {
-      throw Fmi::Exception(BCP, "Failed to get last write time of " + theFilename.string());
-    }
-    const std::time_t modtime = *opt_modtime;
+    const std::time_t modtime = Fmi::last_write_time(theFilename);
 
     // Use cached template if it is up to date
     if (tinfo != tmap.end())
