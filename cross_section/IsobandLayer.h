@@ -29,13 +29,13 @@ class IsobandLayer : public Layer
 
   void generate(CTPP::CDT& theGlobals, State& theState) override;
 
-  boost::optional<std::string> parameter;
-  boost::optional<std::string> zparameter;
+  std::optional<std::string> parameter;
+  std::optional<std::string> zparameter;
   std::vector<Isoband> isobands;
   std::string interpolation;
 
-  boost::optional<double> multiplier;
-  boost::optional<double> offset;
+  std::optional<double> multiplier;
+  std::optional<double> offset;
 
  private:
   void generate_qEngine(CTPP::CDT& theGlobals, State& theState);
