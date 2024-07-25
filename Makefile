@@ -13,7 +13,7 @@ DEFINES = -DUNIX -D_REENTRANT
 
 FLAGS += -Wno-variadic-macros -Wno-deprecated-declarations
 
-LIBS += -L$(libdir) \
+LIBS += $(PREFIX_LDFLAGS) \
 	$(REQUIRED_LIBS) \
 	-lsmartmet-timeseries \
 	-lsmartmet-spine \

@@ -10,7 +10,7 @@ CFLAGS = -DUNIX -O0 -g $(FLAGS) -Wno-unknown-pragmas
 INCLUDES += \
 	-I ../cross_section
 
-LIBS += -L$(libdir) \
+LIBS += $(PREFIX_LDFLAGS) \
 	$(REQUIRED_LIBS) \
 	-lsmartmet-spine  \
 	-lsmartmet-macgyver \
