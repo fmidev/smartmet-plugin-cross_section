@@ -3,6 +3,7 @@
 #include "FileCache.h"
 #include <boost/filesystem/operations.hpp>
 #include <macgyver/Exception.h>
+#include <macgyver/FileSystem.h>
 #include <fstream>
 #include <stdexcept>
 
@@ -18,11 +19,11 @@ namespace CrossSection
  */
 // ----------------------------------------------------------------------
 
-std::string FileCache::get(const boost::filesystem::path& thePath) const
+std::string FileCache::get(const std::filesystem::path& thePath) const
 {
   try
   {
-    std::time_t mtime = boost::filesystem::last_write_time(thePath);
+    const std::time_t mtime = Fmi::last_write_time(thePath);
 
     // Try using the cache with a lock first
     {

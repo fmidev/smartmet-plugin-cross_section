@@ -2,8 +2,8 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 24.6.3
-Release: 2%{?dist}.fmi
+Version: 24.7.12
+Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
@@ -22,16 +22,16 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: smartmet-library-macgyver-devel >= 24.5.30
-BuildRequires: smartmet-library-timeseries-devel >= 24.5.28
-BuildRequires: smartmet-library-spine-devel >= 24.5.27
-BuildRequires: smartmet-library-trax-devel >= 24.5.24
-BuildRequires: smartmet-library-grid-content-devel >= 24.6.3
-BuildRequires: smartmet-library-grid-files-devel >= 24.5.30
-BuildRequires: smartmet-engine-grid-devel >= 24.6.3
-BuildRequires: smartmet-engine-querydata-devel >= 24.5.29
-BuildRequires: smartmet-engine-geonames-devel >= 24.5.16
-BuildRequires: smartmet-engine-contour-devel >= 24.5.29
+BuildRequires: smartmet-library-macgyver-devel >= 24.7.12
+BuildRequires: smartmet-library-timeseries-devel >= 24.7.12
+BuildRequires: smartmet-library-spine-devel >= 24.7.12
+BuildRequires: smartmet-library-trax-devel >= 24.7.12
+BuildRequires: smartmet-library-grid-content-devel >= 24.7.12
+BuildRequires: smartmet-library-grid-files-devel >= 24.7.12
+BuildRequires: smartmet-engine-grid-devel >= 24.7.12
+BuildRequires: smartmet-engine-querydata-devel >= 24.7.12
+BuildRequires: smartmet-engine-geonames-devel >= 24.7.12
+BuildRequires: smartmet-engine-contour-devel >= 24.7.12
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -39,14 +39,14 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-macgyver >= 24.5.30
-Requires: smartmet-library-timeseries >= 24.5.28
-Requires: smartmet-engine-grid >= 24.6.3
-Requires: smartmet-engine-querydata >= 24.5.29
-Requires: smartmet-engine-geonames >= 24.5.16
-Requires: smartmet-engine-contour >= 24.5.29
-Requires: smartmet-server >= 24.5.16
-Requires: smartmet-library-spine >= 24.5.27
+Requires: smartmet-library-macgyver >= 24.7.12
+Requires: smartmet-library-timeseries >= 24.7.12
+Requires: smartmet-engine-grid >= 24.7.12
+Requires: smartmet-engine-querydata >= 24.7.12
+Requires: smartmet-engine-geonames >= 24.7.12
+Requires: smartmet-engine-contour >= 24.7.12
+Requires: smartmet-server >= 24.7.12
+Requires: smartmet-library-spine >= 24.7.12
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
 Requires: %{smartmet_boost}-thread
@@ -56,12 +56,12 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 24.5.31
-#TestRequires: smartmet-library-spine-plugin-test >= 24.5.27
-#TestRequires: smartmet-library-newbase-devel >= 24.5.17
-#TestRequires: smartmet-engine-contour >= 24.5.29
-#TestRequires: smartmet-engine-geonames >= 24.5.16
-#TestRequires: smartmet-engine-grid >= 24.6.3
-#TestRequires: smartmet-engine-querydata >= 24.5.29
+#TestRequires: smartmet-library-spine-plugin-test >= 24.7.12
+#TestRequires: smartmet-library-newbase-devel >= 24.7.12
+#TestRequires: smartmet-engine-contour >= 24.7.12
+#TestRequires: smartmet-engine-geonames >= 24.7.12
+#TestRequires: smartmet-engine-grid >= 24.7.12
+#TestRequires: smartmet-engine-querydata >= 24.7.12
 #TestRequires: smartmet-test-data >= 24.5.22
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
@@ -92,6 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Fri Jul 12 2024 Andris Pavēnis <andris.pavenis@fmi.fi> 24.7.12-1.fmi
+- Replace many boost library types with C++ standard library ones
+
 * Mon Jun  3 2024 Mika Heiskanen <mika.heiskanen@fmi.fi> - 24.6.3-2.fmi
 - Updated grid-content requirement
 
