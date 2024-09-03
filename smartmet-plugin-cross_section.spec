@@ -23,10 +23,10 @@ BuildRequires: smartmet-library-macgyver-devel >= 24.8.7
 BuildRequires: smartmet-library-timeseries-devel >= 24.8.7
 BuildRequires: smartmet-library-spine-devel >= 24.8.7
 BuildRequires: smartmet-library-trax-devel >= 24.8.7
-BuildRequires: smartmet-library-grid-content-devel >= 24.8.7
-BuildRequires: smartmet-library-grid-files-devel >= 24.8.7
-BuildRequires: smartmet-engine-grid-devel >= 24.8.7
-BuildRequires: smartmet-engine-querydata-devel >= 24.8.7
+BuildRequires: smartmet-library-grid-content-devel >= 24.9.3
+BuildRequires: smartmet-library-grid-files-devel >= 24.9.3
+BuildRequires: smartmet-engine-grid-devel >= 24.9.3
+BuildRequires: smartmet-engine-querydata-devel >= 24.9.2
 BuildRequires: smartmet-engine-geonames-devel >= 24.8.7
 BuildRequires: smartmet-engine-contour-devel >= 24.8.7
 BuildRequires: ctpp2 >= 2.8.8
@@ -38,8 +38,8 @@ Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 24.8.7
 Requires: smartmet-library-timeseries >= 24.8.7
-Requires: smartmet-engine-grid >= 24.8.7
-Requires: smartmet-engine-querydata >= 24.8.7
+Requires: smartmet-engine-grid >= 24.9.3
+Requires: smartmet-engine-querydata >= 24.9.2
 Requires: smartmet-engine-geonames >= 24.8.7
 Requires: smartmet-engine-contour >= 24.8.7
 Requires: smartmet-server >= 24.8.7
@@ -57,8 +57,8 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-library-newbase-devel >= 24.8.7
 #TestRequires: smartmet-engine-contour >= 24.8.7
 #TestRequires: smartmet-engine-geonames >= 24.8.7
-#TestRequires: smartmet-engine-grid >= 24.8.7
-#TestRequires: smartmet-engine-querydata >= 24.8.7
+#TestRequires: smartmet-engine-grid >= 24.9.3
+#TestRequires: smartmet-engine-querydata >= 24.9.2
 #TestRequires: smartmet-test-data >= 24.5.22
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
