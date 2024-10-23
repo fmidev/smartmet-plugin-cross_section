@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 24.10.16
+Version: 24.10.23
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -23,9 +23,9 @@ BuildRequires: smartmet-library-macgyver-devel >= 24.10.15
 BuildRequires: smartmet-library-timeseries-devel >= 24.10.15
 BuildRequires: smartmet-library-spine-devel >= 24.10.15
 BuildRequires: smartmet-library-trax-devel >= 24.8.7
-BuildRequires: smartmet-library-grid-content-devel >= 24.10.16
-BuildRequires: smartmet-library-grid-files-devel >= 24.10.16
-BuildRequires: smartmet-engine-grid-devel >= 24.10.16
+BuildRequires: smartmet-library-grid-content-devel >= 24.10.23
+BuildRequires: smartmet-library-grid-files-devel >= 24.10.23
+BuildRequires: smartmet-engine-grid-devel >= 24.10.23
 BuildRequires: smartmet-engine-querydata-devel >= 24.10.15
 BuildRequires: smartmet-engine-geonames-devel >= 24.9.28
 BuildRequires: smartmet-engine-contour-devel >= 24.8.7
@@ -38,7 +38,7 @@ Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-macgyver >= 24.10.15
 Requires: smartmet-library-timeseries >= 24.10.15
-Requires: smartmet-engine-grid >= 24.10.16
+Requires: smartmet-engine-grid >= 24.10.23
 Requires: smartmet-engine-querydata >= 24.10.15
 Requires: smartmet-engine-geonames >= 24.9.28
 Requires: smartmet-engine-contour >= 24.8.7
@@ -57,7 +57,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-library-newbase-devel >= 24.10.15
 #TestRequires: smartmet-engine-contour >= 24.8.7
 #TestRequires: smartmet-engine-geonames >= 24.9.28
-#TestRequires: smartmet-engine-grid >= 24.10.16
+#TestRequires: smartmet-engine-grid >= 24.10.23
 #TestRequires: smartmet-engine-querydata >= 24.10.15
 #TestRequires: smartmet-test-data >= 24.8.12
 #TestRequires: smartmet-test-db
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Wed Oct 23 2024 Mika Heiskanen <mika.heiskanen@fmi.fi> - 24.10.23-1.fmi
+- Repackaged due to ABI changes
+
 * Wed Oct 16 2024 Mika Heiskanen <mika.heiskanen@fmi.fi> - 24.10.16-1.fmi
 - Repackaged due to ABI changes in grid libraries
 
