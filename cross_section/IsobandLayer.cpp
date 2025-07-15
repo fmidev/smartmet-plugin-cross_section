@@ -141,7 +141,7 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     gridEngine.getParameterDetails(theState.query().producer, pName, parameterDetails);
     // gridEngine.mapParameterDetails(parameterDetails);
 
-    if (!(parameterDetails.size() == 1 && parameterDetails[0].mProducerName == key))
+    if (parameterDetails.size() != 1 || parameterDetails[0].mProducerName != key)
     {
       for (auto& rec : parameterDetails)
       {
@@ -228,7 +228,7 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     gridEngine.getParameterDetails(*theState.query().zproducer, *zparameter, zParameterDetails);
     // gridEngine.mapParameterDetails(zParameterDetails);
 
-    if (!(zParameterDetails.size() == 1 && zParameterDetails[0].mProducerName == zkey))
+    if (zParameterDetails.size() != 1 || zParameterDetails[0].mProducerName != zkey)
     {
       for (auto& rec : zParameterDetails)
       {
@@ -525,8 +525,9 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 
     const auto& contourer = theState.getContourEngine();
     std::vector<SmartMet::Engine::Contour::Range> limits;
+    limits.reserve(isobands.size());
     for (const auto& isoband : isobands)
-      limits.emplace_back(SmartMet::Engine::Contour::Range(isoband.lolimit, isoband.hilimit));
+      limits.emplace_back(isoband.lolimit, isoband.hilimit);
     SmartMet::Engine::Contour::Options options(param, theState.time().utc_time(), limits);
 
     if (multiplier || offset)

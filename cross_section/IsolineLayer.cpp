@@ -93,7 +93,7 @@ void IsolineLayer::generate(CTPP::CDT& theGlobals, State& theState)
 {
   try
   {
-    if (theState.query().source && *theState.query().source == "grid")
+    if (theState.query().source && theState.query().source && *theState.query().source == "grid")
       generate_gridEngine(theGlobals, theState);
     else
       generate_qEngine(theGlobals, theState);
@@ -140,7 +140,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     gridEngine.getParameterDetails(theState.query().producer, pName, parameterDetails);
     // gridEngine.mapParameterDetails(parameterDetails);
 
-    if (!(parameterDetails.size() == 1 && parameterDetails[0].mProducerName == key))
+    if (parameterDetails.size() != 1 || parameterDetails[0].mProducerName != key)
     {
       for (auto& rec : parameterDetails)
       {
@@ -215,7 +215,8 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       if (parameterDetails.empty() || parameterDetails[0].mMappings.empty())
       {
         Fmi::Exception exception(BCP, "Parameter mappings not found");
-        exception.addParameter("Parameter", *parameter);
+        if (parameter)
+          exception.addParameter("Parameter", *parameter);
         exception.addParameter("Producer", theState.query().producer);
         throw exception;
       }
@@ -227,7 +228,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     gridEngine.getParameterDetails(*theState.query().zproducer, *zparameter, zParameterDetails);
     // gridEngine.mapParameterDetails(zParameterDetails);
 
-    if (!(zParameterDetails.size() == 1 && zParameterDetails[0].mProducerName == zkey))
+    if (zParameterDetails.size() != 1 || zParameterDetails[0].mProducerName != zkey)
     {
       for (auto& rec : zParameterDetails)
       {
@@ -295,8 +296,10 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       if (zParameterDetails.empty() || zParameterDetails[0].mMappings.empty())
       {
         Fmi::Exception exception(BCP, "Z-Parameter mappings not found");
-        exception.addParameter("Z-Parameter", *zparameter);
-        exception.addParameter("Producer", *theState.query().zproducer);
+        if (zparameter)
+          exception.addParameter("Z-Parameter", *zparameter);
+        if (theState.query().zproducer)
+          exception.addParameter("Producer", *theState.query().zproducer);
         throw exception;
       }
     }
@@ -508,6 +511,7 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 
     const auto& contourer = theState.getContourEngine();
     std::vector<double> isoline_options;
+    isoline_options.reserve(isolines.size());
     for (const auto& isoline : isolines)
       isoline_options.push_back(isoline.value);
 
