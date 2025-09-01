@@ -310,12 +310,6 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
 {
   try
   {
-    // Check request method (support GET, OPTIONS)
-    if (checkRequest(theRequest, theResponse, false))
-    {
-      return;
-    }
-
     theResponse.setHeader("Access-Control-Allow-Origin", "*");
 
     using Fmi::DateTime;
