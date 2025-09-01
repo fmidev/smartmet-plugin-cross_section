@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 25.7.15
+Version: 25.9.1
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Mon Sep  1 2025 Andris Pavēnis <andris.pavenis@fmi.fi> 25.9.1-1.fmi
+- Update according to smartmet-library-spine ABI changes
+
 * Tue Jul 15 2025 Mika Heiskanen <mika.heiskanen@fmi.fi> - 25.7.15-1.fmi
 - Silenced several compiler warnings
 
