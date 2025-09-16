@@ -9,6 +9,67 @@ namespace Plugin
 {
 namespace CrossSection
 {
+
+namespace
+{
+
+// ----------------------------------------------------------------------
+/*!
+ * \brief Expand references in the JSON.
+ *
+ * For example:
+ *
+ * {
+ *    "projection":   "path:name1.name2.name3[0].projection",
+ *    ...
+ * }
+ *
+ * will be expanded so that the value of the referenced variable
+ * replaces the value of projection
+ */
+// ----------------------------------------------------------------------
+
+void deref(Json::Value& theJson, Json::Value& theRoot)
+{
+  try
+  {
+    if (theJson.isString())
+    {
+      std::string tmp = theJson.asString();
+      if (boost::algorithm::starts_with(tmp, "ref:"))
+      {
+        std::string path = "." + tmp.substr(4, std::string::npos);
+        Json::Path json_path(path);
+        const Json::Value& value = json_path.resolve(theRoot);
+        if (value.isNull())
+          throw Fmi::Exception(BCP, "Failed to dereference '" + tmp + "'");
+        // We will not dereference the dereferenced value!
+        theJson = value;
+      }
+    }
+
+    // Seek deeper in arrays
+    else if (theJson.isArray())
+    {
+      for (auto& json : theJson)
+        deref(json, theRoot);
+    }
+    // Seek deeper in objects
+    else if (theJson.isObject())
+    {
+      const auto members = theJson.getMemberNames();
+      for (const auto& name : members)
+        deref(theJson[name], theRoot);
+    }
+  }
+  catch (...)
+  {
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
+  }
+}
+
+}  // namespace
+
 // ----------------------------------------------------------------------
 /*!
  * \brief Expand include statements in the JSON.
@@ -69,61 +130,6 @@ void JSON::expand(Json::Value& theJson,
       const auto members = theJson.getMemberNames();
       for (const auto& name : members)
         expand(theJson[name], theRootPath, thePath, theFileCache);
-    }
-  }
-  catch (...)
-  {
-    throw Fmi::Exception::Trace(BCP, "Operation failed!");
-  }
-}
-
-// ----------------------------------------------------------------------
-/*!
- * \brief Expand references in the JSON.
- *
- * For example:
- *
- * {
- *    "projection":   "path:name1.name2.name3[0].projection",
- *    ...
- * }
- *
- * will be expanded so that the value of the referenced variable
- * replaces the value of projection
- */
-// ----------------------------------------------------------------------
-
-void deref(Json::Value& theJson, Json::Value& theRoot)
-{
-  try
-  {
-    if (theJson.isString())
-    {
-      std::string tmp = theJson.asString();
-      if (boost::algorithm::starts_with(tmp, "ref:"))
-      {
-        std::string path = "." + tmp.substr(4, std::string::npos);
-        Json::Path json_path(path);
-        const Json::Value& value = json_path.resolve(theRoot);
-        if (value.isNull())
-          throw Fmi::Exception(BCP, "Failed to dereference '" + tmp + "'");
-        // We will not dereference the dereferenced value!
-        theJson = value;
-      }
-    }
-
-    // Seek deeper in arrays
-    else if (theJson.isArray())
-    {
-      for (auto& json : theJson)
-        deref(json, theRoot);
-    }
-    // Seek deeper in objects
-    else if (theJson.isObject())
-    {
-      const auto members = theJson.getMemberNames();
-      for (const auto& name : members)
-        deref(theJson[name], theRoot);
     }
   }
   catch (...)
