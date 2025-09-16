@@ -15,6 +15,7 @@
 #include <macgyver/TimeParser.h>
 #include <timeseries/ParameterFactory.h>
 #include <trax/InterpolationType.h>
+#include <algorithm>
 
 namespace SmartMet
 {
@@ -372,25 +373,21 @@ void IsobandLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
     double maxHeight = 0;
     double maxDistance = 0;
-    double maxValue = -1000000000;
-    double minValue = 1000000000;
+    float maxValue = -1000000000;
+    float minValue = 1000000000;
 
     for (auto value : gridData)
     {
-      if (value > maxValue)
-        maxValue = value;
+      maxValue = std::max(maxValue, value);
 
-      if (value != ParamValueMissing && value < minValue)
-        minValue = value;
+      if (value != ParamValueMissing)
+        minValue = std::min(minValue, value);
     }
 
     for (const auto& coord : coordinates)
     {
-      if (coord.y() > maxHeight)
-        maxHeight = coord.y();
-
-      if (coord.x() > maxDistance)
-        maxDistance = coord.x();
+      maxHeight = std::max(coord.y(), maxHeight);
+      maxDistance = std::max(coord.x(), maxDistance);
     }
 
     for (const auto& isoband : isobands)

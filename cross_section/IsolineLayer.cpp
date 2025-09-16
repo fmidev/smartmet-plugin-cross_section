@@ -14,6 +14,7 @@
 #include <macgyver/TimeFormatter.h>
 #include <macgyver/TimeParser.h>
 #include <timeseries/ParameterFactory.h>
+#include <algorithm>
 
 namespace SmartMet
 {
@@ -374,25 +375,22 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
 
     double maxHeight = 0;
     double maxDistance = 0;
-    double maxValue = -1000000000;
-    double minValue = 1000000000;
+    float maxValue = -1000000000;
+    float minValue = 1000000000;
 
     for (auto value : gridData)
     {
-      if (value > maxValue)
-        maxValue = value;
+      maxValue = std::max<double>(value, maxValue);
 
-      if (value != ParamValueMissing && value < minValue)
-        minValue = value;
+      if (value != ParamValueMissing)
+        minValue = std::min(minValue, value);
     }
 
     for (const auto& coord : coordinates)
     {
-      if (coord.y() > maxHeight)
-        maxHeight = coord.y();
+      maxHeight = std::max(coord.y(), maxHeight);
 
-      if (coord.x() > maxDistance)
-        maxDistance = coord.x();
+      maxDistance = std::max(coord.x(), maxDistance);
     }
 
     for (const auto& isoline : isolines)
