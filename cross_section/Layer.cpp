@@ -5,7 +5,7 @@
 #include <ctpp2/CDT.hpp>
 #include <macgyver/Exception.h>
 #include <spine/HTTP.h>
-//#include <timeseries/ParameterFactory.h>
+// #include <timeseries/ParameterFactory.h>
 #include <stdexcept>
 
 namespace SmartMet
@@ -14,6 +14,9 @@ namespace Plugin
 {
 namespace CrossSection
 {
+
+Layer::~Layer() = default;
+
 // ----------------------------------------------------------------------
 /*!
  * \brief Initialize from JSON

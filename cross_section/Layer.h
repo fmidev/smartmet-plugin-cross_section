@@ -33,7 +33,7 @@ class State;
 class Layer
 {
  public:
-  virtual ~Layer() = default;
+  virtual ~Layer();
   Layer() = default;
 
   Layer(const Layer& other) = delete;
