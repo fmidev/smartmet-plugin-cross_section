@@ -549,7 +549,7 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
 
     for (unsigned int i = 0; i < isolines.size(); i++)
     {
-      OGRGeometryPtr geom = geoms[i];
+      const OGRGeometryPtr& geom = geoms[i];
 
       theState.updateEnvelope(geom);
 
