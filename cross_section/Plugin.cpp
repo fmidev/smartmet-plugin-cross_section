@@ -172,7 +172,7 @@ std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
       }
       tmpl->process(hash, output, log);
     }
-    catch (const CTPP::CTPPException &e)
+    catch (const CTPP::CTPPException & /* ex */)
     {
       throw Fmi::Exception(BCP, "Template processing failed!")
           .addParameter("Product", product_name)
