@@ -37,21 +37,15 @@ namespace
  */
 // ----------------------------------------------------------------------
 
-const std::string &check_attack(const std::string &theName)
+void check_attack(const std::string &theName)
 {
-  try
-  {
-    if (theName.find("./") == std::string::npos)
-      return theName;
+  if (theName.find("./") == std::string::npos)
+    return;
 
-    throw Fmi::Exception(
-        BCP, "Attack IRI detected, relative paths upwards are not safe: '" + theName + "'");
-  }
-  catch (...)
-  {
-    throw Fmi::Exception::Trace(BCP, "Operation failed!");
-  }
+  throw Fmi::Exception(
+      BCP, "Attack IRI detected, relative paths upwards are not safe: '" + theName + "'");
 }
+
 }  // namespace
 
 namespace SmartMet
@@ -278,7 +272,8 @@ SharedFormatter Plugin::getTemplate(const std::string &theName) const
 {
   try
   {
-    std::string tmpl_path = (itsConfig.templateDirectory() + "/" + check_attack(theName) + ".c2t");
+    check_attack(theName);
+    std::string tmpl_path = (itsConfig.templateDirectory() + "/" + theName + ".c2t");
 
     return itsTemplateFactory.get(tmpl_path);
   }
