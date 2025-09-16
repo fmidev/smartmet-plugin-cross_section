@@ -156,8 +156,8 @@ std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
 
     if (print_hash)
     {
-      std::cout << "Generated CDT for " << q.customer << " " << product_name << std::endl
-                << hash.RecursiveDump() << std::endl;
+      std::cout << "Generated CDT for " << q.customer << " " << product_name << '\n'
+                << hash.RecursiveDump() << '\n';
     }
 
     std::string output;
@@ -247,7 +247,7 @@ Product Plugin::getProduct(const std::string &theCustomer,
     // Debugging
 
     if (theDebugFlag)
-      std::cout << "Expanded " << theName << " JSON:" << std::endl << json << std::endl;
+      std::cout << "Expanded " << theName << " JSON:\n" << json << '\n';
 
     // And initialize the product specs from the JSON
 
@@ -349,14 +349,14 @@ void Plugin::requestHandler(SmartMet::Spine::Reactor &theReactor,
       if (response.empty())
       {
         std::cerr << "Warning: Empty input for request " << theRequest.getQueryString() << " from "
-                  << theRequest.getClientIP() << std::endl;
+                  << theRequest.getClientIP() << '\n';
       }
       else
       {
         theResponse.setContent(response);
         theResponse.setHeader("Content-type", "application/json; charset=UTF-8");
 #ifdef MYDEBUG
-        std::cout << "Output:" << std::endl << response << std::endl;
+        std::cout << "Output:\n" << response << '\n';
 #endif
       }
     }
@@ -408,7 +408,7 @@ Plugin::Plugin(SmartMet::Spine::Reactor *theReactor, const char *theConfig)
     {
       std::cerr << ANSI_BOLD_ON << ANSI_FG_RED
                 << "*** CrossSection Plugin and Server API version mismatch ***" << ANSI_FG_DEFAULT
-                << ANSI_BOLD_OFF << std::endl;
+                << ANSI_BOLD_OFF << '\n';
       return;
     }
   }
@@ -457,13 +457,13 @@ void Plugin::init()
 
     /* Register handler */
 
-    if (!itsReactor->addContentHandler(this,
-                                       itsConfig.defaultUrl(),
-                                       [this](Spine::Reactor &theReactor,
-                                              const Spine::HTTP::Request &theRequest,
-                                              Spine::HTTP::Response &theResponse) {
-                                         callRequestHandler(theReactor, theRequest, theResponse);
-                                       }))
+    if (!itsReactor->addContentHandler(
+            this,
+            itsConfig.defaultUrl(),
+            [this](Spine::Reactor &theReactor,
+                   const Spine::HTTP::Request &theRequest,
+                   Spine::HTTP::Response &theResponse)
+            { callRequestHandler(theReactor, theRequest, theResponse); }))
       throw Fmi::Exception(BCP, "Failed to register CSection content handler");
   }
   catch (...)
