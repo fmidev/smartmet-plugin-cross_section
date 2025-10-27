@@ -427,28 +427,16 @@ void Plugin::init()
   {
     /* QEngine */
 
-    auto *engine = itsReactor->getSingleton("Querydata", nullptr);
-    if (!engine)
-      throw Fmi::Exception(BCP, "Querydata engine unavailable");
-    itsQEngine = reinterpret_cast<SmartMet::Engine::Querydata::Engine *>(engine);
+    itsQEngine = itsReactor->getEngine<SmartMet::Engine::Querydata::Engine>("Querydata", nullptr);
 
     /* GridEngine */
-    engine = itsReactor->getSingleton("grid", nullptr);
-    if (!engine)
-      throw Fmi::Exception(BCP, "Grid engine unavailable");
-    itsGridEngine = reinterpret_cast<SmartMet::Engine::Grid::Engine *>(engine);
+    itsGridEngine = itsReactor->getEngine<SmartMet::Engine::Grid::Engine>("grid", nullptr);
 
     /* Contour */
-    engine = itsReactor->getSingleton("Contour", nullptr);
-    if (!engine)
-      throw Fmi::Exception(BCP, "Contour engine unavailable");
-    itsContourEngine = reinterpret_cast<SmartMet::Engine::Contour::Engine *>(engine);
+    itsContourEngine = itsReactor->getEngine<SmartMet::Engine::Contour::Engine>("Contour", nullptr);
 
     /* GeoEngine */
-    engine = itsReactor->getSingleton("Geonames", nullptr);
-    if (!engine)
-      throw Fmi::Exception(BCP, "Geonames engine unavailable");
-    itsGeoEngine = reinterpret_cast<SmartMet::Engine::Geonames::Engine *>(engine);
+    itsGeoEngine = itsReactor->getEngine<SmartMet::Engine::Geonames::Engine>("Geonames", nullptr);
 
     /* Register handler */
 

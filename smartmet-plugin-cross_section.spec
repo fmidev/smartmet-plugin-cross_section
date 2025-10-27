@@ -25,7 +25,7 @@ BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
 BuildRequires: smartmet-library-macgyver-devel >= 25.9.30
 BuildRequires: smartmet-library-timeseries-devel >= 25.8.1
-BuildRequires: smartmet-library-spine-devel >= 25.9.16
+BuildRequires: smartmet-library-spine-devel >= 25.10.27
 BuildRequires: smartmet-library-trax-devel >= 25.9.29
 BuildRequires: smartmet-library-grid-content-devel >= 25.10.15
 BuildRequires: smartmet-library-grid-files-devel >= 25.10.15
@@ -47,7 +47,7 @@ Requires: smartmet-engine-querydata >= 25.9.17
 Requires: smartmet-engine-geonames >= 25.9.29
 Requires: smartmet-engine-contour >= 25.2.18
 Requires: smartmet-server >= 25.9.9
-Requires: smartmet-library-spine >= 25.9.16
+Requires: smartmet-library-spine >= 25.10.27
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
 Requires: %{smartmet_boost}-thread
@@ -57,7 +57,7 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 25.10.10
-#TestRequires: smartmet-library-spine-plugin-test >= 25.9.16
+#TestRequires: smartmet-library-spine-plugin-test >= 25.10.27
 #TestRequires: smartmet-library-newbase-devel >= 25.3.20
 #TestRequires: smartmet-engine-contour >= 25.2.18
 #TestRequires: smartmet-engine-geonames >= 25.9.29

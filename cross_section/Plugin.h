@@ -68,10 +68,10 @@ class Plugin : public SmartMetPlugin
 
   // Cache server and engine instances
   SmartMet::Spine::Reactor* itsReactor = nullptr;
-  SmartMet::Engine::Querydata::Engine* itsQEngine = nullptr;
-  SmartMet::Engine::Grid::Engine* itsGridEngine = nullptr;
-  SmartMet::Engine::Contour::Engine* itsContourEngine = nullptr;
-  SmartMet::Engine::Geonames::Engine* itsGeoEngine = nullptr;
+  std::shared_ptr<SmartMet::Engine::Querydata::Engine> itsQEngine;
+  std::shared_ptr<SmartMet::Engine::Grid::Engine> itsGridEngine;
+  std::shared_ptr<SmartMet::Engine::Contour::Engine> itsContourEngine;
+  std::shared_ptr<SmartMet::Engine::Geonames::Engine> itsGeoEngine;
 
   // Cache templates
   TemplateFactory itsTemplateFactory;
