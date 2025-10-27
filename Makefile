@@ -20,7 +20,6 @@ LIBS += $(PREFIX_LDFLAGS) \
 	-lsmartmet-gis \
 	-lboost_thread \
 	-lboost_iostreams \
-	-lboost_system \
 	-lbz2 -lz
 
 # Templates
