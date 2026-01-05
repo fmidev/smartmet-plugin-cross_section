@@ -18,7 +18,6 @@ LIBS += $(PREFIX_LDFLAGS) \
 	-lboost_thread \
 	-lboost_filesystem \
 	-lboost_iostreams \
-	-lboost_system \
 	-lpthread -ldl
 
 all: $(PROG)
