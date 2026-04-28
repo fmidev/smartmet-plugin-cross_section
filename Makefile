@@ -18,6 +18,7 @@ LIBS += $(PREFIX_LDFLAGS) \
 	-lsmartmet-timeseries \
 	-lsmartmet-spine \
 	-lsmartmet-gis \
+	-lsmartmet-macgyver \
 	-lboost_thread \
 	-lboost_iostreams \
 	-lbz2 -lz
