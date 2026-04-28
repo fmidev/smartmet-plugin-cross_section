@@ -3,7 +3,7 @@
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
 Version: 26.4.28
-Release: 1%{?dist}.fmi
+Release: 2%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
@@ -40,6 +40,7 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
+Requires: smartmet-library-grid-files >= 26.4.22
 Requires: smartmet-library-macgyver >= 26.4.13
 Requires: smartmet-library-timeseries >= 26.4.13
 Requires: smartmet-engine-grid >= 26.4.24
@@ -93,6 +94,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Tue Apr 28 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.4.28-2.fmi
+- Link explicitly against smartmet-library-grid-files and add the
+  matching runtime Requires (the plugin uses getIsolines/getIsobands
+  but neither the Makefile nor the spec declared the dependency)
+
 * Tue Apr 28 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.4.28-1.fmi
 - Link explicitly against smartmet-library-macgyver (was relying on transitive linking)
 

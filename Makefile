@@ -15,6 +15,7 @@ FLAGS += -Wno-variadic-macros -Wno-deprecated-declarations
 
 LIBS += $(PREFIX_LDFLAGS) \
 	$(REQUIRED_LIBS) \
+	-lsmartmet-grid-files \
 	-lsmartmet-timeseries \
 	-lsmartmet-spine \
 	-lsmartmet-gis \
