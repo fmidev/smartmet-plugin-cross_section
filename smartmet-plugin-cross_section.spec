@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 26.7.14
+Version: 26.7.16
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -25,7 +25,7 @@ BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
 BuildRequires: smartmet-library-macgyver-devel >= 26.7.9
 BuildRequires: smartmet-library-timeseries-devel >= 26.5.5
-BuildRequires: smartmet-library-spine-devel >= 26.7.14
+BuildRequires: smartmet-library-spine-devel >= 26.7.16
 BuildRequires: smartmet-library-trax-devel >= 26.6.26
 BuildRequires: smartmet-library-grid-content-devel >= 26.7.12
 BuildRequires: smartmet-library-grid-files-devel >= 26.7.14
@@ -47,8 +47,8 @@ Requires: smartmet-engine-grid >= 26.7.10
 Requires: smartmet-engine-querydata >= 26.6.26
 Requires: smartmet-engine-geonames >= 26.6.26
 Requires: smartmet-engine-contour >= 26.6.24
-Requires: smartmet-server >= 26.7.9
-Requires: smartmet-library-spine >= 26.7.14
+Requires: smartmet-server >= 26.7.14
+Requires: smartmet-library-spine >= 26.7.16
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
 Requires: %{smartmet_boost}-thread
@@ -58,7 +58,7 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 26.7.14
-#TestRequires: smartmet-library-spine-plugin-test >= 26.7.14
+#TestRequires: smartmet-library-spine-plugin-test >= 26.7.16
 #TestRequires: smartmet-library-newbase-devel >= 26.7.14
 #TestRequires: smartmet-engine-contour >= 26.6.24
 #TestRequires: smartmet-engine-geonames >= 26.6.26
@@ -94,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Thu Jul 16 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.7.16-1.fmi
+- Updated RPM dependencies, Spine must be the latest one
+
 * Tue Jul 14 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.7.14-1.fmi
 - Repackaged since FileCache ABI changed
 
