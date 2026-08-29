@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 26.8.26
+Version: 26.8.30
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -94,6 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Sat Aug 30 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.8.30-1.fmi
+- Security: validate the customer and product request parameters as strict
+  [A-Za-z0-9_-] names before using them to build filesystem paths, preventing
+  path traversal and cross-customer configuration disclosure.
 * Wed Aug 26 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.8.26-1.fmi
 - QEngine ABI changed
 

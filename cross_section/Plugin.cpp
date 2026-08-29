@@ -46,6 +46,34 @@ void check_attack(const std::string &theName)
       BCP, "Attack IRI detected, relative paths upwards are not safe: '" + theName + "'");
 }
 
+// ----------------------------------------------------------------------
+/*!
+ * \brief Validate a path component (customer or product name)
+ *
+ * These values are supplied by the client and are used verbatim to build
+ * filesystem paths under the configured root directory. To prevent path
+ * traversal (e.g. "../../etc/passwd") and cross-customer configuration
+ * disclosure we accept only a strict allowlist of characters and reject
+ * anything else.
+ */
+// ----------------------------------------------------------------------
+
+void validate_name(const std::string &theName, const std::string &theWhat)
+{
+  if (theName.empty())
+    throw Fmi::Exception(BCP, "Empty " + theWhat + " name is not allowed");
+
+  for (const char ch : theName)
+  {
+    const bool ok = (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') ||
+                    (ch >= '0' && ch <= '9') || ch == '_' || ch == '-';
+    if (!ok)
+      throw Fmi::Exception(BCP,
+                           "Invalid character in " + theWhat +
+                               " name, only [A-Za-z0-9_-] are allowed: '" + theName + "'");
+  }
+}
+
 }  // namespace
 
 namespace SmartMet
@@ -199,6 +227,11 @@ Product Plugin::getProduct(const std::string &theCustomer,
 {
   try
   {
+    // Both values are used to build filesystem paths, so validate them
+    // strictly to prevent path traversal and cross-customer disclosure.
+    validate_name(theCustomer, "customer");
+    validate_name(theName, "product");
+
     std::string cache_name = theCustomer + "/" + theName;
 
     // TODO: Should check file modification time too
