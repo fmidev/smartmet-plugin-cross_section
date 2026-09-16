@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 26.8.26
+Version: 26.9.16
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -30,7 +30,7 @@ BuildRequires: smartmet-library-trax-devel >= 26.6.26
 BuildRequires: smartmet-library-grid-content-devel >= 26.7.12
 BuildRequires: smartmet-library-grid-files-devel >= 26.7.14
 BuildRequires: smartmet-engine-grid-devel >= 26.7.10
-BuildRequires: smartmet-engine-querydata-devel >= 26.8.24
+BuildRequires: smartmet-engine-querydata-devel >= 26.9.16-2
 BuildRequires: smartmet-engine-geonames-devel >= 26.7.31
 BuildRequires: smartmet-engine-contour-devel >= 26.8.3
 BuildRequires: ctpp2 >= 2.8.8
@@ -44,7 +44,7 @@ Requires: smartmet-library-grid-files >= 26.7.14
 Requires: smartmet-library-macgyver >= 26.8.19
 Requires: smartmet-library-timeseries >= 26.5.5
 Requires: smartmet-engine-grid >= 26.7.10
-Requires: smartmet-engine-querydata >= 26.8.24
+Requires: smartmet-engine-querydata >= 26.9.16-2
 Requires: smartmet-engine-geonames >= 26.7.31
 Requires: smartmet-engine-contour >= 26.8.3
 Requires: smartmet-server >= 26.8.21
@@ -63,7 +63,7 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-engine-contour >= 26.8.3
 #TestRequires: smartmet-engine-geonames >= 26.7.31
 #TestRequires: smartmet-engine-grid >= 26.7.10
-#TestRequires: smartmet-engine-querydata >= 26.8.24
+#TestRequires: smartmet-engine-querydata >= 26.9.16-2
 #TestRequires: smartmet-test-data >= 26.7.27
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
@@ -94,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Wed Sep 16 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.16-1.fmi
+- Repackaged due to QEngine ABI changes (smartmet-engine-querydata >= 26.9.16-2)
+
 * Wed Aug 26 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.8.26-1.fmi
 - QEngine ABI changed
 
