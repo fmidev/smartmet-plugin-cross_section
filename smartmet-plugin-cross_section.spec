@@ -2,8 +2,8 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 26.8.30
-Release: 1%{?dist}.fmi
+Version: 26.9.24
+Release: 2%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
@@ -23,16 +23,16 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: smartmet-library-macgyver-devel >= 26.8.19
-BuildRequires: smartmet-library-timeseries-devel >= 26.5.5
-BuildRequires: smartmet-library-spine-devel >= 26.8.24
+BuildRequires: smartmet-library-macgyver-devel >= 26.9.23
+BuildRequires: smartmet-library-timeseries-devel >= 26.9.16
+BuildRequires: smartmet-library-spine-devel >= 26.9.23
 BuildRequires: smartmet-library-trax-devel >= 26.6.26
-BuildRequires: smartmet-library-grid-content-devel >= 26.7.12
-BuildRequires: smartmet-library-grid-files-devel >= 26.7.14
-BuildRequires: smartmet-engine-grid-devel >= 26.7.10
-BuildRequires: smartmet-engine-querydata-devel >= 26.8.24
-BuildRequires: smartmet-engine-geonames-devel >= 26.7.31
-BuildRequires: smartmet-engine-contour-devel >= 26.8.3
+BuildRequires: smartmet-library-grid-content-devel >= 26.9.23
+BuildRequires: smartmet-library-grid-files-devel >= 26.9.23
+BuildRequires: smartmet-engine-grid-devel >= 26.9.23
+BuildRequires: smartmet-engine-querydata-devel >= 26.9.23
+BuildRequires: smartmet-engine-geonames-devel >= 26.9.23
+BuildRequires: smartmet-engine-contour-devel >= 26.9.23
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -40,15 +40,15 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-grid-files >= 26.7.14
-Requires: smartmet-library-macgyver >= 26.8.19
-Requires: smartmet-library-timeseries >= 26.5.5
-Requires: smartmet-engine-grid >= 26.7.10
-Requires: smartmet-engine-querydata >= 26.8.24
-Requires: smartmet-engine-geonames >= 26.7.31
-Requires: smartmet-engine-contour >= 26.8.3
-Requires: smartmet-server >= 26.8.21
-Requires: smartmet-library-spine >= 26.8.24
+Requires: smartmet-library-grid-files >= 26.9.23
+Requires: smartmet-library-macgyver >= 26.9.23
+Requires: smartmet-library-timeseries >= 26.9.16
+Requires: smartmet-engine-grid >= 26.9.23
+Requires: smartmet-engine-querydata >= 26.9.23
+Requires: smartmet-engine-geonames >= 26.9.23
+Requires: smartmet-engine-contour >= 26.9.23
+Requires: smartmet-server >= 26.9.2
+Requires: smartmet-library-spine >= 26.9.23
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
 Requires: %{smartmet_boost}-thread
@@ -57,14 +57,14 @@ Requires: bzip2-devel
 Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
-#TestRequires: smartmet-utils-devel >= 26.7.14
-#TestRequires: smartmet-library-spine-plugin-test >= 26.8.24
-#TestRequires: smartmet-library-newbase-devel >= 26.7.18
-#TestRequires: smartmet-engine-contour >= 26.8.3
-#TestRequires: smartmet-engine-geonames >= 26.7.31
-#TestRequires: smartmet-engine-grid >= 26.7.10
-#TestRequires: smartmet-engine-querydata >= 26.8.24
-#TestRequires: smartmet-test-data >= 26.7.27
+#TestRequires: smartmet-utils-devel >= 26.9.3
+#TestRequires: smartmet-library-spine-plugin-test >= 26.9.23
+#TestRequires: smartmet-library-newbase-devel >= 26.9.23
+#TestRequires: smartmet-engine-contour >= 26.9.23
+#TestRequires: smartmet-engine-geonames >= 26.9.23
+#TestRequires: smartmet-engine-grid >= 26.9.23
+#TestRequires: smartmet-engine-querydata >= 26.9.23
+#TestRequires: smartmet-test-data >= 26.8.26
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
 
@@ -94,10 +94,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
-* Sat Aug 30 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.8.30-1.fmi
+* Thu Sep 24 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.24-2.fmi
 - Security: validate the customer and product request parameters as strict
   [A-Za-z0-9_-] names before using them to build filesystem paths, preventing
   path traversal and cross-customer configuration disclosure.
+
+* Thu Sep 24 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.24-1.fmi
+- Repackaged due to base library ABI changes
+* Wed Sep 16 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.16-1.fmi
+- Repackaged due to QEngine ABI changes (smartmet-engine-querydata >= 26.9.23)
+
 * Wed Aug 26 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.8.26-1.fmi
 - QEngine ABI changed
 
