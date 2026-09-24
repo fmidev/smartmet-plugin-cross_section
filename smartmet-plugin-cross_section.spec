@@ -3,7 +3,7 @@
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
 Version: 26.9.24
-Release: 1%{?dist}.fmi
+Release: 2%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
@@ -94,6 +94,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Thu Sep 24 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.24-2.fmi
+- Security: validate the customer and product request parameters as strict
+  [A-Za-z0-9_-] names before using them to build filesystem paths, preventing
+  path traversal and cross-customer configuration disclosure.
+
 * Thu Sep 24 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.24-1.fmi
 - Repackaged due to base library ABI changes
 * Wed Sep 16 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.16-1.fmi
