@@ -23,15 +23,15 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: smartmet-library-macgyver-devel >= 26.9.23
+BuildRequires: smartmet-library-macgyver-devel >= 26.9.26-2
 BuildRequires: smartmet-library-timeseries-devel >= 26.9.16
-BuildRequires: smartmet-library-spine-devel >= 26.9.23
+BuildRequires: smartmet-library-spine-devel >= 26.9.26
 BuildRequires: smartmet-library-trax-devel >= 26.6.26
-BuildRequires: smartmet-library-grid-content-devel >= 26.9.23
+BuildRequires: smartmet-library-grid-content-devel >= 26.9.26
 BuildRequires: smartmet-library-grid-files-devel >= 26.9.26
-BuildRequires: smartmet-engine-grid-devel >= 26.9.23
+BuildRequires: smartmet-engine-grid-devel >= 26.9.26
 BuildRequires: smartmet-engine-querydata-devel >= 26.9.23
-BuildRequires: smartmet-engine-geonames-devel >= 26.9.23
+BuildRequires: smartmet-engine-geonames-devel >= 26.9.26
 BuildRequires: smartmet-engine-contour-devel >= 26.9.23
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
@@ -41,14 +41,14 @@ Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-grid-files >= 26.9.26
-Requires: smartmet-library-macgyver >= 26.9.23
+Requires: smartmet-library-macgyver >= 26.9.26-2
 Requires: smartmet-library-timeseries >= 26.9.16
-Requires: smartmet-engine-grid >= 26.9.23
+Requires: smartmet-engine-grid >= 26.9.26
 Requires: smartmet-engine-querydata >= 26.9.23
-Requires: smartmet-engine-geonames >= 26.9.23
+Requires: smartmet-engine-geonames >= 26.9.26
 Requires: smartmet-engine-contour >= 26.9.23
 Requires: smartmet-server >= 26.9.2
-Requires: smartmet-library-spine >= 26.9.23
+Requires: smartmet-library-spine >= 26.9.26
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
 Requires: %{smartmet_boost}-thread
@@ -58,11 +58,11 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 26.9.3
-#TestRequires: smartmet-library-spine-plugin-test >= 26.9.23
+#TestRequires: smartmet-library-spine-plugin-test >= 26.9.26
 #TestRequires: smartmet-library-newbase-devel >= 26.9.23
 #TestRequires: smartmet-engine-contour >= 26.9.23
-#TestRequires: smartmet-engine-geonames >= 26.9.23
-#TestRequires: smartmet-engine-grid >= 26.9.23
+#TestRequires: smartmet-engine-geonames >= 26.9.26
+#TestRequires: smartmet-engine-grid >= 26.9.26
 #TestRequires: smartmet-engine-querydata >= 26.9.23
 #TestRequires: smartmet-test-data >= 26.8.26
 #TestRequires: smartmet-test-db
@@ -96,6 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Sat Sep 26 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.26-1.fmi
 - Repackaged due to grid-files ABI changes
+- Require the 26.9.26 releases of the SmartMet dependencies
 
 * Thu Sep 24 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.24-2.fmi
 - Security: validate the customer and product request parameters as strict
