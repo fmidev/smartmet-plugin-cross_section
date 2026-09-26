@@ -2,8 +2,8 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 26.9.24
-Release: 2%{?dist}.fmi
+Version: 26.9.26
+Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-cross_section
@@ -28,7 +28,7 @@ BuildRequires: smartmet-library-timeseries-devel >= 26.9.16
 BuildRequires: smartmet-library-spine-devel >= 26.9.23
 BuildRequires: smartmet-library-trax-devel >= 26.6.26
 BuildRequires: smartmet-library-grid-content-devel >= 26.9.23
-BuildRequires: smartmet-library-grid-files-devel >= 26.9.23
+BuildRequires: smartmet-library-grid-files-devel >= 26.9.26
 BuildRequires: smartmet-engine-grid-devel >= 26.9.23
 BuildRequires: smartmet-engine-querydata-devel >= 26.9.23
 BuildRequires: smartmet-engine-geonames-devel >= 26.9.23
@@ -40,7 +40,7 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-grid-files >= 26.9.23
+Requires: smartmet-library-grid-files >= 26.9.26
 Requires: smartmet-library-macgyver >= 26.9.23
 Requires: smartmet-library-timeseries >= 26.9.16
 Requires: smartmet-engine-grid >= 26.9.23
@@ -94,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Sat Sep 26 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.26-1.fmi
+- Repackaged due to grid-files ABI changes
+
 * Thu Sep 24 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.9.24-2.fmi
 - Security: validate the customer and product request parameters as strict
   [A-Za-z0-9_-] names before using them to build filesystem paths, preventing
