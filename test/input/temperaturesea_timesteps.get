@@ -1,0 +1,2 @@
+GET /csection?customer=test&product=temperaturesea&producer=hbm&starttime=201407280100&timezone=UTC&timesteps=3&timestep=60&steps=5&places=Helsinki,Tallinna HTTP/1.0
+

@@ -1,0 +1,2 @@
+GET /csection?customer=test&product=temperaturesea&producer=hbm&starttime=201407280100&timezone=UTC&timesteps=1&steps=5&lonlats=24.9354,60.1695,24.7535,59.4370 HTTP/1.0
+
