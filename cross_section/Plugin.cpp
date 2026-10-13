@@ -88,9 +88,9 @@ namespace CrossSection
  */
 // ----------------------------------------------------------------------
 
-std::string Plugin::query(SmartMet::Spine::Reactor & /* theReactor */,
+std::string Plugin::query(const SmartMet::Spine::Reactor& /* theReactor */,
                           const SmartMet::Spine::HTTP::Request &theRequest,
-                          SmartMet::Spine::HTTP::Response & /* theResponse */)
+                          const SmartMet::Spine::HTTP::Response& /* theResponse */)
 {
   try
   {

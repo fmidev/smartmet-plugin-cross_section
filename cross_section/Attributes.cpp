@@ -95,7 +95,7 @@ void Attributes::init(const Json::Value& theJson, const Config& /* theConfig */)
  */
 // ----------------------------------------------------------------------
 
-void Attributes::generate(CTPP::CDT& theLocals, State& /* theState */) const
+void Attributes::generate(CTPP::CDT& theLocals, const State& /* theState */) const
 {
   try
   {

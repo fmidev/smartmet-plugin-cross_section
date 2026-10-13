@@ -59,9 +59,9 @@ class Plugin : public SmartMetPlugin
                       SmartMet::Spine::HTTP::Response& theResponse) override;
 
  private:
-  std::string query(SmartMet::Spine::Reactor& theReactor,
+  std::string query(const SmartMet::Spine::Reactor& theReactor,
                     const SmartMet::Spine::HTTP::Request& theRequest,
-                    SmartMet::Spine::HTTP::Response& theResponse);
+                    const SmartMet::Spine::HTTP::Response& theResponse);
   // Plugin configuration
   const std::string itsModuleName;
   SmartMet::Plugin::CrossSection::Config itsConfig;

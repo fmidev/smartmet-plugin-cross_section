@@ -29,7 +29,7 @@ class Attributes
  public:
   void init(const Json::Value& theJson, const Config& theConfig);
 
-  void generate(CTPP::CDT& theLocals, State& theState) const;
+  void generate(CTPP::CDT& theLocals, const State& theState) const;
 
  private:
   std::map<std::string, std::string> attributes;

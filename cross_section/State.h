@@ -51,9 +51,11 @@ class State
   const Config& getConfig() const;
 
   // Add attributes
-  void addAttributes(CTPP::CDT& theGlobals, const Attributes& theAttributes);
+  void addAttributes(CTPP::CDT& theGlobals, const Attributes& theAttributes) const;
 
-  void addAttributes(CTPP::CDT& theGlobals, CTPP::CDT& theLocals, const Attributes& theAttributes);
+  void addAttributes(const CTPP::CDT& theGlobals,
+                     CTPP::CDT& theLocals,
+                     const Attributes& theAttributes) const;
 
   // Data
 

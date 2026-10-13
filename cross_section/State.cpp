@@ -45,7 +45,7 @@ const Config& State::getConfig() const
  */
 // ----------------------------------------------------------------------
 
-void State::addAttributes(CTPP::CDT& theGlobals, const Attributes& theAttributes)
+void State::addAttributes(CTPP::CDT& theGlobals, const Attributes& theAttributes) const
 {
   try
   {
@@ -63,9 +63,9 @@ void State::addAttributes(CTPP::CDT& theGlobals, const Attributes& theAttributes
  */
 // ----------------------------------------------------------------------
 
-void State::addAttributes(CTPP::CDT& /* theGlobals */,
+void State::addAttributes(const CTPP::CDT& /* theGlobals */,
                           CTPP::CDT& theLocals,
-                          const Attributes& theAttributes)
+                          const Attributes& theAttributes) const
 {
   try
   {
