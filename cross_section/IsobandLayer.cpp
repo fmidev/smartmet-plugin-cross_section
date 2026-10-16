@@ -23,6 +23,39 @@ namespace Plugin
 {
 namespace CrossSection
 {
+namespace
+{
+// Map an isoband interpolation name to the Trax interpolation type
+Trax::InterpolationType parse_interpolation(const std::string& interpolation)
+{
+  if (interpolation == "linear")
+    return Trax::InterpolationType::Linear;
+  if (interpolation == "nearest" || interpolation == "discrete" || interpolation == "midpoint")
+    return Trax::InterpolationType::Midpoint;
+  throw Fmi::Exception(BCP, "Unknown isoband interpolation method '" + interpolation + "'");
+}
+
+// Build the template hash for one generated isoband
+CTPP::CDT make_isoband_hash(CTPP::CDT& theGlobals,
+                            State& theState,
+                            const Isoband& isoband,
+                            const OGRGeometryPtr& geom)
+{
+  CTPP::CDT hash(CTPP::CDT::HASH_VAL);
+  if (isoband.lolimit)
+    hash["lolimit"] = *isoband.lolimit;
+  if (isoband.hilimit)
+    hash["hilimit"] = *isoband.hilimit;
+  if (geom != nullptr && geom->IsEmpty() == 0)
+    hash["path"] = Fmi::OGR::exportToSvg(*geom, Fmi::Box::identity(), 1);
+  else
+    hash["path"] = "";
+  theState.addAttributes(theGlobals, hash, isoband.attributes);
+  return hash;
+}
+
+}  // namespace
+
 // ----------------------------------------------------------------------
 /*!
  * \brief Constructor
@@ -530,13 +563,7 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
     if (multiplier || offset)
       options.transformation(multiplier ? *multiplier : 1.0, offset ? *offset : 0.0);
 
-    if (interpolation == "linear")
-      options.interpolation = Trax::InterpolationType::Linear;
-    else if (interpolation == "nearest" || interpolation == "discrete" ||
-             interpolation == "midpoint")
-      options.interpolation = Trax::InterpolationType::Midpoint;
-    else
-      throw Fmi::Exception(BCP, "Unknown isoband interpolation method '" + interpolation + "'");
+    options.interpolation = parse_interpolation(interpolation);
 
     auto qInfo = q->info();
 
@@ -565,18 +592,7 @@ void IsobandLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
       theState.updateEnvelope(geom);
 
       // Add the layer
-      const Isoband& isoband = isobands[i];
-
-      CTPP::CDT hash(CTPP::CDT::HASH_VAL);
-      if (isoband.lolimit)
-        hash["lolimit"] = *isoband.lolimit;
-      if (isoband.hilimit)
-        hash["hilimit"] = *isoband.hilimit;
-      if (geom != nullptr && geom->IsEmpty() == 0)
-        hash["path"] = Fmi::OGR::exportToSvg(*geom, Fmi::Box::identity(), 1);
-      else
-        hash["path"] = "";
-      theState.addAttributes(theGlobals, hash, isoband.attributes);
+      CTPP::CDT hash = make_isoband_hash(theGlobals, theState, isobands[i], geom);
 
       theGlobals["layers"][timekey]["isobands"][*parameter].PushBack(hash);
     }
