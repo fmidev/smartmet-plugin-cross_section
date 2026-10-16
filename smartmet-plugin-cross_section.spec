@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 26.10.15
+Version: 26.10.16
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -23,16 +23,16 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: smartmet-library-macgyver-devel >= 26.10.15
-BuildRequires: smartmet-library-timeseries-devel >= 26.10.15
-BuildRequires: smartmet-library-spine-devel >= 26.10.15
-BuildRequires: smartmet-library-trax-devel >= 26.10.15
-BuildRequires: smartmet-library-grid-content-devel >= 26.10.15
-BuildRequires: smartmet-library-grid-files-devel >= 26.10.15
-BuildRequires: smartmet-engine-grid-devel >= 26.10.15
-BuildRequires: smartmet-engine-querydata-devel >= 26.10.15
-BuildRequires: smartmet-engine-geonames-devel >= 26.10.15
-BuildRequires: smartmet-engine-contour-devel >= 26.10.15
+BuildRequires: smartmet-library-macgyver-devel >= 26.10.16
+BuildRequires: smartmet-library-timeseries-devel >= 26.10.16
+BuildRequires: smartmet-library-spine-devel >= 26.10.16
+BuildRequires: smartmet-library-trax-devel >= 26.10.16
+BuildRequires: smartmet-library-grid-content-devel >= 26.10.16
+BuildRequires: smartmet-library-grid-files-devel >= 26.10.16
+BuildRequires: smartmet-engine-grid-devel >= 26.10.16
+BuildRequires: smartmet-engine-querydata-devel >= 26.10.16
+BuildRequires: smartmet-engine-geonames-devel >= 26.10.16
+BuildRequires: smartmet-engine-contour-devel >= 26.10.16
 BuildRequires: ctpp2 >= 2.8.8
 BuildRequires: jsoncpp-devel >= 1.8.4
 BuildRequires: bzip2-devel
@@ -40,15 +40,15 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-grid-files >= 26.10.15
-Requires: smartmet-library-macgyver >= 26.10.15
-Requires: smartmet-library-timeseries >= 26.10.15
-Requires: smartmet-engine-grid >= 26.10.15
-Requires: smartmet-engine-querydata >= 26.10.15
-Requires: smartmet-engine-geonames >= 26.10.15
-Requires: smartmet-engine-contour >= 26.10.15
-Requires: smartmet-server >= 26.10.15
-Requires: smartmet-library-spine >= 26.10.15
+Requires: smartmet-library-grid-files >= 26.10.16
+Requires: smartmet-library-macgyver >= 26.10.16
+Requires: smartmet-library-timeseries >= 26.10.16
+Requires: smartmet-engine-grid >= 26.10.16
+Requires: smartmet-engine-querydata >= 26.10.16
+Requires: smartmet-engine-geonames >= 26.10.16
+Requires: smartmet-engine-contour >= 26.10.16
+Requires: smartmet-server >= 26.10.16
+Requires: smartmet-library-spine >= 26.10.16
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
 Requires: %{smartmet_boost}-thread
@@ -58,12 +58,12 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 26.9.3
-#TestRequires: smartmet-library-spine-plugin-test >= 26.10.15
-#TestRequires: smartmet-library-newbase-devel >= 26.10.15
-#TestRequires: smartmet-engine-contour >= 26.10.15
-#TestRequires: smartmet-engine-geonames >= 26.10.15
-#TestRequires: smartmet-engine-grid >= 26.10.15
-#TestRequires: smartmet-engine-querydata >= 26.10.15
+#TestRequires: smartmet-library-spine-plugin-test >= 26.10.16
+#TestRequires: smartmet-library-newbase-devel >= 26.10.16
+#TestRequires: smartmet-engine-contour >= 26.10.16
+#TestRequires: smartmet-engine-geonames >= 26.10.16
+#TestRequires: smartmet-engine-grid >= 26.10.16
+#TestRequires: smartmet-engine-querydata >= 26.10.16
 #TestRequires: smartmet-test-data >= 26.8.26
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
@@ -94,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Fri Oct 16 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.16-1.fmi
+- Rebuilt due to ABI changes in macgyver, spine, newbase and other libraries
+
 * Thu Oct 15 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.15-1.fmi
 - Declare member functions and parameters const where nothing is modified (const correctness), no functional changes
 - Requires 26.10.15 versions of newbase, spine, grid-files, grid-content, engine-grid due to their ABI changes
