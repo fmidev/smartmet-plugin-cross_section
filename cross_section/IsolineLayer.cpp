@@ -1,6 +1,7 @@
 #include "IsolineLayer.h"
 #include "Config.h"
 #include "Isoline.h"
+#include "GridTools.h"
 #include "Layer.h"
 #include "State.h"
 #include <boost/move/unique_ptr.hpp>
@@ -127,271 +128,21 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
       throw Fmi::Exception(BCP, "Z-Parameter not set for isoband-layer");
 
     std::string pName = *parameter;
-    bool raw = false;
-    auto pos = pName.find(".raw");
-    if (pos != std::string::npos)
-    {
-      raw = true;
-      pName.erase(pos, 4);
-    }
+    bool raw = remove_raw_suffix(pName);
 
-    std::string key = theState.query().producer + ";" + pName;
+    auto parameterDetails = get_value_parameter_details(
+        gridEngine, theState.query().producer, pName, *parameter);
 
-    Engine::Grid::ParameterDetails_vec parameterDetails;
-    gridEngine.getParameterDetails(theState.query().producer, pName, parameterDetails);
-    // gridEngine.mapParameterDetails(parameterDetails);
+    auto zParameterDetails =
+        get_height_parameter_details(gridEngine, *theState.query().zproducer, *zparameter);
 
-    if (parameterDetails.size() != 1 || parameterDetails[0].mProducerName != key)
-    {
-      for (auto& rec : parameterDetails)
-      {
-        QueryServer::ParameterMapping_vec mappings;
-        std::string pn = rec.mProducerName;
-        // if (pn == key)
-        pn = rec.mOriginalProducer;
+    auto grid = get_vertical_grid(gridEngine, theState, parameterDetails, zParameterDetails, raw);
+    const std::string& utcTime = grid.utcTime;
 
-        if (rec.mLevelId > " " || rec.mLevel > " ")
-        {
-          if (rec.mGeometryId > " ")
-            gridEngine.getParameterMappings(rec.mProducerName,
-                                            rec.mOriginalParameter,
-                                            std::stoi(rec.mGeometryId),
-                                            std::stoi(rec.mLevelId),
-                                            std::stoi(rec.mLevel),
-                                            false,
-                                            mappings);
-          else
-            gridEngine.getParameterMappings(rec.mProducerName,
-                                            rec.mOriginalParameter,
-                                            std::stoi(rec.mLevelId),
-                                            std::stoi(rec.mLevel),
-                                            false,
-                                            mappings);
-
-          if (mappings.empty() && rec.mLevel < " ")
-          {
-            if (rec.mGeometryId > " ")
-              gridEngine.getParameterMappings(rec.mProducerName,
-                                              rec.mOriginalParameter,
-                                              std::stoi(rec.mGeometryId),
-                                              std::stoi(rec.mLevelId),
-                                              -1,
-                                              false,
-                                              mappings);
-            else
-              gridEngine.getParameterMappings(rec.mProducerName,
-                                              rec.mOriginalParameter,
-                                              std::stoi(rec.mLevelId),
-                                              -1,
-                                              false,
-                                              mappings);
-            // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId,
-            // T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
-          }
-        }
-        else
-        {
-          if (rec.mGeometryId > " ")
-            gridEngine.getParameterMappings(rec.mProducerName,
-                                            rec.mOriginalParameter,
-                                            std::stoi(rec.mGeometryId),
-                                            true,
-                                            mappings);
-          else
-            gridEngine.getParameterMappings(
-                rec.mProducerName, rec.mOriginalParameter, true, mappings);
-
-          // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, true,
-          // mappings);
-        }
-        if (!mappings.empty())
-        {
-          Engine::Grid::MappingDetails details;
-          details.mMapping = mappings[0];
-          rec.mMappings.push_back(details);
-        }
-        // rec.print(std::cout,0,0);
-      }
-
-      if (parameterDetails.empty() || parameterDetails[0].mMappings.empty())
-      {
-        Fmi::Exception exception(BCP, "Parameter mappings not found");
-        if (parameter)
-          exception.addParameter("Parameter", *parameter);
-        exception.addParameter("Producer", theState.query().producer);
-        throw exception;
-      }
-    }
-
-    std::string zkey = *theState.query().zproducer + ";" + *zparameter;
-
-    Engine::Grid::ParameterDetails_vec zParameterDetails;
-    gridEngine.getParameterDetails(*theState.query().zproducer, *zparameter, zParameterDetails);
-    // gridEngine.mapParameterDetails(zParameterDetails);
-
-    if (zParameterDetails.size() != 1 || zParameterDetails[0].mProducerName != zkey)
-    {
-      for (auto& rec : zParameterDetails)
-      {
-        std::string pn = rec.mProducerName;
-        if (pn == zkey)
-          pn = rec.mOriginalProducer;
-
-        QueryServer::ParameterMapping_vec mappings;
-        if (rec.mLevelId > " " || rec.mLevel > " ")
-        {
-          if (rec.mGeometryId > " ")
-            gridEngine.getParameterMappings(pn,
-                                            rec.mOriginalParameter,
-                                            std::stoi(rec.mGeometryId),
-                                            std::stoi(rec.mLevelId),
-                                            std::stoi(rec.mLevel),
-                                            false,
-                                            mappings);
-          else
-            gridEngine.getParameterMappings(pn,
-                                            rec.mOriginalParameter,
-                                            std::stoi(rec.mLevelId),
-                                            std::stoi(rec.mLevel),
-                                            false,
-                                            mappings);
-
-          if (mappings.empty() && rec.mLevel < " ")
-          {
-            if (rec.mGeometryId > " ")
-              gridEngine.getParameterMappings(pn,
-                                              rec.mOriginalParameter,
-                                              std::stoi(rec.mGeometryId),
-                                              std::stoi(rec.mLevelId),
-                                              -1,
-                                              false,
-                                              mappings);
-            else
-              gridEngine.getParameterMappings(
-                  pn, rec.mOriginalParameter, std::stoi(rec.mLevelId), -1, false, mappings);
-            // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId,
-            // T::ParamLevelIdTypeValue::ANY, paramLevelId, -1, false, mappings);
-          }
-        }
-        else
-        {
-          if (rec.mGeometryId > " ")
-            gridEngine.getParameterMappings(
-                pn, rec.mOriginalParameter, std::stoi(rec.mGeometryId), true, mappings);
-          else
-            gridEngine.getParameterMappings(pn, rec.mOriginalParameter, true, mappings);
-          // getParameterMappings(producerInfo.mName, parameterKey, producerGeometryId, true,
-          // mappings);
-        }
-
-        if (!mappings.empty())
-        {
-          Engine::Grid::MappingDetails details;
-          details.mMapping = mappings[0];
-          rec.mMappings.push_back(details);
-        }
-
-        // rec.print(std::cout,0,0);
-      }
-
-      if (zParameterDetails.empty() || zParameterDetails[0].mMappings.empty())
-      {
-        Fmi::Exception exception(BCP, "Z-Parameter mappings not found");
-        if (zparameter)
-          exception.addParameter("Z-Parameter", *zparameter);
-        if (theState.query().zproducer)
-          exception.addParameter("Producer", *theState.query().zproducer);
-        throw exception;
-      }
-    }
-
-    double lon1 = theState.query().longitude1;
-    double lat1 = theState.query().latitude1;
-    double lon2 = theState.query().longitude2;
-    double lat2 = theState.query().latitude2;
-    int steps = theState.query().steps;
-
-    std::string valueProducerName = parameterDetails[0].mOriginalProducer;
-    std::string valueParameter = parameterDetails[0].mOriginalParameter;
-    int geometryId = -1;
-    short areaInterpolationMethod = T::AreaInterpolationMethod::Linear;
-    short timeInterpolationMethod = T::TimeInterpolationMethod::Linear;
-    std::string heightProducerName = zParameterDetails[0].mOriginalProducer;
-    std::string heightParameter = zParameterDetails[0].mOriginalParameter;
-
-    if (!parameterDetails[0].mMappings.empty())
-    {
-      valueProducerName = parameterDetails[0].mMappings[0].mMapping.mProducerName;
-      valueParameter = parameterDetails[0].mMappings[0].mMapping.mParameterName;
-      geometryId = parameterDetails[0].mMappings[0].mMapping.mGeometryId;
-
-      if (raw)
-        areaInterpolationMethod = T::AreaInterpolationMethod::Linear;
-      else
-        areaInterpolationMethod =
-            parameterDetails[0].mMappings[0].mMapping.mAreaInterpolationMethod;
-
-      timeInterpolationMethod = parameterDetails[0].mMappings[0].mMapping.mTimeInterpolationMethod;
-    }
-
-    if (!zParameterDetails[0].mMappings.empty())
-    {
-      heightProducerName = zParameterDetails[0].mMappings[0].mMapping.mProducerName;
-      heightParameter = zParameterDetails[0].mMappings[0].mMapping.mParameterName;
-    }
-
-    int forecastType = -1;
-    int forecastNumber = -1;
     std::vector<float> contourValues;
-    std::vector<T::Coordinate> coordinates;
-    std::vector<float> gridData;
-    uint gridWidth = 0;
-    uint gridHeight = 0;
     size_t smooth_size = 0;
     size_t smooth_degree = 1;
     T::ByteData_vec contours;
-
-    std::string utcTime = Fmi::to_iso_string(theState.time().utc_time());
-
-    gridEngine.getVerticalGrid(lon1,
-                               lat1,
-                               lon2,
-                               lat2,
-                               steps,
-                               utcTime,
-                               valueProducerName,
-                               valueParameter,
-                               heightProducerName,
-                               heightParameter,
-                               geometryId,
-                               forecastType,
-                               forecastNumber,
-                               areaInterpolationMethod,
-                               timeInterpolationMethod,
-                               coordinates,
-                               gridData,
-                               gridWidth,
-                               gridHeight);
-
-    double maxHeight = 0;
-    double maxDistance = 0;
-    float maxValue = -1000000000;
-    float minValue = 1000000000;
-
-    for (auto value : gridData)
-    {
-      maxValue = std::max<double>(value, maxValue);
-
-      if (value != ParamValueMissing)
-        minValue = std::min(minValue, value);
-    }
-
-    for (const auto& coord : coordinates)
-    {
-      maxHeight = std::max(coord.y(), maxHeight);
-
-      maxDistance = std::max(coord.x(), maxDistance);
-    }
 
     for (const auto& isoline : isolines)
     {
@@ -399,10 +150,10 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
         contourValues.push_back(isoline.value);
     }
 
-    getIsolines(gridData,
-                &coordinates,
-                gridWidth,
-                gridHeight,
+    getIsolines(grid.gridData,
+                &grid.coordinates,
+                grid.gridWidth,
+                grid.gridHeight,
                 contourValues,
                 T::AreaInterpolationMethod::Linear,
                 smooth_size,
