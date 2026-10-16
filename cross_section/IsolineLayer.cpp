@@ -145,10 +145,7 @@ void IsolineLayer::generate_gridEngine(CTPP::CDT& theGlobals, State& theState)
     T::ByteData_vec contours;
 
     for (const auto& isoline : isolines)
-    {
-      if (isoline.value)
-        contourValues.push_back(isoline.value);
-    }
+      contourValues.push_back(isoline.value);
 
     getIsolines(grid.gridData,
                 &grid.coordinates,
