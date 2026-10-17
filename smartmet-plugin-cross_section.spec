@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 26.10.16
+Version: 26.10.17
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -40,15 +40,15 @@ BuildRequires: zlib-devel
 Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
-Requires: smartmet-library-grid-files >= 26.10.16
-Requires: smartmet-library-macgyver >= 26.10.16
+Requires: smartmet-library-grid-files >= 26.10.17
+Requires: smartmet-library-macgyver >= 26.10.17
 Requires: smartmet-library-timeseries >= 26.10.16
-Requires: smartmet-engine-grid >= 26.10.16
-Requires: smartmet-engine-querydata >= 26.10.16
-Requires: smartmet-engine-geonames >= 26.10.16
-Requires: smartmet-engine-contour >= 26.10.16
-Requires: smartmet-server >= 26.10.16
-Requires: smartmet-library-spine >= 26.10.16
+Requires: smartmet-engine-grid >= 26.10.17
+Requires: smartmet-engine-querydata >= 26.10.17
+Requires: smartmet-engine-geonames >= 26.10.17
+Requires: smartmet-engine-contour >= 26.10.17
+Requires: smartmet-server >= 26.10.17
+Requires: smartmet-library-spine >= 26.10.17
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
 Requires: %{smartmet_boost}-thread
@@ -60,10 +60,10 @@ Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 26.9.3
 #TestRequires: smartmet-library-spine-plugin-test >= 26.10.16
 #TestRequires: smartmet-library-newbase-devel >= 26.10.16
-#TestRequires: smartmet-engine-contour >= 26.10.16
-#TestRequires: smartmet-engine-geonames >= 26.10.16
-#TestRequires: smartmet-engine-grid >= 26.10.16
-#TestRequires: smartmet-engine-querydata >= 26.10.16
+#TestRequires: smartmet-engine-contour >= 26.10.17
+#TestRequires: smartmet-engine-geonames >= 26.10.17
+#TestRequires: smartmet-engine-grid >= 26.10.17
+#TestRequires: smartmet-engine-querydata >= 26.10.17
 #TestRequires: smartmet-test-data >= 26.8.26
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
@@ -94,6 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Sat Oct 17 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.17-1.fmi
+- IsolineLayer::generate_gridEngine: contour isolines with value zero too
+- Split functions with a cognitive complexity above 25 into smaller helpers, no functional changes
+
 * Fri Oct 16 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.16-1.fmi
 - Rebuilt due to ABI changes in macgyver, spine, newbase and other libraries
 
