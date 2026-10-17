@@ -106,9 +106,12 @@ Cross-section paths are defined by the request parameters parsed into
   for the duration of the request, so every layer sees the same
   data snapshot.
 - **Per-engine path** — `IsobandLayer` and `IsolineLayer` each have a
-  `generate_qEngine` and a `generate_gridEngine` implementation that
-  fetch data from the selected source and hand it to the contour
-  engine.
+  `generate_qEngine` and a `generate_gridEngine` implementation. The
+  querydata path hands the data to the contour engine; the grid path
+  fetches the vertical grid through the shared helpers of `GridTools`
+  (parameter mapping lookup, vertical grid fetching) and contours it
+  with the `getIsobands` / `getIsolines` functions of grid-files. Both
+  paths contour every configured isoline, including the value zero.
 
 ## 9. Output format
 
