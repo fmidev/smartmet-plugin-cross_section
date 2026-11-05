@@ -23,14 +23,14 @@ BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: smartmet-library-macgyver-devel >= 26.10.16
-BuildRequires: smartmet-library-timeseries-devel >= 26.10.16
-BuildRequires: smartmet-library-spine-devel >= 26.10.16
+BuildRequires: smartmet-library-macgyver-devel >= 26.11.3
+BuildRequires: smartmet-library-timeseries-devel >= 26.11.4
+BuildRequires: smartmet-library-spine-devel >= 26.11.4
 BuildRequires: smartmet-library-trax-devel >= 26.10.16
 BuildRequires: smartmet-library-grid-content-devel >= 26.10.16
 BuildRequires: smartmet-library-grid-files-devel >= 26.10.16
 BuildRequires: smartmet-engine-grid-devel >= 26.10.16
-BuildRequires: smartmet-engine-querydata-devel >= 26.10.16
+BuildRequires: smartmet-engine-querydata-devel >= 26.11.5
 BuildRequires: smartmet-engine-geonames-devel >= 26.10.16
 BuildRequires: smartmet-engine-contour-devel >= 26.10.16
 BuildRequires: ctpp2 >= 2.8.8
@@ -41,14 +41,14 @@ Requires: jsoncpp >= 1.8.4
 Requires: ctpp2 >= 2.8.8
 Requires: libconfig17 >= 1.7.3
 Requires: smartmet-library-grid-files >= 26.10.17
-Requires: smartmet-library-macgyver >= 26.10.17
-Requires: smartmet-library-timeseries >= 26.10.16
+Requires: smartmet-library-macgyver >= 26.11.3
+Requires: smartmet-library-timeseries >= 26.11.4
 Requires: smartmet-engine-grid >= 26.10.17
-Requires: smartmet-engine-querydata >= 26.10.17
+Requires: smartmet-engine-querydata >= 26.11.5
 Requires: smartmet-engine-geonames >= 26.10.17
 Requires: smartmet-engine-contour >= 26.10.17
 Requires: smartmet-server >= 26.10.17
-Requires: smartmet-library-spine >= 26.10.17
+Requires: smartmet-library-spine >= 26.11.4
 Requires: %{smartmet_boost}-iostreams
 Requires: %{smartmet_boost}-system
 Requires: %{smartmet_boost}-thread
@@ -58,12 +58,12 @@ Provides: %{SPECNAME}
 Obsoletes: smartmet-brainstorm-csection < 16.11.1
 Obsoletes: smartmet-brainstorm-csection-debuginfo < 16.11.1
 #TestRequires: smartmet-utils-devel >= 26.9.3
-#TestRequires: smartmet-library-spine-plugin-test >= 26.10.16
+#TestRequires: smartmet-library-spine-plugin-test >= 26.11.4
 #TestRequires: smartmet-library-newbase-devel >= 26.10.16
 #TestRequires: smartmet-engine-contour >= 26.10.17
 #TestRequires: smartmet-engine-geonames >= 26.10.17
 #TestRequires: smartmet-engine-grid >= 26.10.17
-#TestRequires: smartmet-engine-querydata >= 26.10.17
+#TestRequires: smartmet-engine-querydata >= 26.11.5
 #TestRequires: smartmet-test-data >= 26.8.26
 #TestRequires: smartmet-test-db
 #TestRequires: libwebp13
