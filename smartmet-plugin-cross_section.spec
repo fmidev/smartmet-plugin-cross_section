@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-cross_section
 Summary: SmartMet Cross-Section plugin
 Name: %{SPECNAME}
-Version: 26.11.6
+Version: 26.11.7
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -94,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/smartmet/cross_section/*.c2t
 
 %changelog
+* Sat Nov  7 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.11.7-1.fmi
+- Fixed a crash when the contour engine returns no cross-section geometries (time, parameter or level not in the data)
+
 * Fri Nov 6 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.11.6-1.fmi
 - Include the headers used directly instead of relying on transitive includes
 

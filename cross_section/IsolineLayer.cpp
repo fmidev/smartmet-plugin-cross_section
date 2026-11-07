@@ -295,6 +295,10 @@ void IsolineLayer::generate_qEngine(CTPP::CDT& theGlobals, State& theState)
                                     theState.query().latitude2,
                                     theState.query().steps);
 
+    // The engine returns no geometries when the parameter, level or time is not in the data
+    if (geoms.size() != isolines.size())
+      return;
+
     for (unsigned int i = 0; i < isolines.size(); i++)
     {
       const OGRGeometryPtr& geom = geoms[i];
