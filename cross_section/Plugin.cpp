@@ -476,7 +476,7 @@ void Plugin::init()
 
     if (!itsReactor->addContentHandler(
             this,
-            itsConfig.defaultUrl(),
+            Spine::Reactor::HandlerOptions(itsConfig.defaultUrl()),
             [this](Spine::Reactor &theReactor,
                    const Spine::HTTP::Request &theRequest,
                    Spine::HTTP::Response &theResponse)
