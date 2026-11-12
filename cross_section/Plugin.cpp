@@ -10,7 +10,6 @@
 #include "Query.h"
 #include "State.h"
 #include <boost/algorithm/string.hpp>
-#include <boost/bimap.hpp>
 #include <boost/timer/timer.hpp>
 #include <ctpp2/CDT.hpp>
 #include <engines/contour/Engine.h>
