@@ -1,9 +1,8 @@
 #include "Layers.h"
 #include "Layer.h"
 #include "LayerFactory.h"
-#include "State.h"
-#include <ctpp2/CDT.hpp>
 #include <macgyver/Exception.h>
+#include <string>
 
 namespace SmartMet
 {

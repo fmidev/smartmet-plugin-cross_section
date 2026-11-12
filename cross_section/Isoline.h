@@ -7,9 +7,7 @@
 #pragma once
 
 #include "Attributes.h"
-#include <optional>
 #include <json/json.h>
-#include <string>
 
 namespace SmartMet
 {

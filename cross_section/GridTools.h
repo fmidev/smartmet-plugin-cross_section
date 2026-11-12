@@ -7,6 +7,9 @@
 #pragma once
 
 #include <engines/grid/Engine.h>
+#include <engines/grid/ParameterDetails.h>
+#include <grid-files/common/Coordinate.h>
+#include <grid-files/common/Typedefs.h>
 #include <string>
 #include <vector>
 

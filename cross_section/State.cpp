@@ -1,8 +1,10 @@
 #include "State.h"
+#include "Attributes.h"
 #include "Plugin.h"
-#include <ctpp2/CDT.hpp>
+#include <engines/querydata/Engine.h>
 #include <macgyver/Exception.h>
-#include <stdexcept>
+#include <memory>
+#include <string>
 
 namespace SmartMet
 {

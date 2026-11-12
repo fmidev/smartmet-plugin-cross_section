@@ -10,14 +10,37 @@
 #include "FileCache.h"
 #include "Product.h"
 #include "TemplateFactory.h"
-#include <engines/contour/Engine.h>
-#include <engines/geonames/Engine.h>
-#include <engines/grid/Engine.h>
-#include <engines/querydata/Engine.h>
-#include <spine/HTTP.h>
-#include <spine/Reactor.h>
 #include <spine/SmartMetPlugin.h>
 #include <spine/Thread.h>
+#include <map>
+#include <memory>
+#include <string>
+
+namespace SmartMet::Engine::Contour
+{
+class Engine;
+}  // namespace SmartMet::Engine::Contour
+namespace SmartMet::Engine::Geonames
+{
+class Engine;
+}  // namespace SmartMet::Engine::Geonames
+namespace SmartMet::Engine::Grid
+{
+class Engine;
+}  // namespace SmartMet::Engine::Grid
+namespace SmartMet::Engine::Querydata
+{
+class Engine;
+}  // namespace SmartMet::Engine::Querydata
+namespace SmartMet::Spine::HTTP
+{
+class Request;
+class Response;
+}  // namespace SmartMet::Spine::HTTP
+namespace SmartMet::Spine
+{
+class Reactor;
+}  // namespace SmartMet::Spine
 
 namespace SmartMet
 {

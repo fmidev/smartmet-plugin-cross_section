@@ -1,5 +1,9 @@
 #include "GridTools.h"
+#include "Query.h"
 #include "State.h"
+#include <engines/grid/MappingDetails.h>
+#include <grid-content/queryServer/definition/ParameterMapping.h>
+#include <grid-files/grid/Typedefs.h>
 #include <macgyver/Exception.h>
 #include <macgyver/StringConversion.h>
 

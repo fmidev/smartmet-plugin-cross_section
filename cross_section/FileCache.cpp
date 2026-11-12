@@ -1,11 +1,10 @@
 // ======================================================================
 
 #include "FileCache.h"
-#include <boost/filesystem/operations.hpp>
 #include <macgyver/Exception.h>
 #include <macgyver/FileSystem.h>
 #include <fstream>
-#include <stdexcept>
+#include <iterator>
 
 namespace SmartMet
 {

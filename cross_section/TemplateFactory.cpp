@@ -1,10 +1,10 @@
 // ======================================================================
 
 #include "TemplateFactory.h"
-#include <boost/filesystem/operations.hpp>
-#include <boost/make_shared.hpp>
 #include <macgyver/Exception.h>
 #include <macgyver/FileSystem.h>
+#include <string>
+#include <utility>
 
 namespace SmartMet
 {

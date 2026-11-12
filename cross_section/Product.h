@@ -9,8 +9,11 @@
 #include "Layers.h"
 #include <json/json.h>
 #include <timeseries/TimeSeriesGenerator.h>
-#include <string>
-#include <vector>
+
+namespace CTPP
+{
+class CDT;
+}  // namespace CTPP
 
 namespace SmartMet
 {

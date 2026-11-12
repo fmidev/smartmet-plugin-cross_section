@@ -7,7 +7,6 @@
 #pragma once
 
 #include <libconfig.h++>
-#include <set>
 #include <string>
 
 namespace SmartMet

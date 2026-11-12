@@ -10,9 +10,12 @@
 
 #pragma once
 
-#include "Layer.h"
 #include <json/json.h>
-#include <string>
+
+namespace SmartMet::Plugin::CrossSection
+{
+class Layer;
+}  // namespace SmartMet::Plugin::CrossSection
 
 namespace SmartMet
 {

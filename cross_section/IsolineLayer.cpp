@@ -1,21 +1,30 @@
 #include "IsolineLayer.h"
-#include "Config.h"
-#include "Isoline.h"
 #include "GridTools.h"
+#include "Isoline.h"
 #include "Layer.h"
+#include "Query.h"
 #include "State.h"
-#include <boost/move/unique_ptr.hpp>
 #include <boost/timer/timer.hpp>
 #include <ctpp2/CDT.hpp>
 #include <engines/contour/Engine.h>
+#include <engines/contour/Options.h>
+#include <engines/grid/Engine.h>
+#include <engines/querydata/Q.h>
 #include <gis/Box.h>
 #include <gis/OGR.h>
-#include <grid-files/common/ImagePaint.h>
-#include <macgyver/StringConversion.h>
+#include <gis/Types.h>
+#include <grid-files/common/GraphFunctions.h>
+#include <grid-files/common/Typedefs.h>
+#include <grid-files/grid/Typedefs.h>
+#include <json/value.h>
+#include <macgyver/Exception.h>
 #include <macgyver/TimeFormatter.h>
-#include <macgyver/TimeParser.h>
+#include <spine/Parameter.h>
 #include <timeseries/ParameterFactory.h>
-#include <algorithm>
+#include <trax/InterpolationType.h>
+#include <cstddef>
+#include <memory>
+#include <ogr_geometry.h>
 
 namespace SmartMet
 {

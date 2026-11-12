@@ -14,7 +14,6 @@
 #include "Attributes.h"
 #include <json/json.h>
 #include <string>
-#include <vector>
 
 namespace CTPP
 {

@@ -7,9 +7,13 @@
 #pragma once
 
 #include "Attributes.h"
-#include <optional>
 #include <json/json.h>
-#include <string>
+#include <optional>
+
+namespace SmartMet::Plugin::CrossSection
+{
+class Config;
+}  // namespace SmartMet::Plugin::CrossSection
 
 namespace SmartMet
 {

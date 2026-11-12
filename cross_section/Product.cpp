@@ -1,11 +1,14 @@
 #include "Product.h"
-#include "Config.h"
+#include "Query.h"
 #include "State.h"
-#include <boost/lexical_cast.hpp>
 #include <ctpp2/CDT.hpp>
 #include <macgyver/Exception.h>
-#include <macgyver/TimeParser.h>
-#include <spine/HTTP.h>
+#include <algorithm>
+#include <cmath>
+#include <list>
+#include <ogr_core.h>
+#include <string>
+#include <vector>
 
 namespace
 {

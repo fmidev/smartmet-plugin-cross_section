@@ -1,12 +1,5 @@
 #include "Layer.h"
-#include "Config.h"
-#include "LayerFactory.h"
-#include "State.h"
-#include <ctpp2/CDT.hpp>
 #include <macgyver/Exception.h>
-#include <spine/HTTP.h>
-// #include <timeseries/ParameterFactory.h>
-#include <stdexcept>
 
 namespace SmartMet
 {

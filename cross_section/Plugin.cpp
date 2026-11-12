@@ -10,20 +10,33 @@
 #include "Query.h"
 #include "State.h"
 #include <boost/algorithm/string.hpp>
-#include <boost/move/unique_ptr.hpp>
+#include <boost/bimap.hpp>
 #include <boost/timer/timer.hpp>
 #include <ctpp2/CDT.hpp>
+#include <engines/contour/Engine.h>
 #include <engines/geonames/Engine.h>
+#include <engines/grid/Engine.h>
+#include <engines/querydata/Engine.h>
+#include <engines/querydata/Q.h>
 #include <json/json.h>
-#include <json/reader.h>
 #include <macgyver/AnsiEscapeCodes.h>
+#include <macgyver/DateTime.h>
 #include <macgyver/Exception.h>
+#include <macgyver/TemplateFormatter.h>
+#include <macgyver/TimeFormatter.h>
+#include <macgyver/TimeZones.h>
 #include <spine/Convenience.h>
+#include <spine/HTTP.h>
 #include <spine/HostInfo.h>
+#include <spine/Location.h>
+#include <spine/Reactor.h>
 #include <spine/SmartMet.h>
-#include <timeseries/OptionParsers.h>
+#include <timeseries/TimeSeriesGenerator.h>
 #include <timeseries/TimeSeriesGeneratorOptions.h>
-#include <stdexcept>
+#include <filesystem>
+#include <iostream>
+#include <optional>
+#include <utility>
 
 namespace
 {

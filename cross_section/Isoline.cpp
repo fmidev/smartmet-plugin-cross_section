@@ -1,7 +1,7 @@
 #include "Isoline.h"
-#include "Config.h"
 #include <macgyver/Exception.h>
-#include <stdexcept>
+#include <string>
+#include <vector>
 
 namespace SmartMet
 {

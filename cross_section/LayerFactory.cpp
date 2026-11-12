@@ -4,8 +4,12 @@
 #include "IsobandLayer.h"
 #include "IsolineLayer.h"
 #include <macgyver/Exception.h>
-#include <fstream>
-#include <stdexcept>
+#include <string>
+
+namespace SmartMet::Plugin::CrossSection
+{
+class Layer;
+}  // namespace SmartMet::Plugin::CrossSection
 
 namespace SmartMet
 {

@@ -8,7 +8,14 @@
 
 #include "Isoband.h"
 #include "Layer.h"
+#include <optional>
+#include <string>
 #include <vector>
+
+namespace CTPP
+{
+class CDT;
+}  // namespace CTPP
 
 namespace SmartMet
 {
@@ -16,8 +23,6 @@ namespace Plugin
 {
 namespace CrossSection
 {
-class Config;
-class Plugin;
 class State;
 
 class IsobandLayer : public Layer

@@ -1,13 +1,11 @@
 // ======================================================================
 
 #include "Attributes.h"
-#include "Config.h"
-#include "State.h"
-#include <boost/algorithm/string/predicate.hpp>
 #include <ctpp2/CDT.hpp>
-#include <macgyver/StringConversion.h>
 #include <macgyver/Exception.h>
-#include <spine/HTTP.h>
+#include <macgyver/StringConversion.h>
+#include <utility>
+#include <vector>
 
 namespace SmartMet
 {

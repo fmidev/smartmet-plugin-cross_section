@@ -9,9 +9,11 @@
 
 #pragma once
 
-#include <filesystem>
 #include <boost/thread.hpp>
 #include <macgyver/TemplateFormatter.h>
+#include <ctime>
+#include <filesystem>
+#include <map>
 #include <memory>
 
 namespace SmartMet

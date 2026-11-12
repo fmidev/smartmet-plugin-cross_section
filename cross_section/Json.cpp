@@ -1,7 +1,10 @@
 #include "Json.h"
 #include "FileCache.h"
 #include <boost/algorithm/string/predicate.hpp>
+#include <json/reader.h>
 #include <macgyver/Exception.h>
+#include <filesystem>
+#include <vector>
 
 namespace SmartMet
 {

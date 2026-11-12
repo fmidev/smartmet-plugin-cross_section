@@ -1,7 +1,12 @@
 #include "Isoband.h"
-#include "Config.h"
 #include <macgyver/Exception.h>
-#include <stdexcept>
+#include <string>
+#include <vector>
+
+namespace SmartMet::Plugin::CrossSection
+{
+class Config;
+}  // namespace SmartMet::Plugin::CrossSection
 
 namespace SmartMet
 {

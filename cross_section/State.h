@@ -17,13 +17,25 @@
 
 #pragma once
 
-#include "Attributes.h"
 #include "Plugin.h"
 #include "Query.h"
-#include <engines/contour/Engine.h>
 #include <engines/querydata/Q.h>
-#include <map>
+#include <gis/Types.h>
+#include <macgyver/LocalDateTime.h>
 #include <ogr_geometry.h>
+
+namespace SmartMet::Engine::Contour
+{
+class Engine;
+}  // namespace SmartMet::Engine::Contour
+namespace SmartMet::Engine::Grid
+{
+class Engine;
+}  // namespace SmartMet::Engine::Grid
+namespace SmartMet::Plugin::CrossSection
+{
+class Attributes;
+}  // namespace SmartMet::Plugin::CrossSection
 
 namespace CTPP
 {
@@ -37,7 +49,6 @@ namespace Plugin
 namespace CrossSection
 {
 class Config;
-class Plugin;
 
 class State
 {
